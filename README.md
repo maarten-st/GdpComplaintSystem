@@ -181,21 +181,6 @@ Run: `node Documents/generate.js`
 
 ---
 
-## The 9 Demo Cases
-
-| Case | Family | Path |
-|---|---|---|
-| CMP-1001 | A | Path A clean destroy + full credit |
-| CMP-1002 | B | Path B, excursion within budget → back-to-stock |
-| CMP-1003 | B | Path A, vaccine zero-tolerance breach → destroy |
-| CMP-1004 | B | Missing logger → UNKNOWN-as-fail → destroy |
-| CMP-1005 | C | Commercial lane (no QA gate), QA notified only |
-| CMP-1006/1007 | C | Cross-case correlation pair (shared DISP-9031) |
-| CMP-1008 | A | Saga showpiece: credit posted, RP overrides → reversal + CAPA |
-| CMP-1009 | A | Interruption: incomplete → RFI → parked → resume |
-
----
-
 ## Domain Rules (must not be softened)
 
 - **GDP 6.3 gate:** returned goods go back to saleable stock only if **all five** criteria are TRUE. UNKNOWN = FALSE (cannot prove safety → destroy).
