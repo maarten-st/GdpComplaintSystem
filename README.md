@@ -8,6 +8,25 @@ Handles pharma B2B customer complaints end-to-end under **EU GDP 2013/C 343/01, 
 
 ---
 
+## Links
+
+### Demo Videos
+| # | Title | Link |
+|---|---|---|
+| 1 | Business Case | [Watch](https://youtu.be/xlerdKv3sWI) |
+| 2 | Quantity Discrepancy | [Watch](https://youtu.be/UoqnSjhRh4Q) |
+| 3 | Quality Deficit | [Watch](https://youtu.be/7ph6AheR7ws) |
+| 4 | Temperature Dispersion | [Watch](https://youtu.be/Gf6HxlYZEnU) |
+| 5 | Use of Coding Agents | [Watch](https://youtu.be/R348ZA8Dn84) |
+
+### Repository
+- **GitHub:** https://github.com/maarten-st/GdpComplaintSystem
+
+### UiPath Orchestrator
+- **Orchestrator:** https://staging.uipath.com/hackathon26_371
+
+---
+
 ## Folder Structure
 
 ```
