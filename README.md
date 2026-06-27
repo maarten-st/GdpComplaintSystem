@@ -206,6 +206,17 @@ Run: `node Documents/generate.js`
 
 ---
 
+## Out of Scope
+
+- **Manual trigger:** For testing purposes the trigger is manual to easily test it. In reality we would configure an event-based trigger on a new email.
+- **Limited case types:** Currently we focus only on 3 cases: quantity discrepancy, quality defect, and temperature deviation.
+- **Attachment assumptions:** We assume every PDF is a delivery note and every image attachment is damage proof. We are aware that in reality we should add filters and checks for this.
+- **Unconditional robot runs:** Currently both temperature logs and gather evidence are run every time. If we had capacity constraints it would be possible to run them only if needed, based on what the agent extracts.
+- **Error handling:** We are aware that for several parts of the process error handling should be much more detailed.
+- **Filtering bug:** There were some issues with filtering on both the complaint ID and the gate field that is changed by the user. We assume this is a platform bug.
+
+---
+
 ## Source Repositories
 
 | This folder | Source |
