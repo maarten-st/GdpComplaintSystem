@@ -1,0 +1,402 @@
+{
+  "name": "ErpRobots",
+  "projectId": "8e0d60c9-6688-41dd-bc95-931ebae33eef",
+  "description": "RPA robots driving the mock ERP Electron app for the GDP Maestro Case (LookupSalesOrder, GatherEvidence, batch disposition, postings).",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.DataService.Activities": "26.4.5-preview",
+    "UiPath.DocumentUnderstanding.Activities": "[3.2.0-preview]",
+    "UiPath.IntegrationService.Activities": "1.26.0",
+    "UiPath.Mail.Activities": "[2.9.10]",
+    "UiPath.MicrosoftOffice365.Activities": "[3.9.12]",
+    "UiPath.System.Activities": "[26.2.6]",
+    "UiPath.UIAutomation.Activities": "26.4.4-preview"
+  },
+  "webServices": [],
+  "entitiesStores": [
+    {
+      "serviceDocument": ".entities/EntitiesStore.json",
+      "namespace": "ErpRobots"
+    }
+  ],
+  "schemaVersion": "4.0",
+  "studioVersion": "26.0.195.0",
+  "projectVersion": "1.0.15",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "netFrameworkLazyLoading": false,
+    "isPausable": false,
+    "isAttended": false,
+    "requiresUserInteraction": false,
+    "supportsPersistence": false,
+    "workflowSerialization": "NewtonsoftJson",
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow",
+    "readyForPiP": false,
+    "startsInPiP": false,
+    "mustRestoreAllDependencies": true,
+    "pipType": "ChildSession"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Process",
+    "libraryOptions": {
+      "privateWorkflows": []
+    },
+    "processOptions": {
+      "ignoredFiles": []
+    },
+    "fileInfoCollection": [],
+    "saveToCloud": false
+  },
+  "expressionLanguage": "VisualBasic",
+  "entryPoints": [
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "17c579c7-a009-4bdf-9adf-79be88bc9f00",
+      "input": [],
+      "output": []
+    },
+    {
+      "filePath": "HandleEmailAttachments.xaml",
+      "uniqueId": "a4444444-4444-4444-8444-444444444444",
+      "input": [
+        {
+          "name": "in_RecordId",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_EmailId",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_SalesOrder",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": [
+        {
+          "name": "out_ExecutionStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ErrorMessage",
+          "type": "System.String"
+        }
+      ]
+    },
+    {
+      "filePath": "PostToErp.xaml",
+      "uniqueId": "0d6d2f69-fd0f-421a-b2b9-29eeb8901337",
+      "input": [
+        {
+          "name": "in_NoteType",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_CaseId",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_CustomerCode",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_ProductCode",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_BatchNo",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_Qty",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_Amount",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_Reason",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": [
+        {
+          "name": "out_CreditNoteStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_CreditPosted",
+          "type": "System.Boolean"
+        },
+        {
+          "name": "out_ExecutionStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ErrorMessage",
+          "type": "System.String"
+        }
+      ]
+    },
+    {
+      "filePath": "ExecuteDisposition.xaml",
+      "uniqueId": "cb44640d-23fd-4c2f-9b9b-ec11de8b2a64",
+      "input": [
+        {
+          "name": "in_BatchNo",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_TargetStatus",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_Qty",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": [
+        {
+          "name": "out_BatchStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ExecutionStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ErrorMessage",
+          "type": "System.String"
+        }
+      ]
+    },
+    {
+      "filePath": "GatherEvidence.xaml",
+      "uniqueId": "fc3f568e-2c73-47e0-96b0-b3b7997b062e",
+      "input": [
+        {
+          "name": "in_OrderNo",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_BatchNo",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": [
+        {
+          "name": "out_RawResult",
+          "type": "System.String"
+        },
+        {
+          "name": "out_TotalPaid",
+          "type": "System.String"
+        },
+        {
+          "name": "out_UnitPrice",
+          "type": "System.String"
+        },
+        {
+          "name": "out_LineAmount",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ExecutionStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ErrorMessage",
+          "type": "System.String"
+        }
+      ]
+    },
+    {
+      "filePath": "ExtractDeliveryNote.xaml",
+      "uniqueId": "a2222222-2222-4222-8222-222222222222",
+      "input": [
+        {
+          "name": "in_RecordId",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_PdfPath",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_SalesOrder",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": [
+        {
+          "name": "out_DeliveryNoteJson",
+          "type": "System.String"
+        },
+        {
+          "name": "out_MatchResult",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ExecutionStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ErrorMessage",
+          "type": "System.String"
+        }
+      ]
+    },
+    {
+      "filePath": "BackfillFields.xaml",
+      "uniqueId": "a3333333-3333-4333-8333-333333333333",
+      "input": [
+        {
+          "name": "in_RecordId",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_OrderNo",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": [
+        {
+          "name": "out_BatchNo",
+          "type": "System.String"
+        },
+        {
+          "name": "out_Qty",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ExecutionStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ErrorMessage",
+          "type": "System.String"
+        }
+      ]
+    },
+    {
+      "filePath": "GatherTempLogs.xaml",
+      "uniqueId": "78bf0b84-2f96-4954-a3b3-ed3290c141a7",
+      "input": [
+        {
+          "name": "in_SalesOrder",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_PortalUrl",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_Username",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        },
+        {
+          "name": "in_Password",
+          "type": "System.String",
+          "required": false,
+          "hasDefault": false
+        }
+      ],
+      "output": [
+        {
+          "name": "out_TransportRef",
+          "type": "System.String"
+        },
+        {
+          "name": "out_TempMinC",
+          "type": "System.Double"
+        },
+        {
+          "name": "out_TempMaxC",
+          "type": "System.Double"
+        },
+        {
+          "name": "out_ExcursionHours",
+          "type": "System.Double"
+        },
+        {
+          "name": "out_LoggerPresent",
+          "type": "System.Boolean"
+        },
+        {
+          "name": "out_TempLog",
+          "type": "System.Data.DataTable"
+        },
+        {
+          "name": "out_RawLogJson",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ExecutionStatus",
+          "type": "System.String"
+        },
+        {
+          "name": "out_ErrorMessage",
+          "type": "System.String"
+        }
+      ]
+    }
+  ],
+  "isTemplate": false,
+  "templateProjectData": {},
+  "publishData": {},
+  "targetFramework": "Windows"
+}

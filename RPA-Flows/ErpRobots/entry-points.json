@@ -1,0 +1,335 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "entryPoints": [
+    {
+      "filePath": "BackfillFields.xaml",
+      "uniqueId": "a3333333-3333-4333-8333-333333333333",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_RecordId": {
+            "type": "string"
+          },
+          "in_OrderNo": {
+            "type": "string",
+            "x-default-expression": "\"SO-4001\"",
+            "default": "SO-4001"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_BatchNo": {
+            "type": "string"
+          },
+          "out_Qty": {
+            "type": "string"
+          },
+          "out_ExecutionStatus": {
+            "type": "string"
+          },
+          "out_ErrorMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "filePath": "ExecuteDisposition.xaml",
+      "uniqueId": "cb44640d-23fd-4c2f-9b9b-ec11de8b2a64",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_BatchNo": {
+            "type": "string",
+            "x-default-expression": "\"P002-B02\"",
+            "default": "P002-B02"
+          },
+          "in_TargetStatus": {
+            "type": "string",
+            "x-default-expression": "\"Quarantine\"",
+            "default": "Quarantine"
+          },
+          "in_Qty": {
+            "type": "string",
+            "x-default-expression": "\"30\"",
+            "default": "30"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_BatchStatus": {
+            "type": "string"
+          },
+          "out_ExecutionStatus": {
+            "type": "string"
+          },
+          "out_ErrorMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "filePath": "ExtractDeliveryNote.xaml",
+      "uniqueId": "a2222222-2222-4222-8222-222222222222",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_RecordId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "in_PdfPath": {
+            "type": "string"
+          },
+          "in_SalesOrder": {
+            "type": "string",
+            "x-default-expression": "\"SO-4001\"",
+            "default": "SO-4001"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_DeliveryNoteJson": {
+            "type": "string"
+          },
+          "out_MatchResult": {
+            "type": "string"
+          },
+          "out_ExecutionStatus": {
+            "type": "string"
+          },
+          "out_ErrorMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "filePath": "GatherEvidence.xaml",
+      "uniqueId": "fc3f568e-2c73-47e0-96b0-b3b7997b062e",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_OrderNo": {
+            "type": "string",
+            "x-default-expression": "\"SO-4002\"",
+            "default": "SO-4002"
+          },
+          "in_BatchNo": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_RawResult": {
+            "type": "string"
+          },
+          "out_TotalPaid": {
+            "type": "string"
+          },
+          "out_UnitPrice": {
+            "type": "string"
+          },
+          "out_LineAmount": {
+            "type": "string"
+          },
+          "out_OrderLinesJson": {
+            "type": "string"
+          },
+          "out_ExecutionStatus": {
+            "type": "string"
+          },
+          "out_ErrorMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "filePath": "GatherTempLogs.xaml",
+      "uniqueId": "78bf0b84-2f96-4954-a3b3-ed3290c141a7",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_SalesOrder": {
+            "type": "string",
+            "x-default-expression": "\"SO-557844\"",
+            "default": "SO-557844"
+          },
+          "in_PortalUrl": {
+            "type": "string",
+            "x-default-expression": "\"https://nord-cold-logistics.vercel.app/\"",
+            "default": "https://nord-cold-logistics.vercel.app/"
+          },
+          "in_Username": {
+            "type": "string",
+            "x-default-expression": "\"demo\"",
+            "default": "demo"
+          },
+          "in_Password": {
+            "type": "string",
+            "x-default-expression": "\"demo\"",
+            "default": "demo"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_TransportRef": {
+            "type": "string"
+          },
+          "out_TempMinC": {
+            "type": "number",
+            "minimum": -1.7976931348623157E+308,
+            "maximum": 1.7976931348623157E+308
+          },
+          "out_TempMaxC": {
+            "type": "number",
+            "minimum": -1.7976931348623157E+308,
+            "maximum": 1.7976931348623157E+308
+          },
+          "out_ExcursionHours": {
+            "type": "number",
+            "minimum": -1.7976931348623157E+308,
+            "maximum": 1.7976931348623157E+308
+          },
+          "out_LoggerPresent": {
+            "type": "boolean"
+          },
+          "out_TempLog": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "out_RawLogJson": {
+            "type": "string"
+          },
+          "out_ExecutionStatus": {
+            "type": "string"
+          },
+          "out_ErrorMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "filePath": "HandleEmailAttachments.xaml",
+      "uniqueId": "a4444444-4444-4444-8444-444444444444",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_RecordId": {
+            "type": "string",
+            "format": "uuid",
+            "x-default-expression": "7a7faf70-ea65-4ffd-9e71-019edaacfd1b",
+            "default": "7a7faf70-ea65-4ffd-9e71-019edaacfd1b"
+          },
+          "in_EmailId": {
+            "type": "string",
+            "x-default-expression": "\"AAMkADJiNWQ4NzQ0LTIxZGUtNDQxZS1hOGVjLTIzNDhmZWY4MWI4NABGAAAAAABBpyuA1OH9QIVAJuHHCLirBwA3cg6ovHFFTace2Kuhvgf5AAHs90J5AAA3cg6ovHFFTace2Kuhvgf5AAH41BnKAAA=\"",
+            "default": "AAMkADJiNWQ4NzQ0LTIxZGUtNDQxZS1hOGVjLTIzNDhmZWY4MWI4NABGAAAAAABBpyuA1OH9QIVAJuHHCLirBwA3cg6ovHFFTace2Kuhvgf5AAHs90J5AAA3cg6ovHFFTace2Kuhvgf5AAH41BnKAAA="
+          },
+          "in_SalesOrder": {
+            "type": "string"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_ExecutionStatus": {
+            "type": "string"
+          },
+          "out_ErrorMessage": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "filePath": "Main.xaml",
+      "uniqueId": "17c579c7-a009-4bdf-9adf-79be88bc9f00",
+      "type": "process"
+    },
+    {
+      "filePath": "PostToErp.xaml",
+      "uniqueId": "0d6d2f69-fd0f-421a-b2b9-29eeb8901337",
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_NoteType": {
+            "type": "string",
+            "x-default-expression": "\"CREDIT\"",
+            "default": "CREDIT"
+          },
+          "in_CaseId": {
+            "type": "string"
+          },
+          "in_CustomerCode": {
+            "type": "string"
+          },
+          "in_ProductCode": {
+            "type": "string"
+          },
+          "in_BatchNo": {
+            "type": "string"
+          },
+          "in_Qty": {
+            "type": "string"
+          },
+          "in_Amount": {
+            "type": "string"
+          },
+          "in_Reason": {
+            "type": "string",
+            "x-default-expression": "\"Test\"",
+            "default": "Test"
+          }
+        },
+        "required": []
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "out_CreditNoteStatus": {
+            "type": "string"
+          },
+          "out_CreditPosted": {
+            "type": "boolean"
+          },
+          "out_ExecutionStatus": {
+            "type": "string"
+          },
+          "out_ErrorMessage": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}

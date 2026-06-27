@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Batch Status Select",
+  "Description": "The batch status dropdown in the single filtered inventory row (Available/Quarantine/Blocked).",
+  "Type": "Element",
+  "TaxonomyType": "Dropdown",
+  "Id": "fTGp7TIgRkGhXLpnJWdWXQ",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/fTGp7TIgRkGhXLpnJWdWXQ",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:56:07.1402571Z",
+  "Updated": "2026-06-05T08:56:07.1402571Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

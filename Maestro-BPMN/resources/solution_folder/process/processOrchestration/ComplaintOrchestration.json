@@ -1,0 +1,39 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "ComplaintOrchestration",
+    "kind": "process",
+    "type": "processOrchestration",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "projectKey": "e093891a-5947-44bb-8197-1b20467d818b",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "name": "ComplaintOrchestration",
+        "kind": "package"
+      }
+    ],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "ProcessOrchestration",
+      "name": "ComplaintOrchestration",
+      "package": {
+        "key": "fc84f571-acff-4f42-a55d-0f00be417fb3"
+      },
+      "inputArguments": "{}",
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180
+    },
+    "locks": [],
+    "key": "f693c4f0-1eb6-497e-9fab-f0e5dc68393a"
+  }
+}

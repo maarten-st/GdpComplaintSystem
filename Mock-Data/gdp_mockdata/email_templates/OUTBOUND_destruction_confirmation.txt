@@ -1,0 +1,12 @@
+To: {{customer_email}}
+Subject: Disposition confirmed - {{case_id}}
+
+Dear {{customer_name}},
+
+The affected goods under complaint {{case_id}} have been assessed by our Responsible
+Person and are to be destroyed in line with GDP requirements. A certificate of
+destruction ({{cod_no}}) will be retained on file. A credit note ({{credit_note_no}})
+has been issued.
+
+Kind regards,
+PharmaDist Quality Assurance

@@ -1,0 +1,11 @@
+To: {{customer_email}}
+Subject: We've received your complaint - {{case_id}}
+
+Dear {{customer_name}},
+
+Thank you for contacting us. We have logged your complaint under reference
+{{case_id}} regarding order {{order_no}}. Our team is investigating and we will
+update you within {{sla_hours}} hours.
+
+Kind regards,
+Customer Service - PharmaDist

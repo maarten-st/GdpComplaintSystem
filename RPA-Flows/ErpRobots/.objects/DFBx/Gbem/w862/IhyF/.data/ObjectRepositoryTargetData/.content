@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="XUkHogAEUUKEvd9QFF1zFg" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" DesignTimeRectangle="30, 217, 320, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Order no (SO-4001) or dispatch ref (DISP-9031)' role='editable text' /&gt;" Guid="55a21961-80a5-405b-b901-045f3f5c63be" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6">
+      <imageRef attrName="InformativeScreenshot" originalValue="9ff01de0c921f55522207dba547a596a.jpg" xmlns="">0vRR7NDcNTE-yVphv-zkySw</imageRef>
+    </TargetAnchorable>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

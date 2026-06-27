@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="Z_1fcc7mJ0KkS4nZTFd7EQ" Reference="q4ZN28ODeUi-PhUX0rJgmA/tYM9TOa9ckCYMfLhU3twzQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" DesignTimeRectangle="30, 217, 320, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Filter by batch / product' role='editable text' /&gt;" Guid="7688417e-2bce-458b-a501-d67747d70acd" ScopeSelectorArgument="&lt;wnd  title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6">
+      <imageRef attrName="InformativeScreenshot" originalValue="56b11dfc1bd51e73ed268365168cba2f.jpg" xmlns="">0sri3T_RXGEOVGBfwcTHbNQ</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">TypeInto</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

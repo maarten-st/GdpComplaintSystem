@@ -1,0 +1,61 @@
+{
+  "description": "Phase 0 registry resolutions for GdpComplaintManagement. Resolved entries skip re-search in Phase 1; unresolved entries emit placeholder tasks (SKILL Rule 8) plus a high-severity review item.",
+  "resolutions": [
+    {
+      "task_id": "t1",
+      "task_name": "ExtractComplaint",
+      "type": "agent",
+      "search_query": "ComplaintIntakeAgent intake extract",
+      "matches": [
+        { "name": "ComplaintIntakeAgent", "entityKey": "1194abd2-799b-4b74-bd53-abd613db2e94", "scope": "Solution", "folder": "GdpComplaintIntake", "version": "1.0.0", "processKey": "GdpComplaintIntake.agent.ComplaintIntakeAgent" },
+        { "name": "ComplaintIntakeAgent", "entityKey": "0aae8903-3243-4810-b503-6c441c35b832", "scope": "DebugSolution", "folder": "Debug_GdpComplaintIntake", "version": "1.0.1-debug" },
+        { "name": "2. ComplaintIntakeAgent", "entityKey": "75d614ce-8ec3-4d7d-b55c-886c818d5bd7", "scope": "DebugSolution" }
+      ],
+      "selected": { "agentId": "1194abd2-799b-4b74-bd53-abd613db2e94", "name": "ComplaintIntakeAgent", "version": "1.0.0", "folder": "GdpComplaintIntake" },
+      "provenance": "tenant-registry:ComplaintIntakeAgent",
+      "rationale": "Published (non-debug) Solution-scoped agent matching the intake task; preferred over the debug-folder variants."
+    },
+    {
+      "task_id": "t3",
+      "task_name": "TriageValidation",
+      "type": "action",
+      "search_query": "gdp complaint intake triage action app",
+      "matches": [
+        { "deploymentTitle": "gdp-complaint-intake", "id": "6de89ba2-5251-4797-b90f-4596c4739736", "folder": "Shared", "version": "1.0.0" },
+        { "deploymentTitle": "cv-vacancy-review", "id": "ba20415d-d397-4360-ab90-0aa37e188ac5", "folder": "Shared" }
+      ],
+      "selected": { "actionAppId": "6de89ba2-5251-4797-b90f-4596c4739736", "deploymentTitle": "gdp-complaint-intake", "deploymentFolder": "Shared", "version": "1.0.0" },
+      "provenance": "tenant-registry:gdp-complaint-intake",
+      "rationale": "Only Action App matching the complaint-intake / Gate 1 triage UI; cv-vacancy-review is an unrelated project."
+    },
+    { "task_id": "t2", "task_name": "LookupSalesOrder", "type": "rpa", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_rpa", "target": "LookupSalesOrder", "issue": "ERP sales-order lookup robot not yet published to tenant.", "severity": "high", "next_step": "Publish the RPA workflow that drives the mock ERP, then resolve." } ] },
+    { "task_id": "t4", "task_name": "SendAcknowledgement", "type": "api-workflow", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_api", "target": "SendAcknowledgement", "issue": "Outbound acknowledgement email workflow not yet published.", "severity": "high", "next_step": "Publish the outbound-email API workflow, then resolve." } ] },
+    { "task_id": "t5", "task_name": "CompletenessCheck", "type": "process", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_process", "target": "CompletenessCheck", "issue": "Completeness-check process not yet published.", "severity": "high", "next_step": "Publish the completeness-check process, then resolve." } ] },
+    { "task_id": "t8", "task_name": "CorrelationCheck", "type": "agent", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_agents", "target": "CorrelationCheck", "issue": "Cross-case correlation agent not yet published.", "severity": "high", "next_step": "Publish the correlation agent, then resolve." } ] },
+    { "task_id": "t9", "task_name": "GatherEvidence", "type": "rpa", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_rpa", "target": "GatherEvidence", "issue": "Evidence-gathering robot not yet published.", "severity": "high", "next_step": "Publish the RPA workflow, then resolve." } ] },
+    { "task_id": "t10", "task_name": "EvaluateFindings", "type": "agent", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_agents", "target": "EvaluateFindings", "issue": "Investigation evaluation agent not yet published.", "severity": "high", "next_step": "Publish the agent, then resolve." } ] },
+    { "task_id": "t11", "task_name": "DetermineFinanceDirection", "type": "process", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_process", "target": "DetermineFinanceDirection", "issue": "Finance-direction process not yet published.", "severity": "high", "next_step": "Publish the process, then resolve." } ] },
+    { "task_id": "t12", "task_name": "SupplyChainResolution", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [ { "id": "rev_actionapps_jsonschema", "target": "SupplyChainResolution", "issue": "No dedicated Action App; using JSON-schema form.", "severity": "medium", "next_step": "Deploy a Supply Chain Action App if a richer UI is required." } ] },
+    { "task_id": "t13", "task_name": "NotifyQaMetrics", "type": "api-workflow", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_api", "target": "NotifyQaMetrics", "issue": "QA-metrics notification workflow not yet published.", "severity": "high", "next_step": "Publish the API workflow, then resolve." } ] },
+    { "task_id": "t14", "task_name": "AssembleDossier", "type": "agent", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_agents", "target": "AssembleDossier", "issue": "Dossier-assembly agent not yet published.", "severity": "high", "next_step": "Publish the dossier agent, then resolve." } ] },
+    { "task_id": "t15", "task_name": "RecordRootCause", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t16", "task_name": "QaSignoff", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t17", "task_name": "PolicyRouter", "type": "process", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_process", "target": "PolicyRouter", "issue": "Policy-router process / DMN not yet published.", "severity": "high", "next_step": "Publish the policy router, then resolve." } ] },
+    { "task_id": "t18", "task_name": "RpRatification", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t19", "task_name": "PrepareLogistics", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t20", "task_name": "PrepareFinanceDraft", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t21", "task_name": "CommitOrCompensate", "type": "process", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_process", "target": "CommitOrCompensate", "issue": "Commit / compensate join process not yet published.", "severity": "high", "next_step": "Publish the join process, then resolve." } ] },
+    { "task_id": "t22", "task_name": "DispositionDecision", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t23", "task_name": "EvaluateCompensation", "type": "process", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_process", "target": "EvaluateCompensation", "issue": "Compensation-evaluation process not yet published.", "severity": "high", "next_step": "Publish the process, then resolve." } ] },
+    { "task_id": "t24", "task_name": "IssueReversingNote", "type": "rpa", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_rpa", "target": "IssueReversingNote", "issue": "Reversing-note robot not yet published.", "severity": "high", "next_step": "Publish the RPA workflow, then resolve." } ] },
+    { "task_id": "t25", "task_name": "RaiseDeviationCapa", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t26", "task_name": "SetBatchQuarantine", "type": "rpa", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_rpa", "target": "SetBatchQuarantine", "issue": "Batch-quarantine robot not yet published.", "severity": "high", "next_step": "Publish the RPA workflow, then resolve." } ] },
+    { "task_id": "t27", "task_name": "ExecuteDisposition", "type": "rpa", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_rpa", "target": "ExecuteDisposition", "issue": "Disposition-execution robot not yet published.", "severity": "high", "next_step": "Publish the RPA workflow, then resolve." } ] },
+    { "task_id": "t28", "task_name": "ConfirmDestruction", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t29", "task_name": "LogisticsFollowup", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t30", "task_name": "FinanceApproval", "type": "action", "selected": "JSON_SCHEMA", "provenance": "inferred-default:no deployed action app", "review_items": [] },
+    { "task_id": "t31", "task_name": "PostToErp", "type": "rpa", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_rpa", "target": "PostToErp", "issue": "ERP posting robot not yet published.", "severity": "high", "next_step": "Publish the RPA workflow, then resolve." } ] },
+    { "task_id": "t32", "task_name": "NotifyCustomer", "type": "api-workflow", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_api", "target": "NotifyCustomer", "issue": "Resolution-notice email workflow not yet published.", "severity": "high", "next_step": "Publish the API workflow, then resolve." } ] },
+    { "task_id": "t33", "task_name": "CloseCase", "type": "process", "selected": "<UNRESOLVED>", "provenance": "placeholder", "review_items": [ { "id": "rev_unresolved_process", "target": "CloseCase", "issue": "Close-case process not yet published.", "severity": "high", "next_step": "Publish the process, then resolve." } ] }
+  ]
+}

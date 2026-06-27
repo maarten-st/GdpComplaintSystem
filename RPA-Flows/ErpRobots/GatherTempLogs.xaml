@@ -1,0 +1,329 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GatherTempLogs" this:GatherTempLogs.in_SalesOrder="SO-557844" this:GatherTempLogs.in_PortalUrl="https://nord-cold-logistics.vercel.app/" this:GatherTempLogs.in_Username="demo" this:GatherTempLogs.in_Password="demo" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd2="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_SalesOrder" Type="InArgument(x:String)" />
+    <x:Property Name="in_PortalUrl" Type="InArgument(x:String)" />
+    <x:Property Name="in_Username" Type="InArgument(x:String)" />
+    <x:Property Name="in_Password" Type="InArgument(x:String)" />
+    <x:Property Name="out_TransportRef" Type="OutArgument(x:String)" />
+    <x:Property Name="out_TempMinC" Type="OutArgument(x:Double)" />
+    <x:Property Name="out_TempMaxC" Type="OutArgument(x:Double)" />
+    <x:Property Name="out_ExcursionHours" Type="OutArgument(x:Double)" />
+    <x:Property Name="out_LoggerPresent" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_TempLog" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_RawLogJson" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ExecutionStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Globalization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GatherTempLogs" sap:VirtualizedContainerService.HintSize="755,4640" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_TempMin" />
+      <Variable x:TypeArguments="x:String" Name="str_TempMax" />
+      <Variable x:TypeArguments="x:String" Name="str_Excursion" />
+      <Variable x:TypeArguments="x:String" Name="str_LoggerPresent" />
+      <Variable x:TypeArguments="x:String" Name="str_TableText" />
+      <Variable x:TypeArguments="x:String" Name="line" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try/Catch" sap2010:WorkflowViewState.IdRef="TryCatch_Main">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_Try">
+    <Assign DisplayName="Init out_TempLog (empty placeholder)" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_Init">
+      <Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">[out_TempLog]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">[New System.Data.DataTable("TempLog")]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: NordCold*" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,3401" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" IsDisplayNameAuto="True" ScopeGuid="2b3c4d5e-0001-4000-8000-000000000010" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="486,3197" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Log in if needed" sap:VirtualizedContainerService.HintSize="452,1152" sap2010:WorkflowViewState.IdRef="TryCatch_Login">
+              <TryCatch.Try>
+                <Sequence DisplayName="Try login" sap:VirtualizedContainerService.HintSize="450,737" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Username (#username)" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_User" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Text="[in_Username]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl id='username' tag='INPUT' /&gt;" Guid="aa000001-0000-4000-8000-000000000001" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Password (#password)" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_Pass" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Text="[in_Password]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl id='password' tag='INPUT' /&gt;" Guid="aa000001-0000-4000-8000-000000000002" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Sign in (#login-submit)" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,185" sap2010:WorkflowViewState.IdRef="NClick_Login" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl id='login-submit' tag='BUTTON' /&gt;" Guid="aa000001-0000-4000-8000-000000000003" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exLogin" />
+                    </ActivityAction.Argument>
+                    <ui:LogMessage DisplayName="Already logged in (no login form)" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="LogMessage_Login" Level="Info" Message="[&quot;GatherTempLogs: login form not present, assuming already authenticated.&quot;]" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+              <TryCatch.Finally>
+                <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </TryCatch.Finally>
+            </TryCatch>
+            <uix:NGoToUrl DisplayName="Go to transport detail (deep link)" sap:VirtualizedContainerService.HintSize="452,143" sap2010:WorkflowViewState.IdRef="NGoToUrl_Detail" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+              <uix:NGoToUrl.Url>
+                <InArgument x:TypeArguments="x:String">[in_PortalUrl.TrimEnd("/"c) &amp; "/transports/" &amp; in_SalesOrder]</InArgument>
+              </uix:NGoToUrl.Url>
+            </uix:NGoToUrl>
+            <TryCatch DisplayName="Open transport row (or fail as not-found)" sap:VirtualizedContainerService.HintSize="452,547" sap2010:WorkflowViewState.IdRef="TryCatch_Row">
+              <TryCatch.Try>
+                <uix:NGetText DisplayName="Read transport ref (not-found gate)" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="NGetText_Ref" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl css-selector='[data-testid=&quot;field-transportRef&quot;]' /&gt;" Guid="aa000001-0000-4000-8000-000000000006" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+                  </uix:NGetText.Target>
+                  <uix:NGetText.Text>
+                    <OutArgument x:TypeArguments="x:String">[out_TransportRef]</OutArgument>
+                  </uix:NGetText.Text>
+                </uix:NGetText>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exRow" />
+                    </ActivityAction.Argument>
+                    <Throw DisplayName="Throw BusinessRuleException - SO not found" Exception="[New UiPath.Core.BusinessRuleException(&quot;Sales Order &quot; &amp; in_SalesOrder &amp; &quot; not found in NordCold portal&quot;)]" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Throw_NotFound" />
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+              <TryCatch.Finally>
+                <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="450,90" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </TryCatch.Finally>
+            </TryCatch>
+            <uix:NGetText DisplayName="field-tempMinC" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,143" sap2010:WorkflowViewState.IdRef="NGetText_Min" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl css-selector='[data-testid=&quot;field-tempMinC&quot;]' /&gt;" Guid="aa000001-0000-4000-8000-000000000008" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[str_TempMin]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <uix:NGetText DisplayName="field-tempMaxC" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,143" sap2010:WorkflowViewState.IdRef="NGetText_Max" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl css-selector='[data-testid=&quot;field-tempMaxC&quot;]' /&gt;" Guid="aa000001-0000-4000-8000-000000000009" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[str_TempMax]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <uix:NGetText DisplayName="field-excursionHours" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,143" sap2010:WorkflowViewState.IdRef="NGetText_Exc" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl css-selector='[data-testid=&quot;field-excursionHours&quot;]' /&gt;" Guid="aa000001-0000-4000-8000-00000000000a" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[str_Excursion]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <uix:NGetText DisplayName="field-loggerPresent" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="452,143" sap2010:WorkflowViewState.IdRef="NGetText_Logger" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+              <uix:NGetText.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl css-selector='[data-testid=&quot;field-loggerPresent&quot;]' /&gt;" Guid="aa000001-0000-4000-8000-00000000000b" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+              </uix:NGetText.Target>
+              <uix:NGetText.Text>
+                <OutArgument x:TypeArguments="x:String">[str_LoggerPresent]</OutArgument>
+              </uix:NGetText.Text>
+            </uix:NGetText>
+            <If Condition="[String.Equals(If(str_LoggerPresent Is Nothing, &quot;&quot;, str_LoggerPresent.Trim()), &quot;true&quot;, StringComparison.OrdinalIgnoreCase)]" DisplayName="Logger present? read log table" sap:VirtualizedContainerService.HintSize="452,283" sap2010:WorkflowViewState.IdRef="If_Logger">
+              <If.Then>
+                <uix:NGetText DisplayName="temp-log-table (#temp-log-table)" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="334,111" sap2010:WorkflowViewState.IdRef="NGetText_Table" ScopeIdentifier="2b3c4d5e-0001-4000-8000-000000000010" Version="V5">
+                  <uix:NGetText.Target>
+                    <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;&lt;webctrl id='temp-log-table' tag='TABLE' /&gt;" Guid="aa000001-0000-4000-8000-00000000000c" ScopeSelectorArgument="&lt;html app='chrome.exe' title='NordCold*' /&gt;" SearchSteps="Selector" Version="V6" />
+                  </uix:NGetText.Target>
+                  <uix:NGetText.Text>
+                    <OutArgument x:TypeArguments="x:String">[str_TableText]</OutArgument>
+                  </uix:NGetText.Text>
+                </uix:NGetText>
+              </If.Then>
+            </If>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd1:Image, scg:IEnumerable(scg:KeyValuePair(sd2:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd1:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" Selector="&lt;html app='chrome.exe' title='NordCold*' /&gt;" Url="[in_PortalUrl]" Version="V3">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+    <Assign DisplayName="Parse Temp Min" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_Min">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[out_TempMinC]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[If(System.Text.RegularExpressions.Regex.IsMatch(If(str_TempMin, ""), "\d"), Double.Parse(System.Text.RegularExpressions.Regex.Match(str_TempMin, "-?\d+([.,]\d+)?").Value.Replace(","c, "."c), CultureInfo.InvariantCulture), 0.0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Parse Temp Max" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_Max">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[out_TempMaxC]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[If(System.Text.RegularExpressions.Regex.IsMatch(If(str_TempMax, ""), "\d"), Double.Parse(System.Text.RegularExpressions.Regex.Match(str_TempMax, "-?\d+([.,]\d+)?").Value.Replace(","c, "."c), CultureInfo.InvariantCulture), 0.0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Parse Excursion Hours" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_Exc">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[out_ExcursionHours]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[If(System.Text.RegularExpressions.Regex.IsMatch(If(str_Excursion, ""), "\d"), Double.Parse(System.Text.RegularExpressions.Regex.Match(str_Excursion, "-?\d+([.,]\d+)?").Value.Replace(","c, "."c), CultureInfo.InvariantCulture), 0.0)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Parse Logger Present" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_Logger">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Boolean">[out_LoggerPresent]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Boolean">[String.Equals(If(str_LoggerPresent Is Nothing, "", str_LoggerPresent.Trim()), "true", StringComparison.OrdinalIgnoreCase)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Output raw log table text" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_Json">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_RawLogJson]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[If(str_TableText Is Nothing, "", str_TableText)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log result" sap:VirtualizedContainerService.HintSize="488,166" sap2010:WorkflowViewState.IdRef="LogMessage_Result" Level="Info" Message="[&quot;GatherTempLogs: SO &quot; &amp; in_SalesOrder &amp; &quot; — ref=&quot; &amp; If(out_TransportRef, &quot;&quot;) &amp; &quot;, min=&quot; &amp; out_TempMinC.ToString() &amp; &quot;, max=&quot; &amp; out_TempMaxC.ToString() &amp; &quot;, excursionHours=&quot; &amp; out_ExcursionHours.ToString() &amp; &quot;, loggerPresent=&quot; &amp; out_LoggerPresent.ToString() &amp; &quot;, logRows=&quot; &amp; out_TempLog.Rows.Count.ToString()]" />
+          <Assign DisplayName="Set ExecutionStatus = Success" sap2010:WorkflowViewState.IdRef="Assign_StatusOk">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Success"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_Main">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle error" sap2010:WorkflowViewState.IdRef="Sequence_Catch">
+              <ui:LogMessage DisplayName="Log Error" sap2010:WorkflowViewState.IdRef="LogMessage_Err" Level="Error" Message="[&quot;GatherTempLogs failed: &quot; &amp; exception.Message]" />
+              <Assign DisplayName="Set ExecutionStatus = Failed" sap2010:WorkflowViewState.IdRef="Assign_StatusFail">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["Failed"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Set ErrorMessage" sap2010:WorkflowViewState.IdRef="Assign_ErrMsg">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

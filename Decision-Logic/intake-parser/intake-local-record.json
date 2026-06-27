@@ -1,0 +1,9 @@
+{
+  "ComplaintId": "CMP-2026-LOCAL-20260615100508",
+  "EmailBody": "From: orders@acmepharmacy.be\nTo: complaints@pharmadist.example\nSubject: Damaged delivery - order SO-4001\nDate: 2026-05-22\n\nHello,\n\nWe received our delivery today (order SO-4001, batch P001-B01, Amoxicillin 500mg).\nThe outer carton was badly crushed and several inner boxes were split open. About\n40 units are affected. We cannot accept these. Photos attached.\n\nPlease advise on next steps.\n\nRegards,\nAcme Pharmacy\n",
+  "Sender": "orders@acmepharmacy.be",
+  "Company": "orders@acmepharmacy.be",
+  "SalesOrder": "SO-4001",
+  "BatchNumber": "P001-B01",
+  "Gate": 1
+}

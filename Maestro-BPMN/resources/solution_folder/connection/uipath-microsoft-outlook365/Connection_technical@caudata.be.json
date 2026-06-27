@@ -1,0 +1,29 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "Connection technical@caudata.be",
+    "kind": "connection",
+    "type": "uipath-microsoft-outlook365",
+    "apiVersion": "integrationservice.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "connectorName": "Microsoft Outlook 365",
+      "name": "Connection technical@caudata.be",
+      "description": null,
+      "authenticationType": "AuthenticateAfterDeployment",
+      "connectorVersion": "1.38.8",
+      "connectorKey": "uipath-microsoft-outlook365",
+      "pollingInterval": 5
+    },
+    "locks": [],
+    "key": "a33b08e7-c4db-42e7-b6d8-126ca71d0513"
+  }
+}

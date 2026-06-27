@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Postings Tab",
+  "Description": "The 'Postings' navigation tab button in the GDP Mock ERP header.",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "5WaFnU5pJkOj8r4tJyzyng",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/5WaFnU5pJkOj8r4tJyzyng",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:05:42.8332147Z",
+  "Updated": "2026-06-05T08:05:42.8332147Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

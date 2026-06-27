@@ -1,0 +1,248 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ExtractDeliveryNote" this:ExtractDeliveryNote.in_SalesOrder="SO-4001" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_RecordId" Type="InArgument(s:Guid)" />
+    <x:Property Name="in_PdfPath" Type="InArgument(x:String)" />
+    <x:Property Name="in_SalesOrder" Type="InArgument(x:String)" />
+    <x:Property Name="out_DeliveryNoteJson" Type="OutArgument(x:String)" />
+    <x:Property Name="out_MatchResult" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ExecutionStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.GptIxp10.Bundle</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Platform</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentProcessing.Contracts</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.aWKzy3CKarK14MPSX2UcuZi3</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.MetadataLoadContext</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="ExtractDeliveryNote" sap:VirtualizedContainerService.HintSize="1135,3255" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="mockErpHome" />
+      <Variable x:TypeArguments="x:String" Name="mockErpExe" />
+      <Variable x:TypeArguments="x:String" Name="str_TableText" />
+      <Variable x:TypeArguments="x:String" Name="str_FirstLine" />
+      <Variable x:TypeArguments="s:String[]" Name="arr_Tokens" />
+      <Variable x:TypeArguments="x:String" Name="so_Product" />
+      <Variable x:TypeArguments="x:String" Name="so_Batch" />
+      <Variable x:TypeArguments="x:String" Name="so_Qty" />
+      <Variable x:TypeArguments="x:String" Name="dn_Product" />
+      <Variable x:TypeArguments="x:String" Name="dn_Batch" />
+      <Variable x:TypeArguments="x:String" Name="dn_Qty" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try/Catch" sap:VirtualizedContainerService.HintSize="488,3232" sap2010:WorkflowViewState.IdRef="TryCatch_Main">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="486,2504" sap2010:WorkflowViewState.IdRef="Sequence_Try">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="TODO: IXP / Document Understanding extraction (SCAFFOLD)" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_Scaffold" Level="Warn" Message="[&quot;ExtractDeliveryNote: IXP/Document Understanding extraction is SCAFFOLDED. TODO: replace the stubbed delivery-note JSON below with a real UiPath IXP 'Extract Document Data' / Document Understanding call against in_PdfPath = &quot; &amp; If(in_PdfPath, &quot;(none)&quot;)]" />
+          <Assign DisplayName="Parse stub: dn_Batch" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_dnB">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[dn_Batch]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["P004-B01"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Parse stub: dn_Qty" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_dnQ">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[dn_Qty]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["50"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Ensure GDP Mock ERP is open" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="EnsureMockErpOpen.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GDP_MOCKERP_HOME" CacheStrategy="None" DisplayName="Get GDP_MOCKERP_HOME asset" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[mockErpHome]</OutArgument>
+            </ui:GetRobotAsset.Value>
+          </ui:GetRobotAsset>
+          <Assign DisplayName="Build GDP Mock ERP.exe path" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_99">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[mockErpExe]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(mockErpHome, "GDP Mock ERP.exe")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="First data line of order-lines table" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_FirstLine">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_FirstLine]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(str_TableText Is Nothing, "", str_TableText).Split(New Char(){Convert.ToChar(10), Convert.ToChar(13)}, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(Function(l) Not l.ToLower().Contains("product") AndAlso l.Trim().Length &gt; 0)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Tokenize first line" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_Tokens">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[arr_Tokens]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[If(String.IsNullOrWhiteSpace(str_FirstLine), New String(){}, str_FirstLine.Split(New Char(){" "c, Convert.ToChar(9), Convert.ToChar(160)}, StringSplitOptions.RemoveEmptyEntries))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="SO product (column 1)" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_soP">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[so_Product]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(arr_Tokens.Length &gt;= 1, arr_Tokens(0), "")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="SO batch (column 2)" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_soB">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[so_Batch]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(arr_Tokens.Length &gt;= 2, arr_Tokens(1), "")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="SO qty (ordered, column 3)" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_soQ">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[so_Qty]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(arr_Tokens.Length &gt;= 3, New String(arr_Tokens(2).Where(Function(c) Char.IsDigit(c)).ToArray()), "")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Build out_MatchResult JSON" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_Match">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_MatchResult]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["{""product"":{""deliveryNote"":""" &amp; dn_Product &amp; """,""salesOrder"":""" &amp; so_Product &amp; """,""match"":" &amp; String.Equals(dn_Product.Trim(), so_Product.Trim(), StringComparison.OrdinalIgnoreCase).ToString().ToLower() &amp; "},""batch"":{""deliveryNote"":""" &amp; dn_Batch &amp; """,""salesOrder"":""" &amp; so_Batch &amp; """,""match"":" &amp; String.Equals(dn_Batch.Trim(), so_Batch.Trim(), StringComparison.OrdinalIgnoreCase).ToString().ToLower() &amp; "},""qty"":{""deliveryNote"":""" &amp; dn_Qty &amp; """,""salesOrder"":""" &amp; so_Qty &amp; """,""match"":" &amp; String.Equals(dn_Qty.Trim(), so_Qty.Trim(), StringComparison.OrdinalIgnoreCase).ToString().ToLower() &amp; "}}"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Log Compare" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;ExtractDeliveryNote: order &quot; &amp; If(in_SalesOrder,&quot;&quot;) &amp; &quot; — matchResult=&quot; &amp; out_MatchResult]" />
+          <Assign DisplayName="Set ExecutionStatus = Success" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_StatusOk">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Success"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_Main">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle error" sap:VirtualizedContainerService.HintSize="486,576" sap2010:WorkflowViewState.IdRef="Sequence_Catch">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Error" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_Err" Level="Error" Message="[&quot;ExtractDeliveryNote failed: &quot; &amp; exception.Message]" />
+              <Assign DisplayName="Set ExecutionStatus = Failed" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_StatusFail">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["Failed"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Set ErrorMessage" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_ErrMsg">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

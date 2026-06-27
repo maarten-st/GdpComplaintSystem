@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Inventory Tab",
+  "Description": "The 'Inventory / Batches' navigation tab button.",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "a4VaNf8LOE-zdajRoVzexg",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/a4VaNf8LOE-zdajRoVzexg",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:56:06.4241956Z",
+  "Updated": "2026-06-05T08:56:06.4241956Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

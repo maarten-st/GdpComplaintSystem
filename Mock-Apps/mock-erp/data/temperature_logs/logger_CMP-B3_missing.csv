@@ -1,0 +1,4 @@
+# shipment_ref,DISP-9020
+# product,P002 Insulin Glargine
+# note,Logger not returned / data unreadable — storage history UNKNOWN
+timestamp,temp_C,in_range

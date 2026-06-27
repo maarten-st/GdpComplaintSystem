@@ -1,0 +1,15 @@
+{
+  "_doc_type": "certificate_of_destruction",
+  "cod_no": "{{cod_no}}",
+  "case_id": "{{case_id}}",
+  "date": "{{date}}",
+  "product_code": "{{product_code}}",
+  "product_name": "{{product_name}}",
+  "batch_no": "{{batch_no}}",
+  "quantity_destroyed": "{{qty}}",
+  "method": "{{method}}",
+  "witnessed_by": "{{witness}}",
+  "authorized_by_rp": "{{rp_name}}",
+  "rp_signature_ref": "{{esign_ref}}",
+  "reason": "{{reason}}"
+}

@@ -1,0 +1,12 @@
+From: purchasing@eburonpharmacy.be
+To: complaints@pharmadist.example
+Subject: Missing 20 units - SO-4031 / DISP-9031
+Date: 2026-05-30
+
+Hello,
+
+Following up: our Paracetamol order (SO-4031, dispatch DISP-9031, batch P003-B01)
+was 20 units short - 80 received against 100 ordered. Could the missing units have
+gone elsewhere?
+
+Eburon Pharmacy

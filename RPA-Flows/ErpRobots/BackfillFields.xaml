@@ -1,0 +1,226 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="BackfillFields" this:BackfillFields.in_OrderNo="SO-4001" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_RecordId" Type="InArgument(x:String)" />
+    <x:Property Name="in_OrderNo" Type="InArgument(x:String)" />
+    <x:Property Name="out_BatchNo" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Qty" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ExecutionStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="BackfillFields" sap:VirtualizedContainerService.HintSize="1079,1600" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="mockErpHome" />
+      <Variable x:TypeArguments="x:String" Name="mockErpExe" />
+      <Variable x:TypeArguments="x:String" Name="str_TableText" />
+      <Variable x:TypeArguments="x:String" Name="str_FirstLine" />
+      <Variable x:TypeArguments="s:String[]" Name="arr_Tokens" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try/Catch" sap2010:WorkflowViewState.IdRef="TryCatch_Main">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_Try">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Ensure GDP Mock ERP is open" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="EnsureMockErpOpen.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GDP_MOCKERP_HOME" CacheStrategy="None" DisplayName="Get GDP_MOCKERP_HOME asset" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[mockErpHome]</OutArgument>
+            </ui:GetRobotAsset.Value>
+          </ui:GetRobotAsset>
+          <Assign DisplayName="Build GDP Mock ERP.exe path" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_99">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[mockErpExe]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(mockErpHome, "GDP Mock ERP.exe")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: GDP Mock ERP" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,1000" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" IsDisplayNameAuto="True" ScopeGuid="1a2b3c4d-0006-4000-8000-000000000006" Version="V2">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,800" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Open Sales Orders Tab" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="1a2b3c4d-0006-4000-8000-000000000006" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable ContentHash="otf5idVXs0C39NCxldDx-g" DesignTimeRectangle="30, 108, 121, 32" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Sales Orders' role='push button' /&gt;" Guid="74f54dae-e096-450e-84ff-01a2e1146ece" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Order No" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="1a2b3c4d-0006-4000-8000-000000000006" Text="[in_OrderNo]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="XUkHogAEUUKEvd9QFF1zFg" DesignTimeRectangle="30, 217, 320, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Order no (SO-4001) or dispatch ref (DISP-9031)' role='editable text' /&gt;" Guid="55a21961-80a5-405b-b901-045f3f5c63be" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Look Up" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="1a2b3c4d-0006-4000-8000-000000000006" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable ContentHash="2mqwz1TexU62BeEnD318EQ" DesignTimeRectangle="358, 217, 73, 35" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Look up' role='push button' /&gt;" Guid="bbd2f9e6-137f-4b47-9fb7-7ca4ab97a977" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NGetText DisplayName="Read Order Lines Table" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="1a2b3c4d-0006-4000-8000-000000000006" Version="V5">
+                    <uix:NGetText.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='orderLinesTable' role='table' /&gt;" Guid="c3d4e5f6-7a8b-49c0-91d2-3e4f5a6b7c80" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NGetText.Target>
+                    <uix:NGetText.Text>
+                      <OutArgument x:TypeArguments="x:String">[str_TableText]</OutArgument>
+                    </uix:NGetText.Text>
+                  </uix:NGetText>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.OCREngine>
+              <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                <ActivityFunc.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                </ActivityFunc.Argument>
+              </ActivityFunc>
+            </uix:NApplicationCard.OCREngine>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp ContentHash="sNt4FhRuv0mA3pDbKsA09g" FilePath="[mockErpExe]" Selector="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" Version="V3">
+                <uix:TargetApp.Arguments>
+                  <InArgument x:TypeArguments="x:String" />
+                </uix:TargetApp.Arguments>
+                <uix:TargetApp.WorkingDirectory>
+                  <InArgument x:TypeArguments="x:String" />
+                </uix:TargetApp.WorkingDirectory>
+              </uix:TargetApp>
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+          <Assign DisplayName="First data line of order-lines table" sap:VirtualizedContainerService.HintSize="452,93" sap2010:WorkflowViewState.IdRef="Assign_FirstLine">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_FirstLine]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(str_TableText Is Nothing, "", str_TableText).Split(New Char(){Convert.ToChar(10), Convert.ToChar(13)}, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(Function(l) Not l.ToLower().Contains("product") AndAlso l.Trim().Length &gt; 0)]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Tokenize first line" sap:VirtualizedContainerService.HintSize="452,93" sap2010:WorkflowViewState.IdRef="Assign_Tokens">
+            <Assign.To>
+              <OutArgument x:TypeArguments="s:String[]">[arr_Tokens]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="s:String[]">[If(String.IsNullOrWhiteSpace(str_FirstLine), New String(){}, str_FirstLine.Split(New Char(){" "c, Convert.ToChar(9), Convert.ToChar(160)}, StringSplitOptions.RemoveEmptyEntries))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Set out_BatchNo (column 2)" sap:VirtualizedContainerService.HintSize="452,93" sap2010:WorkflowViewState.IdRef="Assign_Batch">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_BatchNo]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(arr_Tokens.Length &gt;= 2, arr_Tokens(1), "")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Set out_Qty (ordered, column 3)" sap:VirtualizedContainerService.HintSize="452,93" sap2010:WorkflowViewState.IdRef="Assign_Qty">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_Qty]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(arr_Tokens.Length &gt;= 3, New String(arr_Tokens(2).Where(Function(c) Char.IsDigit(c)).ToArray()), "")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Log Backfill" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;BackfillFields: record &quot; &amp; If(in_RecordId, &quot;&quot;) &amp; &quot; order &quot; &amp; in_OrderNo &amp; &quot; — batchNo=&quot; &amp; out_BatchNo &amp; &quot; qty=&quot; &amp; out_Qty]" />
+          <Assign DisplayName="Set ExecutionStatus = Success" sap2010:WorkflowViewState.IdRef="Assign_StatusOk">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Success"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_Main">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle error" sap2010:WorkflowViewState.IdRef="Sequence_Catch">
+              <ui:LogMessage DisplayName="Log Error" sap2010:WorkflowViewState.IdRef="LogMessage_Err" Level="Error" Message="[&quot;BackfillFields failed: &quot; &amp; exception.Message]" />
+              <Assign DisplayName="Set ExecutionStatus = Failed" sap2010:WorkflowViewState.IdRef="Assign_StatusFail">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["Failed"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Set ErrorMessage" sap2010:WorkflowViewState.IdRef="Assign_ErrMsg">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="p2UYNNOqikuI35K7RjIp7w" Reference="q4ZN28ODeUi-PhUX0rJgmA/LVEQMc2cyk6lrMjSkWHX3w" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" DesignTimeRectangle="493, 343, 43, 33" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='Set' role='push button' /&gt;" Guid="9d66737e-9d3b-40f2-bb9d-98feb633978a" ScopeSelectorArgument="&lt;wnd  title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6">
+      <imageRef attrName="InformativeScreenshot" originalValue="458da7d9675c1557cdeb680bf0459bfd.jpg" xmlns="">0PUMsjCrMvkqWaD83pUEQUA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">Click</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Look Up Button",
+  "Description": "The 'Look up' button that runs the sales-order search.",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "sb5mEYMSj0OhNnMmpmI9sg",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/sb5mEYMSj0OhNnMmpmI9sg",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T09:00:11.1567462Z",
+  "Updated": "2026-06-05T09:00:11.1567462Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

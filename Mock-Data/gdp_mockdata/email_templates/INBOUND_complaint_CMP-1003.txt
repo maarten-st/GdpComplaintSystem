@@ -1,0 +1,12 @@
+From: cold@flandriahospital.be
+To: complaints@pharmadist.example
+Subject: Vaccine shipment found warm - SO-4004
+Date: 2026-05-30
+
+Dear team,
+
+Our receiving fridge failed overnight and the influenza vaccine shipment (SO-4004,
+batch P004-B01, 50 units) was warm for what looks like most of the night. Logger
+attached. Please advise - obviously we will not use these until cleared.
+
+Flandria Hospital

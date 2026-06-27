@@ -1,0 +1,27 @@
+{
+  "name": "gdp-mock-erp",
+  "productName": "GDP Mock ERP",
+  "version": "1.0.0",
+  "description": "Mock ERP desktop app (Electron) for the GDP complaint case — bundles the gdp_mockdata CSVs. The RPA robot drives this by its UI.",
+  "author": "RoboRana",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-packager . --platform=win32 --arch=x64 --out=dist --overwrite --app-copyright=RoboRana",
+    "dist:exe": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "be.roborana.gdp.mockerp",
+    "productName": "GDP Mock ERP",
+    "directories": { "output": "dist" },
+    "files": ["main.js", "preload.js", "renderer/**/*", "package.json"],
+    "extraResources": [{ "from": "data", "to": "data" }],
+    "win": { "target": "portable" },
+    "portable": { "artifactName": "GDP-Mock-ERP-${version}-portable.exe" }
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^31.7.7",
+    "electron-builder": "^25.1.8"
+  }
+}

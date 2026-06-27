@@ -1,0 +1,34 @@
+{
+  "inputs": {
+    "type": "object",
+    "properties": {
+      "email": { "type": "string", "required": false, "description": "Sender email address of the inbound complaint." },
+      "emailBody": { "type": "string", "required": false, "description": "Raw body text of the inbound complaint email." },
+      "confidence": { "type": "number", "required": false, "description": "Intake agent extraction confidence (0-1)." },
+      "customer": { "type": "string", "required": false, "description": "Customer organization name (read-only context)." },
+      "product": { "type": "string", "required": false, "description": "Product name (read-only context)." },
+      "batch": { "type": "string", "required": false, "description": "Affected batch / lot number (read-only context)." },
+      "country": { "type": "string", "required": false, "description": "Customer country (read-only context)." },
+      "complaintType": { "type": "string", "required": false, "description": "Complaint type (read-only context)." },
+      "category": { "type": "string", "required": false, "description": "Complaint category (read-only context)." },
+      "summary": { "type": "string", "required": false, "description": "One-line complaint summary (read-only context)." }
+    }
+  },
+  "outputs": {
+    "type": "object",
+    "properties": {
+      "triageAction": { "type": "string", "required": false, "description": "Reviewer decision: Approve or Reject." }
+    }
+  },
+  "inOuts": {
+    "type": "object",
+    "properties": {}
+  },
+  "outcomes": {
+    "type": "object",
+    "properties": {
+      "Approve": { "type": "string" },
+      "Reject": { "type": "string" }
+    }
+  }
+}

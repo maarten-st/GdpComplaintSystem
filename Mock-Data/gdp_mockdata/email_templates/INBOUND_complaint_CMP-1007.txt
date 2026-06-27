@@ -1,0 +1,11 @@
+From: pharmacy@betahospital.be
+To: complaints@pharmadist.example
+Subject: Received too many units - SO-4032 / DISP-9031
+Date: 2026-05-30
+
+Hi,
+
+We received 120 units of Paracetamol 1g on dispatch DISP-9031 (order SO-4032) but
+only ordered 100. We have a surplus of 20. How would you like to handle the extra?
+
+Beta Hospital

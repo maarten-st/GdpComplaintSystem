@@ -1,0 +1,15 @@
+To: {{customer_email}}
+Subject: Resolution of complaint {{case_id}}
+
+Dear {{customer_name}},
+
+Your complaint {{case_id}} has been resolved. A credit note ({{credit_note_no}})
+for {{credit_amount}} has been issued to your account for {{qty}} units of
+{{product_name}} (batch {{batch_no}}).
+
+{{disposition_note}}
+
+Thank you for your patience.
+
+Kind regards,
+PharmaDist

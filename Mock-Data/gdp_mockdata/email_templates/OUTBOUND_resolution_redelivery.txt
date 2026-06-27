@@ -1,0 +1,11 @@
+To: {{customer_email}}
+Subject: Replacement dispatched - {{case_id}}
+
+Dear {{customer_name}},
+
+Following your complaint {{case_id}}, we have arranged redelivery of {{qty}} units
+of {{product_name}}. Expected dispatch: {{redelivery_date}}, reference
+{{redelivery_ref}}.
+
+Kind regards,
+PharmaDist

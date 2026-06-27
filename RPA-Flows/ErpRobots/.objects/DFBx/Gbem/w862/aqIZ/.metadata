@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Post Product",
+  "Description": "The Product code text input in the Post Credit/Debit Note form.",
+  "Type": "Element",
+  "TaxonomyType": "Input",
+  "Id": "aqIZLr7b0U2B5qafUy5DWg",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/aqIZLr7b0U2B5qafUy5DWg",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:08:28.7159133Z",
+  "Updated": "2026-06-05T08:08:28.7159133Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

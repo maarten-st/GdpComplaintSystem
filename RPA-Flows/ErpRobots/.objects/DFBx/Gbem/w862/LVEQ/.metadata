@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Set Status Button",
+  "Description": "The 'Set' button that applies the chosen status to the filtered batch row.",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "LVEQMc2cyk6lrMjSkWHX3w",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/LVEQMc2cyk6lrMjSkWHX3w",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:56:07.3096429Z",
+  "Updated": "2026-06-05T08:56:07.3096429Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

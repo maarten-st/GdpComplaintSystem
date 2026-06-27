@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GDP Case Cockpit</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>GDP Case Cockpit</h1>
+    <nav>
+      <button class="tab active" data-tab="inbox" id="tab-inbox">Case Inbox</button>
+      <button class="tab" data-tab="metrics" id="tab-metrics">Metrics</button>
+    </nav>
+  </header>
+
+  <section id="panel-inbox" class="panel active">
+    <div class="split">
+      <div class="list">
+        <h2>Cases</h2>
+        <table><thead><tr><th>Case</th><th>Customer</th><th>Family</th><th>Status</th></tr></thead>
+        <tbody id="caseList"></tbody></table>
+      </div>
+      <div class="detail" id="caseDetail">
+        <p class="muted">Select a case to view its dossier and gates.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="panel-metrics" class="panel">
+    <h2>QA Metrics</h2>
+    <div id="metrics"></div>
+  </section>
+
+  <div id="toast"></div>
+  <script src="renderer.js"></script>
+</body>
+</html>

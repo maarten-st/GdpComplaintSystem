@@ -1,0 +1,15 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Aptos', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #eef0f3;
+  color: #001126;
+  -webkit-font-smoothing: antialiased;
+}

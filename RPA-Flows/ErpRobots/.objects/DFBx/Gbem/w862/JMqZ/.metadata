@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Note Type",
+  "Description": "The CREDIT/DEBIT note type dropdown in the Post Credit/Debit Note form.",
+  "Type": "Element",
+  "TaxonomyType": "Dropdown",
+  "Id": "JMqZgVlpb0iMDahKoOSP6A",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/JMqZgVlpb0iMDahKoOSP6A",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:08:28.2425104Z",
+  "Updated": "2026-06-05T08:08:28.2425104Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

@@ -1,0 +1,15 @@
+From: orders@acmepharmacy.be
+To: complaints@pharmadist.example
+Subject: Damaged delivery - order SO-4001
+Date: 2026-05-22
+
+Hello,
+
+We received our delivery today (order SO-4001, batch P001-B01, Amoxicillin 500mg).
+The outer carton was badly crushed and several inner boxes were split open. About
+40 units are affected. We cannot accept these. Photos attached.
+
+Please advise on next steps.
+
+Regards,
+Acme Pharmacy

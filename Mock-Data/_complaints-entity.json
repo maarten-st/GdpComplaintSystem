@@ -1,0 +1,14 @@
+{
+  "displayName": "Complaints",
+  "description": "Pharmaceutical product complaints captured from inbound customer emails and routed through the handling pipeline.",
+  "fields": [
+    { "fieldName": "ComplaintId", "type": "STRING", "displayName": "Complaint ID", "description": "Human-readable unique complaint reference (e.g. CMP-2026-0001).", "isRequired": true, "isUnique": true, "lengthLimit": 40 },
+    { "fieldName": "EmailBody", "type": "MULTILINE_TEXT", "displayName": "Email Complaint", "description": "Full body of the inbound complaint email.", "lengthLimit": 10000 },
+    { "fieldName": "Sender", "type": "STRING", "displayName": "Sender", "description": "Email address of the person who sent the complaint.", "lengthLimit": 200 },
+    { "fieldName": "Company", "type": "STRING", "displayName": "Company", "description": "Customer / company the complaint originates from.", "lengthLimit": 200 },
+    { "fieldName": "SalesOrder", "type": "STRING", "displayName": "Sales Order", "description": "Related sales order number.", "lengthLimit": 60 },
+    { "fieldName": "BatchNumber", "type": "STRING", "displayName": "Batch Number", "description": "Pharmaceutical batch / lot number referenced in the complaint.", "lengthLimit": 60 },
+    { "fieldName": "ExtractedType", "type": "CHOICE_SET_SINGLE", "displayName": "Extracted Type", "description": "AI-extracted complaint category.", "choiceSetId": "c7e4bb62-c065-f111-8fcb-000d3ab1a7ac" },
+    { "fieldName": "Gate", "type": "CHOICE_SET_SINGLE", "displayName": "Gate", "description": "Current stage in the complaint handling pipeline.", "isRequired": true, "choiceSetId": "d4e4bb62-c065-f111-8fcb-000d3ab1a7ac" }
+  ]
+}

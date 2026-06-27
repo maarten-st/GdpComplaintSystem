@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDP Complaint Management — Maestro Case Flow</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<style>
+  :root{
+    --ink:#1a1f2e; --paper:#f4f1ea; --line:#c9c2b4;
+    --gate:#b45309; --agent:#1e40af; --comp:#b91c1c; --erp:#047857; --notify:#6d28d9; --term:#374151;
+    --accent:#0f766e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(15,118,110,.06), transparent 40%),
+      radial-gradient(circle at 88% 92%, rgba(180,83,9,.06), transparent 42%),
+      var(--paper);
+    color:var(--ink);
+    display:flex; flex-direction:column; min-height:100vh;
+  }
+  header{
+    padding:28px 36px 20px; border-bottom:2px solid var(--ink);
+    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:16px;
+  }
+  .title-block h1{
+    font-size:clamp(1.5rem,3.4vw,2.5rem); font-weight:700; letter-spacing:-.02em; line-height:1.02;
+  }
+  .title-block .sub{
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--accent); margin-top:8px;
+  }
+  .meta{
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    font-size:.7rem; color:#6b6557; text-align:right; line-height:1.7;
+  }
+  .legend{
+    display:flex; flex-wrap:wrap; gap:10px 20px; padding:14px 36px;
+    border-bottom:1px solid var(--line); background:rgba(255,255,255,.4);
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:.72rem;
+  }
+  .legend span{display:inline-flex; align-items:center; gap:7px; white-space:nowrap}
+  .swatch{width:13px; height:13px; border-radius:3px; border:1.5px solid rgba(0,0,0,.35)}
+  .controls{
+    display:flex; gap:8px; padding:12px 36px; align-items:center;
+    border-bottom:1px solid var(--line);
+  }
+  .controls button{
+    font-family:"SF Mono",ui-monospace,monospace; font-size:.72rem;
+    border:1.5px solid var(--ink); background:transparent; color:var(--ink);
+    padding:6px 12px; border-radius:6px; cursor:pointer; transition:.15s;
+  }
+  .controls button:hover{background:var(--ink); color:var(--paper)}
+  .controls .hint{margin-left:auto; font-family:"SF Mono",monospace; font-size:.68rem; color:#8a8475}
+  .stage{flex:1; overflow:hidden; position:relative; cursor:grab}
+  .stage.grabbing{cursor:grabbing}
+  #canvas{transform-origin:0 0; transition:transform .05s linear; padding:30px}
+  .mermaid{display:flex; justify-content:center}
+  footer{
+    padding:14px 36px; border-top:1px solid var(--line);
+    font-family:"SF Mono",monospace; font-size:.68rem; color:#8a8475;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="title-block">
+      <h1>GDP Complaint Management</h1>
+      <div class="sub">UiPath Maestro Case · Pharma B2B · Intake → Disposition → Finance</div>
+    </div>
+    <div class="meta">
+      EU GDP 2013/C 343/01 · Ch.6.3<br>
+      Families: A Quality · B Cold-chain · C Logistics<br>
+      v2 — provisional parallelism + saga
+    </div>
+  </header>
+
+  <div class="legend">
+    <span><span class="swatch" style="background:#fde68a"></span>HITL Gate</span>
+    <span><span class="swatch" style="background:#dbeafe"></span>Agent</span>
+    <span><span class="swatch" style="background:#d1fae5"></span>ERP desktop action (robot)</span>
+    <span><span class="swatch" style="background:#ede9fe"></span>QA notify / required input</span>
+    <span><span class="swatch" style="background:#fecaca"></span>Compensation / deviation</span>
+    <span><span class="swatch" style="background:#e5e7eb"></span>Terminal</span>
+  </div>
+
+  <div class="controls">
+    <button id="zin">+ zoom</button>
+    <button id="zout">– zoom</button>
+    <button id="reset">reset</button>
+    <span class="hint">drag to pan · scroll to zoom</span>
+  </div>
+
+  <div class="stage" id="stage">
+    <div id="canvas">
+      <pre class="mermaid" id="graph">
+flowchart LR
+    START([Complaint email arrives:<br/>Customer Service / Supply Chain]) --> INTAKE[Intake Agent:<br/>extract customer, product, batch/lot, qty,<br/>order/invoice ref, description, attachments]
+    INTAKE --> ERPPULL["ERP: pull Sales Order for comparison<br/>(robot reads ERP desktop app)"]
+    ERPPULL --> CLASSIFY{Classify family<br/>and severity}
+    CLASSIFY --> G1{{"GATE 1 — Triage validation<br/>Owner: Customer Service<br/>Valid, well-classified complaint?"}}
+    G1 -->|spam / misroute| REJECT([Close: not a complaint])
+    G1 -->|Valid| ACK[Auto-acknowledge customer<br/>create case in Cockpit + open audit trail]
+
+    ACK --> COMPLETE{Enough info<br/>to investigate?}
+    COMPLETE -->|No| RFI[RFI to customer<br/>park on SLA timer]
+    RFI -.->|reply| COMPLETE
+    RFI -.->|SLA breach| ESC[Escalate / chase] -.-> COMPLETE
+
+    COMPLETE -->|Yes| CORR{Cross-case correlation:<br/>same dispatch/batch +<br/>opposite qty delta?}
+    CORR -->|Match found| LINK[Link cases<br/>X short and Y surplus<br/>resolve together]
+    CORR -->|No match| INV
+    LINK --> INV
+
+    INV{Route by family} -->|A: Quality defect| INVA[Pull batch record, prior complaints,<br/>QC release, photos, same-batch spread]
+    INV -->|B: Cold-chain| INVB[Pull logger data, stability/excursion budget,<br/>lane, carrier records]
+    INV -->|C: Logistics / qty error| INVC["CS/Supply Chain VALIDATION:<br/>warehouse inventory check +<br/>ERP sales-order vs shipped qty"]
+
+    INVA --> DISPQ
+    INVB --> DISPQ
+    INVC --> CLAIMVALID{Claim valid?<br/>and goods return required?}
+
+    CLAIMVALID -->|"Valid, NO goods return<br/>(pure qty / human error)"| COMM["COMMERCIAL LANE<br/>Supply Chain decides:<br/>credit / debit / redeliver"]
+    CLAIMVALID -->|Invalid / unfounded| NORET[Close, no action]
+    COMM --> QANOTIFY[/"QA NOTIFY (non-blocking)<br/>metrics + trending only"/]
+    QANOTIFY --> G5
+
+    CLAIMVALID -->|"Valid, goods WILL return"| DISPQ
+    DISPQ[Case Assembly Agent:<br/>structured dossier + GDP 6.3 criteria<br/>TRUE/FALSE/UNKNOWN + recommendation]
+    DISPQ --> ROOT[/"ROOT CAUSE entered<br/>(human error, transit damage,<br/>cold-chain fail, pick error)<br/>mandatory before QA"/]
+    ROOT --> G2{{"GATE 2 — Investigation sign-off<br/>Owner: QA Analyst<br/>Evidence complete?"}}
+    G2 -->|Insufficient / UNKNOWN| BACK[Loop: more RFI / evidence] -.-> COMPLETE
+
+    G2 -->|Complete| POLICY{Policy router:<br/>product + type matches<br/>standing disposition policy?}
+
+    POLICY -->|"PATH A: policy match"| FORK([FORK: Authority + Execution tracks])
+    FORK --> G3A{{"GATE 3 — RP Ratification<br/>Owner: Responsible Person<br/>confirm policy applied"}}
+    FORK --> PREP[Execution PREPARATORY only<br/>nothing irreversible]
+    PREP --> G4P{{"GATE 4 — Plan approval<br/>Owner: Logistics"}}
+    PREP --> G5P{{"GATE 5 — Finance DRAFT<br/>Owner: Finance"}}
+    G4P --> PREPDONE[pickup scheduled / stock reserved<br/>paperwork drafted]
+    G5P --> CREDITDRAFT[credit/debit DRAFTED<br/>not posted]
+
+    G3A --> JOIN{JOIN:<br/>RP x execution state}
+    PREPDONE --> JOIN
+    CREDITDRAFT --> JOIN
+    JOIN -->|Ratified| COMMIT[COMMIT: post finance to ERP,<br/>dispatch redelivery]
+    JOIN -->|"Override, nothing committed"| OV1[cancel plan, void DRAFT] --> G3B
+    JOIN -->|"Override, credit posted"| OV2[Saga reversal:<br/>reversing note, reconcile ERP] --> DEV[Deviation / CAPA] --> G3B
+    COMMIT --> RETURNFLOW
+
+    POLICY -->|"PATH B: no match"| G3B{{"GATE 3 — Disposition (GDP)<br/>Owner: RP / QA<br/>back-to-stock vs destroy<br/>per 6.3 criteria"}}
+    G3B --> RETURNFLOW
+
+    RETURNFLOW["Goods return to warehouse (robot in ERP):<br/>adjust batch quantity<br/>set status = QUARANTINE"]
+    RETURNFLOW --> G3D{{"GATE 3 — QA disposition on quarantined batch<br/>Owner: RP / QA<br/>(root cause + 6.3 reviewed)"}}
+    G3D -->|All 6.3 TRUE - authorize| AVAIL["ERP: batch status = AVAILABLE<br/>FEFO placement"]
+    G3D -->|any FALSE/UNKNOWN| BLOCK["ERP: batch status = BLOCKED /<br/>AWAITING DESTRUCTION"]
+    BLOCK --> DESTROY["DESTRUCTION — irreversible,<br/>only after RP authorization<br/>- certificate of destruction"]
+
+    AVAIL --> G4B
+    DESTROY --> G4B
+    G4B{{"GATE 4 — Follow-up plan<br/>Owner: Logistics"}} --> EXECB[arrange return / redelivery]
+    EXECB --> G5
+    G5{{"GATE 5 — Finance approval<br/>Owner: Finance<br/>approve credit / debit amount"}} --> FIN["ERP: post credit / debit note<br/>(robot drives ERP desktop app)"]
+
+    FIN --> CLOSE
+    NORET --> CLOSE
+    CLOSE([Notify customer, close case,<br/>QA metrics updated, full audit trail])
+
+    classDef gate fill:#fde68a,stroke:#b45309,stroke-width:2px,color:#000;
+    classDef agent fill:#dbeafe,stroke:#1e40af,color:#000;
+    classDef comp fill:#fecaca,stroke:#b91c1c,color:#000;
+    classDef erp fill:#d1fae5,stroke:#047857,color:#000;
+    classDef notify fill:#ede9fe,stroke:#6d28d9,color:#000;
+    classDef terminal fill:#e5e7eb,stroke:#374151,color:#000;
+    class G1,G2,G3A,G3B,G3D,G4P,G5P,G4B,G5 gate;
+    class INTAKE,DISPQ agent;
+    class OV1,OV2,DEV comp;
+    class ERPPULL,RETURNFLOW,AVAIL,BLOCK,FIN erp;
+    class QANOTIFY,ROOT notify;
+    class START,REJECT,CLOSE terminal;
+      </pre>
+    </div>
+  </div>
+
+  <footer>GDP complaint case flow · two desktop apps (mock ERP + Case Management cockpit) driven by UiPath robots · HITL at every decision</footer>
+
+<script>
+  mermaid.initialize({
+    startOnLoad:true,
+    theme:'base',
+    flowchart:{ useMaxWidth:false, htmlLabels:true, curve:'basis' },
+    themeVariables:{
+      fontFamily:'ui-monospace, Menlo, Consolas, monospace',
+      fontSize:'13px',
+      lineColor:'#6b6557',
+      primaryColor:'#ffffff',
+      primaryTextColor:'#1a1f2e',
+      primaryBorderColor:'#1a1f2e'
+    }
+  });
+
+  // pan + zoom
+  const stage=document.getElementById('stage');
+  const canvas=document.getElementById('canvas');
+  let scale=1, tx=0, ty=0, dragging=false, sx=0, sy=0;
+  function apply(){ canvas.style.transform=`translate(${tx}px,${ty}px) scale(${scale})`; }
+  document.getElementById('zin').onclick=()=>{scale=Math.min(scale*1.2,4);apply();};
+  document.getElementById('zout').onclick=()=>{scale=Math.max(scale/1.2,.2);apply();};
+  document.getElementById('reset').onclick=()=>{scale=1;tx=0;ty=0;apply();};
+  stage.addEventListener('mousedown',e=>{dragging=true;stage.classList.add('grabbing');sx=e.clientX-tx;sy=e.clientY-ty;});
+  window.addEventListener('mouseup',()=>{dragging=false;stage.classList.remove('grabbing');});
+  window.addEventListener('mousemove',e=>{if(!dragging)return;tx=e.clientX-sx;ty=e.clientY-sy;apply();});
+  stage.addEventListener('wheel',e=>{
+    e.preventDefault();
+    const f=e.deltaY<0?1.1:1/1.1;
+    scale=Math.min(Math.max(scale*f,.2),4); apply();
+  },{passive:false});
+</script>
+</body>
+</html>

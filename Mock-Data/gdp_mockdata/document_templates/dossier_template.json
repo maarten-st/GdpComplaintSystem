@@ -1,0 +1,43 @@
+{
+  "_doc_type": "complaint_dossier",
+  "_note": "Source-of-truth JSON the case carries; render to HTML/PDF for QA/RP review.",
+  "case_id": "{{case_id}}",
+  "generated_at": "{{timestamp}}",
+  "family": "{{family}}",
+  "customer": {
+    "code": "{{customer_code}}",
+    "name": "{{customer_name}}",
+    "type": "{{customer_type}}"
+  },
+  "order": {
+    "order_no": "{{order_no}}",
+    "dispatch_ref": "{{dispatch_ref}}",
+    "dispatch_date": "{{dispatch_date}}"
+  },
+  "product": {
+    "code": "{{product_code}}",
+    "name": "{{product_name}}",
+    "batch_no": "{{batch_no}}",
+    "cold_chain": "{{cold_chain}}"
+  },
+  "complaint_summary": "{{complaint_summary}}",
+  "evidence": [
+    {
+      "type": "photo|logger|batch_record|inventory_check",
+      "ref": "{{evidence_ref}}",
+      "note": "{{evidence_note}}"
+    }
+  ],
+  "quantity_affected": "{{qty_affected}}",
+  "gdp_6_3_criteria": {
+    "packaging_intact": "TRUE|FALSE|UNKNOWN",
+    "storage_proven": "TRUE|FALSE|UNKNOWN",
+    "shelf_life_ok": "TRUE|FALSE|UNKNOWN",
+    "not_prior_return_recall": "TRUE|FALSE|UNKNOWN",
+    "within_time_window": "TRUE|FALSE|UNKNOWN"
+  },
+  "root_cause": "{{root_cause}}",
+  "recommended_disposition": "BACK_TO_STOCK|DESTROY|NO_DISPOSITION",
+  "recommendation_rationale": "{{rationale}}",
+  "linked_case": "{{linked_case_or_null}}"
+}

@@ -1,0 +1,96 @@
+flowchart LR
+    %% ===== INTAKE =====
+    START([Complaint email arrives:<br/>Customer Service / Supply Chain]) --> INTAKE[Intake Agent:<br/>extract customer, product, batch/lot,<br/>qty, order/invoice ref, description, attachments]
+    INTAKE --> CLASSIFY{Classify family<br/>& severity}
+    CLASSIFY --> G1{{"GATE 1 — Triage validation<br/>Owner: Customer Service<br/>Valid, well-classified complaint?"}}
+    G1 -->|Not valid / spam / misroute| REJECT([Close: not a complaint<br/>log + notify sender])
+    G1 -->|Valid| ACK[Auto-acknowledge to customer<br/>create case ID + open audit trail]
+
+    %% ===== DATA COMPLETENESS =====
+    ACK --> COMPLETE{Enough info<br/>to investigate?}
+    COMPLETE -->|No| RFI[Send targeted RFI to customer<br/>park case on SLA timer]
+    RFI -.->|customer replies| COMPLETE
+    RFI -.->|SLA breach| ESC_RFI[Escalate / chase]
+    ESC_RFI -.-> COMPLETE
+
+    %% ===== INVESTIGATION (family-specific) =====
+    COMPLETE -->|Yes| INV{Route by family}
+    INV -->|A: Quality defect| INVA[Pull batch record, prior complaints,<br/>QC release data, photos,<br/>check other customers same batch]
+    INV -->|B: Cold-chain| INVB[Pull logger data, stability/excursion budget,<br/>transport lane, carrier records]
+    INV -->|C: Logistics error| INVC[Pull order, pick/pack, delivery note,<br/>shipped-vs-ordered, ERP stock moves]
+    INVA --> DOSSIER
+    INVB --> DOSSIER
+    INVC --> DOSSIER
+
+    %% ===== DOSSIER + GATE 2 =====
+    DOSSIER[Case Assembly Agent:<br/>structured dossier + GDP 6.3 criteria<br/>scored TRUE / FALSE / UNKNOWN<br/>+ recommended disposition] --> G2{{"GATE 2 — Investigation sign-off<br/>Owner: QA Analyst<br/>Evidence package complete?"}}
+    G2 -->|Insufficient / UNKNOWN| BACK[Loop back: more RFI / evidence]
+    BACK -.-> COMPLETE
+
+    %% ===== POLICY ROUTER =====
+    G2 -->|Complete| POLICY{Policy router:<br/>product + complaint type matches<br/>standing disposition policy?}
+
+    %% ===========================================================
+    %% PATH A — policy-known disposition: PROVISIONAL PARALLELISM
+    %% ===========================================================
+    POLICY -->|"PATH A: policy match<br/>(e.g. always destroy)"| FORK(["FORK — case splits into<br/>Authority track + Execution track"])
+
+    %% --- Authority track ---
+    FORK --> G3A{{"GATE 3 — RP Ratification<br/>Owner: Responsible Person<br/>Confirm policy correctly applied"}}
+
+    %% --- Execution track (provisional / preparatory only) ---
+    FORK --> PREP[Execution track — PREPARATORY phase only<br/>nothing irreversible]
+    PREP --> G4P{{"GATE 4 — Follow-up plan approval<br/>Owner: Logistics<br/>Approve return / redelivery plan"}}
+    PREP --> G5P{{"GATE 5 — Finance approval<br/>Owner: Finance<br/>Approve credit / debit DRAFT"}}
+    G4P --> PREPDONE[Pickup scheduled / replacement reserved<br/>paperwork drafted — NOT dispatched]
+    G5P --> CREDITDRAFT[Credit/debit note DRAFTED<br/>NOT yet posted to ERP]
+
+    %% --- Join ---
+    G3A --> JOIN{JOIN:<br/>RP outcome × execution state}
+    PREPDONE --> JOIN
+    CREDITDRAFT --> JOIN
+
+    JOIN -->|Ratified ✓| COMMIT[COMMIT irreversible steps:<br/>post credit/debit to ERP, dispatch redelivery]
+    COMMIT --> SEG
+
+    %% --- Override branches ---
+    JOIN -->|"Overridden ✗<br/>(nothing committed)"| OV1[Compensation — cheap case:<br/>cancel pickup, void DRAFT credit,<br/>release reserved stock]
+    OV1 --> PATHB_ENTRY[Re-route to Path B<br/>case-by-case decision]
+
+    JOIN -->|"Overridden ✗<br/>(credit already posted)"| OV2[Compensation — Saga reversal:<br/>reversing debit/credit note,<br/>reconcile ERP, log correction]
+    OV2 --> DEV[Raise deviation / CAPA<br/>should be rare] --> PATHB_ENTRY
+
+    %% ===========================================================
+    %% PATH B — genuine case-by-case decision: SEQUENTIAL
+    %% ===========================================================
+    POLICY -->|"PATH B: no policy match"| G3B
+    PATHB_ENTRY --> G3B{{"GATE 3 — Disposition decision (GDP)<br/>Owner: RP / QA<br/>Back-to-stock vs Destroy<br/>against 6.3 criteria"}}
+    G3B --> DISP{Disposition?}
+    DISP -->|Back to saleable stock<br/>ALL 6.3 conditions TRUE| BTS[Return to saleable stock<br/>RP authorizes, FEFO placement]
+    DISP -->|Destroy<br/>any condition FALSE/UNKNOWN| DESTROY
+    DISP -->|No return / unfounded| NORET[Close complaint, no disposition]
+
+    BTS --> G4B
+    DESTROY[Destruction — IRREVERSIBLE<br/>always after RP ratification] --> G4B
+    NORET --> CLOSE
+
+    %% Path B follow-up: 4 and 5 parallel AFTER disposition known
+    G4B{{"GATE 4 — Follow-up plan<br/>Owner: Logistics"}} --> G5B
+    G4B --> EXECB[Arrange return / redelivery / destruction order]
+    G5B{{"GATE 5 — Finance<br/>Owner: Finance"}} --> FINB[Issue credit / debit, post to ERP]
+    EXECB --> SEG
+    FINB --> SEG
+
+    %% ===== SEGREGATION + CLOSURE =====
+    SEG[Segregation/quarantine hold maintained<br/>until disposition final] --> CLOSE
+    CLOSE([Notify customer of resolution<br/>close case, full audit trail for inspection])
+
+    %% ===== styling =====
+    classDef gate fill:#fde68a,stroke:#b45309,stroke-width:2px,color:#000;
+    classDef agent fill:#dbeafe,stroke:#1e40af,color:#000;
+    classDef comp fill:#fecaca,stroke:#b91c1c,color:#000;
+    classDef terminal fill:#e5e7eb,stroke:#374151,color:#000;
+    class G1,G2,G3A,G3B,G4P,G5P,G4B,G5B gate;
+    class INTAKE,DOSSIER agent;
+    class OV1,OV2,DEV comp;
+    class START,REJECT,CLOSE terminal;

@@ -1,0 +1,13 @@
+From: pharmacy@betahospital.be
+To: complaints@pharmadist.example
+Subject: Temperature alarm on Adalimumab shipment DISP-9012
+Date: 2026-05-28
+
+Hi,
+
+The data logger in today's Adalimumab shipment (order SO-4012) showed a temperature
+alarm. The product is a cold-chain biologic. Can you confirm whether it is still
+usable before we put it into stock? Logger file attached.
+
+Thanks,
+Beta Hospital Pharmacy

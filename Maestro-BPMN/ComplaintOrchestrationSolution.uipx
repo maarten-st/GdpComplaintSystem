@@ -1,0 +1,13 @@
+{
+  "DocVersion": "1.0.0",
+  "StudioMinVersion": "2025.04.0",
+  "SolutionId": "c60aa117-4e28-40be-d206-08dec8f2123b",
+  "Projects": [
+    {
+      "Type": "ProcessOrchestration",
+      "ProjectRelativePath": "ComplaintOrchestration/project.uiproj",
+      "Id": "e093891a-5947-44bb-8197-1b20467d818b"
+    }
+  ],
+  "AutomationHubIdeaUrl": null
+}

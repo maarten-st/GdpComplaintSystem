@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ObjectRepositoryTargetData ContentHash="KXrvvjY0gE24N1opVUQ0sA" Reference="q4ZN28ODeUi-PhUX0rJgmA/fTGp7TIgRkGhXLpnJWdWXQ" xmlns="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <ObjectRepositoryTargetData.Data>
+    <TargetAnchorable x:Key="TargetAnchorable" DesignTimeRectangle="493, 307, 118, 37" DesignTimeScaleFactor="1" ElementType="DropDown" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl role='combo box' /&gt;" Guid="2e9c3982-df3b-40e4-abbb-c9dae8664681" ScopeSelectorArgument="&lt;wnd  title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6">
+      <imageRef attrName="InformativeScreenshot" originalValue="e33582c058fb4700de9d16c2d0b132cd.jpg" xmlns="">06MDeHmysbkqGOLDsj1kLCA</imageRef>
+    </TargetAnchorable>
+    <x:String x:Key="ActivityType">SelectItem</x:String>
+  </ObjectRepositoryTargetData.Data>
+</ObjectRepositoryTargetData>

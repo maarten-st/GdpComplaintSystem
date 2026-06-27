@@ -1,0 +1,250 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GatherEvidence" this:GatherEvidence.in_OrderNo="SO-4002" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_OrderNo" Type="InArgument(x:String)" />
+    <x:Property Name="in_BatchNo" Type="InArgument(x:String)" />
+    <x:Property Name="out_RawResult" Type="OutArgument(x:String)" />
+    <x:Property Name="out_TotalPaid" Type="OutArgument(x:String)" />
+    <x:Property Name="out_UnitPrice" Type="OutArgument(x:String)" />
+    <x:Property Name="out_LineAmount" Type="OutArgument(x:String)" />
+    <x:Property Name="out_OrderLinesJson" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ExecutionStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Reflection</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GatherEvidence" sap:VirtualizedContainerService.HintSize="1402,3714" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_TotalPaid" />
+      <Variable x:TypeArguments="x:String" Name="str_MatchedLine" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try/Catch" sap:VirtualizedContainerService.HintSize="488,3691" sap2010:WorkflowViewState.IdRef="TryCatch_Main">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="486,2893" sap2010:WorkflowViewState.IdRef="Sequence_Try">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Ensure GDP Mock ERP is open" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="EnsureMockErpOpen.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: GDP Mock ERP" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,1265" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" IsDisplayNameAuto="True" ScopeGuid="1a2b3c4d-0004-4000-8000-000000000004" Version="V2">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,1114" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Open Sales Orders Tab" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="1a2b3c4d-0004-4000-8000-000000000004" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable ContentHash="otf5idVXs0C39NCxldDx-g" DesignTimeRectangle="30, 108, 121, 32" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Sales Orders' role='push button' /&gt;" Guid="74f54dae-e096-450e-84ff-01a2e1146ece" InformativeScreenshot="f71151e0313b408a77c967b3b25e3a27.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/qt30yWW5QEm0I_pEaGtfsA" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Order No" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="1a2b3c4d-0004-4000-8000-000000000004" Text="[in_OrderNo]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="XUkHogAEUUKEvd9QFF1zFg" DesignTimeRectangle="30, 217, 320, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Order no (SO-4001) or dispatch ref (DISP-9031)' role='editable text' /&gt;" Guid="55a21961-80a5-405b-b901-045f3f5c63be" InformativeScreenshot="9ff01de0c921f55522207dba547a596a.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/IhyF5FYWZEWsERSjPUf3PA" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Look Up" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="1a2b3c4d-0004-4000-8000-000000000004" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable ContentHash="2mqwz1TexU62BeEnD318EQ" DesignTimeRectangle="358, 217, 73, 35" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Look up' role='push button' /&gt;" Guid="bbd2f9e6-137f-4b47-9fb7-7ca4ab97a977" InformativeScreenshot="4f4a04dfb0d82acf3c9639ebf157eac5.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/sb5mEYMSj0OhNnMmpmI9sg" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NGetText DisplayName="Read Order Result" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="1a2b3c4d-0004-4000-8000-000000000004" Version="V5">
+                    <uix:NGetText.Target>
+                      <uix:TargetAnchorable ContentHash="7agjdUS9m06OEsmRS3RQhg" DesignTimeRectangle="30, 267, 618, 150" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='orderDispatchRef' role='editable text' /&gt;" Guid="80fa213f-e82d-40a0-8bf8-3eda60d77494" InformativeScreenshot="4d0fa47f9183af556e27f4fc6a50778e.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/Q0MHa7TFaUuB5VPEstLl0g" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NGetText.Target>
+                    <uix:NGetText.Text>
+                      <OutArgument x:TypeArguments="x:String">[out_RawResult]</OutArgument>
+                    </uix:NGetText.Text>
+                  </uix:NGetText>
+                  <uix:NGetText DisplayName="Read Total Paid" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,143" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="1a2b3c4d-0004-4000-8000-000000000004" Version="V5">
+                    <uix:NGetText.Target>
+                      <uix:TargetAnchorable DesignTimeRectangle="0, 0, 0, 0" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='orderTotalPaid' role='editable text' /&gt;" Guid="a1f0c2d3-4e5b-46a7-8c91-0b2d4e6f8a10" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NGetText.Target>
+                    <uix:NGetText.Text>
+                      <OutArgument x:TypeArguments="x:String">[str_TotalPaid]</OutArgument>
+                    </uix:NGetText.Text>
+                  </uix:NGetText>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.OCREngine>
+              <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                <ActivityFunc.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                </ActivityFunc.Argument>
+              </ActivityFunc>
+            </uix:NApplicationCard.OCREngine>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="1975, 227, 678, 736" ContentHash="sNt4FhRuv0mA3pDbKsA09g" InformativeScreenshot="a5797f9ea641144e7ed0a4124c16838c.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA" Selector="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" Version="V3">
+                <uix:TargetApp.Arguments>
+                  <InArgument x:TypeArguments="x:String" />
+                </uix:TargetApp.Arguments>
+                <uix:TargetApp.FilePath>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                </uix:TargetApp.FilePath>
+                <uix:TargetApp.WorkingDirectory>
+                  <InArgument x:TypeArguments="x:String" />
+                </uix:TargetApp.WorkingDirectory>
+              </uix:TargetApp>
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+          <Assign DisplayName="Set out_TotalPaid" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_TotalPaid]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(str_TotalPaid Is Nothing, "", str_TotalPaid.Trim())]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Find matching line for batch" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_MatchLine">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_MatchedLine]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(out_RawResult Is Nothing, "", out_RawResult).Split(New Char(){Convert.ToChar(10), Convert.ToChar(13)}, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(Function(l) l.Contains(If(in_BatchNo, "")))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Set out_UnitPrice" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_UnitPrice">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_UnitPrice]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(String.IsNullOrWhiteSpace(str_MatchedLine) OrElse str_MatchedLine.Split(New Char(){" "c, Convert.ToChar(9), Convert.ToChar(160)}, StringSplitOptions.RemoveEmptyEntries).Length &lt; 2, "0", New String(str_MatchedLine.Split(New Char(){" "c, Convert.ToChar(9), Convert.ToChar(160)}, StringSplitOptions.RemoveEmptyEntries).Reverse().Skip(1).First().Where(Function(c) Char.IsDigit(c) OrElse c = "."c).ToArray()))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Set out_LineAmount" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_LineAmount">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_LineAmount]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[If(String.IsNullOrWhiteSpace(str_MatchedLine) OrElse str_MatchedLine.Split(New Char(){" "c, Convert.ToChar(9), Convert.ToChar(160)}, StringSplitOptions.RemoveEmptyEntries).Length &lt; 2, "0", New String(str_MatchedLine.Split(New Char(){" "c, Convert.ToChar(9), Convert.ToChar(160)}, StringSplitOptions.RemoveEmptyEntries).Reverse().First().Where(Function(c) Char.IsDigit(c) OrElse c = "."c).ToArray()))]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Build out_OrderLinesJson" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_OrderLinesJson">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_OrderLinesJson]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Convert.ToChar(91).ToString() &amp; String.Join(",", If(out_RawResult Is Nothing, "", out_RawResult).Split(New Char(){Convert.ToChar(10), Convert.ToChar(13)}, StringSplitOptions.RemoveEmptyEntries).SkipWhile(Function(l) Not l.ToUpper().Contains("ORDERED")).Skip(1).Select(Function(l) l.Split(New Char(){" "c, Convert.ToChar(9), Convert.ToChar(160)}, StringSplitOptions.RemoveEmptyEntries)).Where(Function(t) t.Length &gt;= 5).Select(Function(t) "{""product"":""" &amp; t(0) &amp; """,""batch"":""" &amp; t(1) &amp; """,""ordered"":""" &amp; t(2) &amp; """,""unitPrice"":""" &amp; t(t.Length - 2) &amp; """,""lineAmount"":""" &amp; t(t.Length - 1) &amp; """}")) &amp; Convert.ToChar(93).ToString()]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:LogMessage DisplayName="Log Evidence" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;GatherEvidence: order &quot; &amp; in_OrderNo &amp; &quot; — totalPaid=&quot; &amp; out_TotalPaid &amp; &quot; Raw Result=&quot; &amp; out_RawResult]" />
+          <Assign DisplayName="Set ExecutionStatus = Success" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_StatusOk">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Success"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_Main">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle error" sap:VirtualizedContainerService.HintSize="486,576" sap2010:WorkflowViewState.IdRef="Sequence_Catch">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Error" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_Err" Level="Error" Message="[&quot;GatherEvidence failed: &quot; &amp; exception.Message]" />
+              <Assign DisplayName="Set ExecutionStatus = Failed" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_StatusFail">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["Failed"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Set ErrorMessage" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_ErrMsg">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

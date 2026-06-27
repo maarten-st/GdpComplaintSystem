@@ -1,0 +1,172 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="EnsureMockErpOpen" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Reflection</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Diagnostics.Process</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="EnsureMockErpOpen" sap:VirtualizedContainerService.HintSize="1131,2825" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="home" />
+      <Variable x:TypeArguments="x:String" Name="exe" />
+      <Variable x:TypeArguments="x:Boolean" Name="isOpen" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Is GDP Mock ERP already open?" sap:VirtualizedContainerService.HintSize="488,175" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Boolean">[isOpen]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Boolean">[System.Diagnostics.Process.GetProcessesByName("GDP Mock ERP").Any()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <If Condition="[Not isOpen]" DisplayName="Resolve location and launch if not open" sap:VirtualizedContainerService.HintSize="488,2202" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Resolve and launch" sap:VirtualizedContainerService.HintSize="486,1898" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign DisplayName="Home from GDP_MOCKERP_HOME env var" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_env">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[home]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Environment.GetEnvironmentVariable("GDP_MOCKERP_HOME")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <If Condition="[String.IsNullOrWhiteSpace(home)]" DisplayName="Fall back to Orchestrator asset" sap:VirtualizedContainerService.HintSize="452,395" sap2010:WorkflowViewState.IdRef="If_asset">
+            <If.Then>
+              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GDP_MOCKERP_HOME" CacheStrategy="None" DisplayName="Get GDP_MOCKERP_HOME asset (folder Shared)" sap:VirtualizedContainerService.HintSize="450,144" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                <ui:GetRobotAsset.Value>
+                  <OutArgument x:TypeArguments="x:String">[home]</OutArgument>
+                </ui:GetRobotAsset.Value>
+              </ui:GetRobotAsset>
+            </If.Then>
+          </If>
+          <If Condition="[String.IsNullOrWhiteSpace(home)]" DisplayName="Home resolved?" sap:VirtualizedContainerService.HintSize="452,342" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Throw DisplayName="Throw - home missing" Exception="[New System.Exception(&quot;GDP Mock ERP location not set. Start the app first (npm start), or set the GDP_MOCKERP_HOME env var / Shared asset to the packaged folder containing 'GDP Mock ERP.exe'.&quot;)]" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </If.Then>
+          </If>
+          <Assign DisplayName="Build GDP Mock ERP.exe path" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[exe]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(home, "GDP Mock ERP.exe")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <If Condition="[Not System.IO.File.Exists(exe)]" DisplayName="GDP Mock ERP.exe exists?" sap:VirtualizedContainerService.HintSize="452,342" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Then>
+              <Throw DisplayName="Throw - GDP Mock ERP.exe missing" Exception="[New System.Exception(&quot;'GDP Mock ERP.exe' not found at &quot; &amp; exe &amp; &quot;. Set GDP_MOCKERP_HOME to the packaged app folder, or start the app manually first.&quot;)]" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Throw_2" />
+            </If.Then>
+          </If>
+          <ui:StartProcess DisplayName="Launch GDP Mock ERP" FileName="[exe]" sap:VirtualizedContainerService.HintSize="416,120" sap2010:WorkflowViewState.IdRef="StartProcess_1" WorkingDirectory="[home]">
+            <ui:StartProcess.Arguments>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </ui:StartProcess.Arguments>
+          </ui:StartProcess>
+          <Delay DisplayName="Wait for Electron to boot" Duration="00:00:08" sap:VirtualizedContainerService.HintSize="416,123" sap2010:WorkflowViewState.IdRef="Delay_1" />
+          <ui:LogMessage DisplayName="Log launched" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;EnsureMockErpOpen: launched GDP Mock ERP from &quot; &amp; exe]" />
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <ui:LogMessage DisplayName="Log already open" sap:VirtualizedContainerService.HintSize="486,143" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;EnsureMockErpOpen: GDP Mock ERP already open&quot;]" />
+      </If.Else>
+    </If>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: GDP Mock ERP" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="488,425" sap2010:WorkflowViewState.IdRef="NApplicationCard_Max" IsDisplayNameAuto="True" ScopeGuid="1a2b3c4d-00ff-4000-8000-0000000000ff" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,283" sap2010:WorkflowViewState.IdRef="Sequence_Max">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:MaximizeWindow Window="{x:Null}" DisplayName="Maximize Window" sap:VirtualizedContainerService.HintSize="416,57" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1" />
+            <ui:LogMessage DisplayName="Log maximized" sap:VirtualizedContainerService.HintSize="416,166" sap2010:WorkflowViewState.IdRef="LogMessage_Max" Level="Info" Message="[&quot;EnsureMockErpOpen: maximized GDP Mock ERP window&quot;]" />
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.OCREngine>
+        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+          <ActivityFunc.Argument>
+            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+          </ActivityFunc.Argument>
+        </ActivityFunc>
+      </uix:NApplicationCard.OCREngine>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" ContentHash="sNt4FhRuv0mA3pDbKsA09g" FilePath="[exe]" Selector="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" Version="V3">
+          <uix:TargetApp.Arguments>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.Arguments>
+          <uix:TargetApp.WorkingDirectory>
+            <InArgument x:TypeArguments="x:String" />
+          </uix:TargetApp.WorkingDirectory>
+        </uix:TargetApp>
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>

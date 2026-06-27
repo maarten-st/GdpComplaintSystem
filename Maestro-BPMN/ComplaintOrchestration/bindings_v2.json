@@ -1,0 +1,153 @@
+{
+  "version": "2.0",
+  "resources": [
+    {
+      "resource": "Connection",
+      "key": "a33b08e7-c4db-42e7-b6d8-126ca71d0513",
+      "id": "Connectiona33b08e7-c4db-42e7-b6d8-126ca71d0513",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "a33b08e7-c4db-42e7-b6d8-126ca71d0513",
+          "isExpression": false,
+          "displayName": "uipath-microsoft-outlook365 connection"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Fetch Complaint Email (Outlook 365)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "uipath-microsoft-outlook365 connection",
+        "UseConnectionService": "true",
+        "Connector": "uipath-microsoft-outlook365"
+      }
+    },
+    {
+      "resource": "Connection",
+      "key": "49a6877f-462a-4199-a798-7a989bc3a9da",
+      "id": "Connection49a6877f-462a-4199-a798-7a989bc3a9da",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "49a6877f-462a-4199-a798-7a989bc3a9da",
+          "isExpression": false,
+          "displayName": "uipath-uipath-dataservice connection"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Create Record (Data Fabric, Gate=Triage)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "uipath-uipath-dataservice connection",
+        "UseConnectionService": "true",
+        "Connector": "uipath-uipath-dataservice"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "PostToErp",
+      "id": "processPostToErp",
+      "value": {
+        "name": {
+          "defaultValue": "PostToErp",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Issue Credit Note (RPA)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "GatherTempLogs_1",
+      "id": "processGatherTempLogs_1",
+      "value": {
+        "name": {
+          "defaultValue": "GatherTempLogs_1",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Gather Temperature Logs - Portal (RPA)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "GatherEvidence_1",
+      "id": "processGatherEvidence_1",
+      "value": {
+        "name": {
+          "defaultValue": "GatherEvidence_1",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Gather Evidence - Sales Order (RPA)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "ExecuteDisposition_1",
+      "id": "processExecuteDisposition_1",
+      "value": {
+        "name": {
+          "defaultValue": "ExecuteDisposition_1",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Adjust Inventory (RPA)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "ExtractComplaint_1",
+      "id": "processExtractComplaint_1",
+      "value": {
+        "name": {
+          "defaultValue": "ExtractComplaint_1",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Extract Complaint (Agent)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true",
+        "subType": "Agent"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "InvestigationAgent_1",
+      "id": "processInvestigationAgent_1",
+      "value": {
+        "name": {
+          "defaultValue": "InvestigationAgent_1",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Investigation Agent (suggest action)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true",
+        "subType": "Agent"
+      }
+    }
+  ]
+}

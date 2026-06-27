@@ -1,0 +1,13 @@
+To: {{customer_email}}
+Subject: More information needed - {{case_id}}
+
+Dear {{customer_name}},
+
+To investigate your complaint ({{case_id}}) we need a few more details:
+{{missing_items}}
+
+Please reply to this email with the above. Your case is on hold pending this
+information and will be progressed as soon as we hear back.
+
+Kind regards,
+Customer Service - PharmaDist

@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Batch Filter",
+  "Description": "The 'Filter by batch / product' text input on the Inventory tab.",
+  "Type": "Element",
+  "TaxonomyType": "Input",
+  "Id": "tYM9TOa9ckCYMfLhU3twzQ",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/tYM9TOa9ckCYMfLhU3twzQ",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:56:06.6285975Z",
+  "Updated": "2026-06-05T08:56:06.6285975Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

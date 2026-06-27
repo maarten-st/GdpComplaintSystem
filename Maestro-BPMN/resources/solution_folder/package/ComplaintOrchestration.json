@@ -1,0 +1,23 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "ComplaintOrchestration",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "projectKey": "e093891a-5947-44bb-8197-1b20467d818b",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "name": "ComplaintOrchestration"
+    },
+    "locks": [],
+    "key": "fc84f571-acff-4f42-a55d-0f00be417fb3"
+  }
+}

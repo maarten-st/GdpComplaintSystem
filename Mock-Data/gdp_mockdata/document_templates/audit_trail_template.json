@@ -1,0 +1,13 @@
+{
+  "_doc_type": "audit_trail",
+  "case_id": "{{case_id}}",
+  "events": [
+    {
+      "ts": "{{iso_timestamp}}",
+      "actor": "agent|robot|CS|SC|QA|RP|system",
+      "action": "{{action}}",
+      "detail": "{{detail}}",
+      "esign_ref": "{{esign_or_null}}"
+    }
+  ]
+}

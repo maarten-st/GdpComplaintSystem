@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Sales Orders Tab",
+  "Description": "The 'Sales Orders' navigation tab button.",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "qt30yWW5QEm0I_pEaGtfsA",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/qt30yWW5QEm0I_pEaGtfsA",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T09:00:10.5295379Z",
+  "Updated": "2026-06-05T09:00:10.5295379Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

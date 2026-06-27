@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Order Result Block",
+  "Description": "The container holding the looked-up order card and order-lines table (text read for parsing).",
+  "Type": "Element",
+  "TaxonomyType": "None",
+  "Id": "Q0MHa7TFaUuB5VPEstLl0g",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/Q0MHa7TFaUuB5VPEstLl0g",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T09:00:11.3931062Z",
+  "Updated": "2026-06-05T09:00:11.3931062Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "_doc_type": "deviation_capa",
+  "deviation_no": "{{dev_no}}",
+  "case_id": "{{case_id}}",
+  "raised_at": "{{timestamp}}",
+  "description": "{{description}}",
+  "root_cause": "{{root_cause}}",
+  "immediate_action": "{{corrective}}",
+  "preventive_action": "{{preventive}}",
+  "owner": "{{owner}}",
+  "status": "OPEN|CLOSED"
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GDP Mock ERP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>🏥 GDP Mock ERP</h1>
+    <nav>
+      <button class="tab active" data-tab="orders" id="tab-orders" aria-label="Sales Orders">📦 Sales Orders</button>
+      <button class="tab" data-tab="inventory" id="tab-inventory" aria-label="Inventory / Batches">📋 Inventory / Batches</button>
+      <button class="tab" data-tab="postings" id="tab-postings" aria-label="Postings">💶 Postings</button>
+    </nav>
+  </header>
+
+  <!-- ===== SALES ORDERS ===== -->
+  <section id="panel-orders" class="panel active">
+    <h2>Sales Order Lookup</h2>
+    <div class="row">
+      <input id="orderSearch" placeholder="Order no (SO-4001) or dispatch ref (DISP-9031)" />
+      <button id="btnSearchOrder">Look up</button>
+    </div>
+    <div id="orderResult"></div>
+  </section>
+
+  <!-- ===== INVENTORY ===== -->
+  <section id="panel-inventory" class="panel">
+    <h2>Inventory &amp; Batch State Machine</h2>
+    <div class="row">
+      <input id="batchFilter" placeholder="Filter by batch / product" />
+      <button id="btnFilterBatches">Filter</button>
+      <button id="btnRefreshBatches">Refresh</button>
+    </div>
+    <table id="batchTable">
+      <thead><tr><th>Batch</th><th>Product</th><th>Original qty</th><th>Qty (remaining)</th><th>Destroyed</th><th>Quarantined</th><th>Expiry</th><th>Set status</th></tr></thead>
+      <tbody id="batchBody"></tbody>
+    </table>
+  </section>
+
+  <!-- ===== POSTINGS ===== -->
+  <section id="panel-postings" class="panel">
+    <h2>Post Credit / Debit Note</h2>
+    <div class="form">
+      <label>Type <select id="noteType"><option>CREDIT</option><option>DEBIT</option></select></label>
+      <label>Case <input id="postCase" placeholder="CMP-1001" /></label>
+      <label>Customer <input id="postCustomer" placeholder="C001" /></label>
+      <label>Product <input id="postProduct" placeholder="P001" /></label>
+      <label>Batch <input id="postBatch" placeholder="P001-B01" /></label>
+      <label>Qty <input id="postQty" type="number" placeholder="40" /></label>
+      <label>Amount <input id="postAmount" type="number" placeholder="500.00" /></label>
+      <label class="full">Reason <textarea id="postReason" rows="4" placeholder="Full credit — goods destroyed"></textarea></label>
+      <button id="btnPostNote">Post note</button>
+    </div>
+    <h3>Posted notes</h3>
+    <table id="postingsTable">
+      <thead><tr><th>Note</th><th>Type</th><th>Case</th><th>Cust</th><th>Qty</th><th>Amount</th><th>Status</th><th>ERP ref</th><th>Reason</th></tr></thead>
+      <tbody id="postingsBody"></tbody>
+    </table>
+  </section>
+
+  <div id="toast"></div>
+  <script src="renderer.js"></script>
+</body>
+</html>

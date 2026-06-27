@@ -1,0 +1,61 @@
+{
+  "description": "Path-A routing table. Matched top-to-bottom; first match wins. '*' = wildcard.",
+  "policies": [
+    {
+      "product_code": "*",
+      "family": "A",
+      "sub_condition": "contamination_or_damage",
+      "path": "PATH_A_ALWAYS_DESTROY",
+      "rationale": "Integrity breach on any product is non-recoverable; manufacturer policy mandates destruction."
+    },
+    {
+      "product_code": "P002",
+      "family": "B",
+      "sub_condition": "any_excursion",
+      "path": "PATH_A_ALWAYS_DESTROY",
+      "rationale": "Insulin: manufacturer policy destroys on any documented excursion regardless of budget."
+    },
+    {
+      "product_code": "P004",
+      "family": "B",
+      "sub_condition": "any_excursion",
+      "path": "PATH_A_ALWAYS_DESTROY",
+      "rationale": "Vaccine: zero-tolerance manufacturer policy."
+    },
+    {
+      "product_code": "P006",
+      "family": "B",
+      "sub_condition": "excursion_within_budget",
+      "path": "PATH_B_CASE_BY_CASE",
+      "rationale": "Biologic with documented tolerance; RP assesses case-by-case."
+    },
+    {
+      "product_code": "P008",
+      "family": "B",
+      "sub_condition": "excursion_within_budget",
+      "path": "PATH_B_CASE_BY_CASE",
+      "rationale": "Wide tolerance; case-by-case assessment permitted."
+    },
+    {
+      "product_code": "*",
+      "family": "C",
+      "sub_condition": "quantity_or_human_error_no_return",
+      "path": "COMMERCIAL_LANE",
+      "rationale": "No product disposition needed; supply chain resolves commercially, QA notified for metrics."
+    },
+    {
+      "product_code": "*",
+      "family": "C",
+      "sub_condition": "goods_returned",
+      "path": "PATH_B_CASE_BY_CASE",
+      "rationale": "Physical return requires RP disposition per GDP 6.3."
+    },
+    {
+      "product_code": "*",
+      "family": "*",
+      "sub_condition": "default",
+      "path": "PATH_B_CASE_BY_CASE",
+      "rationale": "Default to case-by-case RP decision when no specific policy matches."
+    }
+  ]
+}

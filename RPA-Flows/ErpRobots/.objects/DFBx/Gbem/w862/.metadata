@@ -1,0 +1,14 @@
+﻿{
+  "Name": "Postings",
+  "Description": "The Post Credit / Debit Note screen (Postings tab) of the GDP Mock ERP desktop app.",
+  "Type": "Screen",
+  "Id": "w862JcJMeEm4cMnveoyUFA",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/GbemHfuN9UmBWNh4-C0KAw",
+  "Created": "2026-06-05T08:05:11.5313238Z",
+  "Updated": "2026-06-05T08:05:11.5313238Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

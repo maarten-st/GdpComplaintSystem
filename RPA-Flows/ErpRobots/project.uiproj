@@ -1,0 +1,6 @@
+{
+  "Name": "ErpRobots",
+  "ProjectType": "Process",
+  "Description": "RPA robots driving the mock ERP Electron app for the GDP Maestro Case (LookupSalesOrder, GatherEvidence, batch disposition, postings).",
+  "MainFile": "Main.xaml"
+}

@@ -1,0 +1,11 @@
+product_code,name,form,cold_chain,temp_range,excursion_budget_hours,shelf_life_months,unit_price
+P001,Amoxicillin 500mg Caps,capsule,N,15-25C,-,36,12.50
+P002,Insulin Glargine 100U/ml,injection,Y,2-8C,12,24,45.00
+P003,Paracetamol 1g Tablets,tablet,N,15-25C,-,48,3.20
+P004,Influenza Vaccine 2026,vaccine,Y,2-8C,6,18,25.00
+P005,Atorvastatin 20mg Tablets,tablet,N,15-25C,-,36,8.75
+P006,Adalimumab 40mg Pen,injection,Y,2-8C,8,24,480.00
+P007,Salbutamol Inhaler 100mcg,inhaler,N,15-25C,-,24,6.50
+P008,Enoxaparin 40mg Syringe,injection,Y,2-8C,24,30,9.40
+P009,Omeprazole 20mg Caps,capsule,N,15-25C,-,36,5.10
+P010,Metformin 850mg Tablets,tablet,N,15-25C,-,48,4.30

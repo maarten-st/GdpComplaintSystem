@@ -1,0 +1,413 @@
+/* RoboRana house style: deep navy #001126 + bright green #53CB00, Aptos type. */
+
+.app {
+  max-width: 880px;
+  margin: 24px auto;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 17, 38, 0.12);
+}
+
+/* ---- Masthead ---- */
+.masthead {
+  background: #001126;
+  color: #ffffff;
+  padding: 22px 28px 26px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.brand-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #53cb00;
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.brand-sep {
+  color: #3a4a63;
+}
+
+.brand-app {
+  color: #53cb00;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.subtitle {
+  margin: 0;
+  color: #aeb7c4;
+  font-size: 0.9rem;
+}
+
+/* ---- Green accent bar ---- */
+.accent-bar {
+  height: 5px;
+  background: #53cb00;
+}
+
+/* ---- Body ---- */
+.body {
+  padding: 4px 28px 0;
+}
+
+.readonly-banner {
+  margin: 18px 0 0;
+  padding: 12px 16px;
+  background: #eef8e6;
+  border: 1px solid #cde8b4;
+  border-radius: 8px;
+  color: #2f6b00;
+  font-size: 0.85rem;
+}
+
+.section {
+  padding: 20px 0;
+  border-bottom: 1px solid #eceef1;
+}
+
+.section-label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #8a94a6;
+  text-transform: uppercase;
+}
+
+/* ---- Confidence ---- */
+.confidence-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.confidence-head .section-label {
+  margin-bottom: 0;
+}
+
+.confidence-pct {
+  font-weight: 800;
+  color: #53cb00;
+  font-size: 1rem;
+}
+
+.confidence-track {
+  height: 8px;
+  background: #e6e8eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: #53cb00;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* ---- Extracted details ---- */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 32px;
+}
+
+.detail-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #8a94a6;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.detail-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d5dae1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0b1b33;
+  background: #fbfcfd;
+}
+
+.detail-input::placeholder {
+  color: #aab2bd;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.detail-input:focus {
+  outline: none;
+  border-color: #53cb00;
+  box-shadow: 0 0 0 3px rgba(83, 203, 0, 0.15);
+}
+
+.detail-input:read-only {
+  background: #f1f3f5;
+  color: #334155;
+  cursor: default;
+}
+
+/* ---- Complaint email ---- */
+.email-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.email-meta-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #8a94a6;
+  text-transform: uppercase;
+}
+
+.email-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0b1b33;
+  word-break: break-all;
+}
+
+.email-value.muted {
+  font-weight: 400;
+  font-style: italic;
+  color: #9aa3b0;
+}
+
+.email-body {
+  white-space: pre-wrap;
+  background: #f6f8fa;
+  border: 1px solid #e6e9ee;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #1d2a3d;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.email-body.muted {
+  font-style: italic;
+  color: #9aa3b0;
+}
+
+/* ---- Summary (editable) ---- */
+.summary-edit {
+  width: 100%;
+  min-height: 84px;
+  resize: vertical;
+  background: #f6f8fa;
+  border: 1px solid #d5dae1;
+  border-left: 4px solid #53cb00;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #1d2a3d;
+}
+
+.summary-edit::placeholder {
+  color: #aab2bd;
+  font-style: italic;
+}
+
+.summary-edit:focus {
+  outline: none;
+  border-color: #53cb00;
+  box-shadow: 0 0 0 3px rgba(83, 203, 0, 0.15);
+}
+
+.summary-edit:read-only {
+  background: #f1f3f5;
+}
+
+/* ---- Reviewer decision ---- */
+.decision {
+  border-bottom: none;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0b1b33;
+  margin: 14px 0 6px;
+}
+
+.field-label .opt {
+  color: #8a94a6;
+  font-weight: 400;
+}
+
+.field-label .req {
+  color: #d23b3b;
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  min-height: 84px;
+  resize: vertical;
+  padding: 10px 12px;
+  border: 1px solid #d5dae1;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #0b1b33;
+  background: #fbfcfd;
+}
+
+textarea::placeholder {
+  color: #aab2bd;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #53cb00;
+  box-shadow: 0 0 0 3px rgba(83, 203, 0, 0.15);
+}
+
+textarea:read-only {
+  background: #f1f3f5;
+  color: #8a94a6;
+  cursor: default;
+}
+
+/* ---- Footer / actions ---- */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 18px 28px;
+  background: #f6f7f9;
+  border-top: 1px solid #eceef1;
+}
+
+.btn {
+  padding: 9px 22px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-reject {
+  background: #ffffff;
+  border-color: #e7c3c3;
+  color: #c0392b;
+}
+
+.btn-reject:hover:not(:disabled) {
+  background: #fdf3f3;
+}
+
+.btn-approve {
+  background: #53cb00;
+  color: #ffffff;
+}
+
+.btn-approve:hover:not(:disabled) {
+  background: #49b400;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ---- Dark theme (Action Center dark mode) ---- */
+.dark .app {
+  background: #0f1726;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+.dark .body {
+  color: #e6eaf0;
+}
+
+.dark .section {
+  border-bottom-color: #1e293b;
+}
+
+.dark .email-value {
+  color: #f1f5f9;
+}
+
+.dark .email-body {
+  background: #15203a;
+  border-color: #29364d;
+  color: #d7deea;
+}
+
+.dark .detail-input {
+  background: #15203a;
+  border-color: #29364d;
+  color: #f1f5f9;
+}
+
+.dark .detail-input:read-only {
+  background: #111a2c;
+  color: #b6c0d0;
+}
+
+.dark .summary-edit {
+  background: #15203a;
+  border-color: #29364d;
+  border-left-color: #53cb00;
+  color: #d7deea;
+}
+
+.dark .summary-edit:read-only {
+  background: #111a2c;
+}
+
+.dark .field-label {
+  color: #e6eaf0;
+}
+
+.dark textarea {
+  background: #15203a;
+  border-color: #29364d;
+  color: #f1f5f9;
+}
+
+.dark textarea:read-only {
+  background: #111a2c;
+  color: #8a94a6;
+}
+
+.dark .footer {
+  background: #0c1320;
+  border-top-color: #1e293b;
+}

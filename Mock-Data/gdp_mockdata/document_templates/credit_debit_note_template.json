@@ -1,0 +1,22 @@
+{
+  "_doc_type": "credit_or_debit_note",
+  "note_type": "CREDIT|DEBIT",
+  "note_no": "{{note_no}}",
+  "case_id": "{{case_id}}",
+  "customer_code": "{{customer_code}}",
+  "date": "{{date}}",
+  "lines": [
+    {
+      "product_code": "{{product_code}}",
+      "batch_no": "{{batch_no}}",
+      "qty": "{{qty}}",
+      "unit_price": "{{unit_price}}",
+      "amount": "{{amount}}"
+    }
+  ],
+  "total": "{{total}}",
+  "reason": "{{reason}}",
+  "status": "DRAFT|POSTED|REVERSED",
+  "reversal_of": "{{original_note_no_or_null}}",
+  "erp_posting_ref": "{{erp_ref}}"
+}

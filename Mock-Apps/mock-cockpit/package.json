@@ -1,0 +1,12 @@
+{
+  "name": "gdp-mock-cockpit",
+  "version": "1.0.0",
+  "description": "Mock Case Management cockpit (Electron) — persona-facing UI: case list, dossier view, the 5 HITL gate approvals, 6.3 checklist, metrics. Renders the case documents.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^31.7.7"
+  }
+}

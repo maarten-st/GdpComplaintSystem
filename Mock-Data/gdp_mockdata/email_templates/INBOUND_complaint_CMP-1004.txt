@@ -1,0 +1,12 @@
+From: stock@kappapharmacy.be
+To: complaints@pharmadist.example
+Subject: Cold chain doubt - insulin order SO-4020
+Date: 2026-05-26
+
+Hello,
+
+We have concerns about the cold chain on our insulin delivery (SO-4020, batch
+P002-B02). Unfortunately the data logger was not in the box / we cannot read it.
+Please advise how to proceed.
+
+Kappa Pharmacy

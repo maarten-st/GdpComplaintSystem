@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dossier render pattern — CMP-1001</title>
+<style>
+  body{font-family:Georgia,serif;max-width:760px;margin:40px auto;color:#1a1f2e;line-height:1.55;padding:0 20px}
+  h1{font-size:1.5rem;border-bottom:2px solid #1a1f2e;padding-bottom:6px}
+  .meta{font-family:monospace;font-size:.8rem;color:#555}
+  table{width:100%;border-collapse:collapse;margin:14px 0}
+  td,th{border:1px solid #d8d2c2;padding:7px 10px;text-align:left;font-size:.92rem}
+  th{background:#f4f1ea;font-family:monospace;font-size:.72rem;text-transform:uppercase}
+  .pass{color:#047857;font-weight:700}.fail{color:#b91c1c;font-weight:700}.unk{color:#b45309;font-weight:700}
+  .rec{background:#fef2f2;border-left:4px solid #b91c1c;padding:12px 16px;margin:16px 0;border-radius:6px}
+  .note{font-size:.82rem;color:#777;font-style:italic;margin-top:30px;border-top:1px solid #d8d2c2;padding-top:10px}
+</style>
+</head>
+<body>
+  <h1>Complaint Dossier — CMP-1001</h1>
+  <p class="meta">Family A · Quality defect · generated 2026-05-22T14:02Z</p>
+
+  <table>
+    <tr><th>Customer</th><td>Acme Pharmacy (C001) · pharmacy · 5-day window</td></tr>
+    <tr><th>Order</th><td>SO-4001 · dispatch DISP-9001 · 2026-05-20</td></tr>
+    <tr><th>Product</th><td>Amoxicillin 500mg Caps (P001) · batch P001-B01 · non-cold-chain</td></tr>
+    <tr><th>Qty affected</th><td>40 units</td></tr>
+    <tr><th>Complaint</th><td>Outer carton crushed in transit; several inner boxes split open.</td></tr>
+    <tr><th>Root cause</th><td>transit damage</td></tr>
+  </table>
+
+  <h3>GDP 6.3 criteria</h3>
+  <table>
+    <tr><th>Criterion</th><th>Status</th></tr>
+    <tr><td>Packaging unopened & undamaged</td><td class="fail">FALSE</td></tr>
+    <tr><td>Storage conditions proven throughout</td><td class="unk">UNKNOWN</td></tr>
+    <tr><td>Acceptable remaining shelf life</td><td class="pass">TRUE</td></tr>
+    <tr><td>Not prior return / recall / falsified</td><td class="pass">TRUE</td></tr>
+    <tr><td>Within return time window</td><td class="pass">TRUE</td></tr>
+  </table>
+
+  <div class="rec">
+    <strong>Recommended disposition: DESTROY</strong><br>
+    Packaging integrity FALSE and storage history UNKNOWN — either alone fails the 6.3 gate.
+    Policy match: any damage → Path A always-destroy. Finance: full credit, 40 units.
+  </div>
+
+  <p class="note">This HTML is rendered from <code>dossier_template.json</code>. In the build, the agent writes the JSON;
+  a robot/Process App renders this view for the QA Analyst (Gate 2) and Responsible Person (Gate 3).
+  Pattern: JSON = source of truth, HTML/PDF = human view.</p>
+</body>
+</html>

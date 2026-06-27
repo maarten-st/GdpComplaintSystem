@@ -1,0 +1,32 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "InvestigationAgentSolution.Agent.InvestigationAgent",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [
+      {
+        "name": "InvestigationAgentSolution.Agent.InvestigationAgent.1.0.0.nupkg",
+        "kind": "Package",
+        "version": "1.0.0",
+        "url": "https://staging.uipath.com/hackathon26_371/DefaultTenant/orchestrator_/odata/Processes/UiPath.Server.Configuration.OData.DownloadPackage(key=\u0027InvestigationAgentSolution.Agent.InvestigationAgent:1.0.0\u0027)?feedId=894388b1-dff7-4c57-8f9f-156cb71c2184",
+        "key": "InvestigationAgentSolution.Agent.InvestigationAgent_1.0.0"
+      }
+    ],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": "InvestigationAgentSolution.Agent.InvestigationAgent.1.0.0.nupkg",
+      "fileReference": "InvestigationAgentSolution.Agent.InvestigationAgent_1.0.0",
+      "name": "InvestigationAgentSolution.Agent.InvestigationAgent"
+    },
+    "locks": [],
+    "key": "InvestigationAgentSolution.Agent.InvestigationAgent:1.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+customer_code,name,type,city,postcode,return_window_days
+C001,Acme Pharmacy,pharmacy,Antwerp,BE-1409,5
+C002,Beta Hospital,hospital,Bruges,BE-5012,5
+C003,Caduceus Clinic,hospital,Liege,BE-3286,5
+C004,Delta Pharma Wholesale,wholesaler,Antwerp,BE-9935,10
+C005,Eburon Pharmacy,pharmacy,Antwerp,BE-7912,5
+C006,Flandria Hospital,hospital,Brussels,BE-1488,5
+C007,Gallia Medical,pharmacy,Antwerp,BE-4582,5
+C008,Helios Pharmacy,pharmacy,Liege,BE-9279,5
+C009,Iris Clinic,hospital,Kortrijk,BE-1434,5
+C010,Juno Wholesale Dist.,wholesaler,Hasselt,BE-4257,10
+C011,Kappa Pharmacy,pharmacy,Hasselt,BE-7873,5
+C012,Lumen Hospital,hospital,Liege,BE-8359,5
+C013,Meridian Pharma Wholesale,wholesaler,Kortrijk,BE-5557,10
+C014,Nova Pharmacy,pharmacy,Brussels,BE-3615,5
+C015,Orion Clinic,hospital,Namur,BE-6574,5

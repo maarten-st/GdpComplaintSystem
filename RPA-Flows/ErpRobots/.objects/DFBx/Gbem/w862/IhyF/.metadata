@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Order Search Input",
+  "Description": "The order-number / dispatch-ref search input on the Sales Orders tab.",
+  "Type": "Element",
+  "TaxonomyType": "Input",
+  "Id": "IhyF5FYWZEWsERSjPUf3PA",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/IhyF5FYWZEWsERSjPUf3PA",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T09:00:10.9555049Z",
+  "Updated": "2026-06-05T09:00:10.9555049Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

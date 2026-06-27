@@ -1,0 +1,32 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "ExtractComplaintSolution.Agent.ExtractComplaint",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [
+      {
+        "name": "ExtractComplaintSolution.Agent.ExtractComplaint.1.0.0.nupkg",
+        "kind": "Package",
+        "version": "1.0.0",
+        "url": "https://staging.uipath.com/hackathon26_371/DefaultTenant/orchestrator_/odata/Processes/UiPath.Server.Configuration.OData.DownloadPackage(key=\u0027ExtractComplaintSolution.Agent.ExtractComplaint:1.0.0\u0027)?feedId=894388b1-dff7-4c57-8f9f-156cb71c2184",
+        "key": "ExtractComplaintSolution.Agent.ExtractComplaint_1.0.0"
+      }
+    ],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": "ExtractComplaintSolution.Agent.ExtractComplaint.1.0.0.nupkg",
+      "fileReference": "ExtractComplaintSolution.Agent.ExtractComplaint_1.0.0",
+      "name": "ExtractComplaintSolution.Agent.ExtractComplaint"
+    },
+    "locks": [],
+    "key": "ExtractComplaintSolution.Agent.ExtractComplaint:1.0.0"
+  }
+}

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GDP Complaint Management — Team Briefing</title>
+<style>
+  :root{
+    --ink:#16201c; --paper:#f5f2e9; --panel:#fffdf7; --line:#d8d2c2;
+    --teal:#0f766e; --teal-d:#0a544e; --amber:#b45309; --blue:#1e40af;
+    --red:#b91c1c; --green:#047857; --violet:#6d28d9; --grey:#475569;
+    --shadow:0 1px 0 rgba(0,0,0,.04), 0 8px 24px -16px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    color:var(--ink); line-height:1.6;
+    background:
+      radial-gradient(circle at 8% 4%, rgba(15,118,110,.05), transparent 30%),
+      radial-gradient(circle at 94% 96%, rgba(180,83,9,.05), transparent 34%),
+      var(--paper);
+  }
+  .mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+
+  /* layout */
+  .wrap{display:grid; grid-template-columns:248px 1fr; max-width:1280px; margin:0 auto; min-height:100vh}
+  nav{
+    position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto;
+    padding:28px 18px; border-right:1px solid var(--line);
+    font-family:"SF Mono",ui-monospace,monospace; font-size:.74rem;
+  }
+  nav .brand{font-weight:700; font-size:.82rem; letter-spacing:.04em; margin-bottom:4px; color:var(--teal-d)}
+  nav .tag{color:#9a9384; font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:22px}
+  nav a{display:block; color:var(--grey); text-decoration:none; padding:6px 10px; border-radius:6px; margin-bottom:2px}
+  nav a:hover{background:rgba(15,118,110,.08); color:var(--teal-d)}
+  nav a.sec{margin-top:14px; color:var(--ink); font-weight:700}
+  main{padding:46px 56px 120px; max-width:880px}
+
+  h1{font-size:clamp(2rem,4vw,3rem); line-height:1.02; letter-spacing:-.02em; margin-bottom:10px}
+  .lede{font-size:1.12rem; color:#3d463f; margin-bottom:8px}
+  .kicker{font-family:"SF Mono",monospace; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--teal); margin-bottom:18px}
+  section{margin-top:54px; scroll-margin-top:24px}
+  h2{font-size:1.7rem; letter-spacing:-.01em; padding-bottom:8px; border-bottom:2px solid var(--ink); margin-bottom:8px}
+  h2 .n{font-family:"SF Mono",monospace; font-size:.9rem; color:var(--teal); margin-right:10px}
+  h3{font-size:1.18rem; margin:26px 0 8px}
+  p{margin:10px 0}
+  ul,ol{margin:10px 0 10px 22px}
+  li{margin:6px 0}
+  strong{color:var(--ink)}
+  .em{background:linear-gradient(transparent 62%, rgba(180,83,9,.28) 0); padding:0 1px}
+
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px 22px; margin:18px 0; box-shadow:var(--shadow)}
+  .card.teal{border-left:4px solid var(--teal)}
+  .card.amber{border-left:4px solid var(--amber)}
+  .card.red{border-left:4px solid var(--red)}
+  .card.blue{border-left:4px solid var(--blue)}
+  .card h4{font-family:"SF Mono",monospace; font-size:.74rem; letter-spacing:.12em; text-transform:uppercase; color:var(--teal-d); margin-bottom:8px}
+  .card.amber h4{color:var(--amber)} .card.red h4{color:var(--red)} .card.blue h4{color:var(--blue)}
+
+  /* glossary chips */
+  .abbr{border-bottom:1px dotted var(--teal); cursor:help; position:relative}
+  .glossary{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+  @media(max-width:680px){.glossary{grid-template-columns:1fr}}
+  .term{background:var(--panel); border:1px solid var(--line); border-radius:9px; padding:12px 14px}
+  .term .t{font-family:"SF Mono",monospace; font-weight:700; color:var(--teal-d); font-size:.86rem}
+  .term .d{font-size:.92rem; color:#3d463f; margin-top:3px}
+
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:.92rem; background:var(--panel); border-radius:10px; overflow:hidden}
+  th,td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{font-family:"SF Mono",monospace; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); background:rgba(0,0,0,.025)}
+  tr:last-child td{border-bottom:none}
+
+  .pill{display:inline-block; font-family:"SF Mono",monospace; font-size:.66rem; padding:2px 8px; border-radius:20px; border:1px solid; margin:2px 3px 2px 0; white-space:nowrap}
+  .p-gate{color:var(--amber); border-color:var(--amber); background:rgba(180,83,9,.06)}
+  .p-agent{color:var(--blue); border-color:var(--blue); background:rgba(30,64,175,.06)}
+  .p-robot{color:var(--green); border-color:var(--green); background:rgba(4,120,87,.06)}
+  .p-human{color:var(--violet); border-color:var(--violet); background:rgba(109,40,217,.06)}
+
+  /* persona tabs */
+  .tabs{display:flex; gap:6px; flex-wrap:wrap; margin:18px 0 0}
+  .tab{font-family:"SF Mono",monospace; font-size:.78rem; padding:8px 14px; border:1px solid var(--line); border-bottom:none; border-radius:9px 9px 0 0; background:rgba(0,0,0,.02); cursor:pointer}
+  .tab.active{background:var(--panel); color:var(--teal-d); font-weight:700; box-shadow:0 -2px 0 var(--teal) inset}
+  .tabpane{display:none; background:var(--panel); border:1px solid var(--line); border-radius:0 12px 12px 12px; padding:22px}
+  .tabpane.active{display:block}
+  .screen{border:1px dashed var(--grey); border-radius:8px; padding:14px; margin:12px 0; background:rgba(255,255,255,.6); font-family:"SF Mono",monospace; font-size:.8rem}
+  .screen .bar{display:flex; gap:6px; margin-bottom:10px}
+  .screen .dot{width:9px;height:9px;border-radius:50%;background:#cb, var(--line)}
+  .screen .dot{background:var(--line)}
+
+  .step{display:flex; gap:14px; margin:12px 0}
+  .step .num{flex:0 0 30px; height:30px; border-radius:50%; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-family:"SF Mono",monospace; font-weight:700; font-size:.82rem}
+  .step .body{flex:1}
+  .step .body .h{font-weight:700}
+
+  details{background:var(--panel); border:1px solid var(--line); border-radius:9px; padding:4px 16px; margin:8px 0}
+  summary{cursor:pointer; padding:10px 0; font-weight:700; font-family:"SF Mono",monospace; font-size:.86rem; color:var(--teal-d)}
+  details[open] summary{border-bottom:1px solid var(--line); margin-bottom:8px}
+
+  .checklist{list-style:none; margin-left:0}
+  .checklist li{padding-left:26px; position:relative}
+  .checklist li::before{content:"▢"; position:absolute; left:0; color:var(--teal); font-size:1rem}
+
+  footer{border-top:1px solid var(--line); margin-top:60px; padding-top:18px; font-family:"SF Mono",monospace; font-size:.72rem; color:#9a9384}
+  .note{font-size:.86rem; color:#6b6557; font-style:italic}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">GDP COMPLAINT CASE</div>
+    <div class="tag">UiPath AgentHack · Team Briefing</div>
+    <a href="#why" class="sec">0 · Why we'll win</a>
+    <a href="#domain" class="sec">1 · Pharma in 5 min</a>
+    <a href="#gloss">— Glossary</a>
+    <a href="#families">— Complaint types</a>
+    <a href="#gdp">— The GDP rule</a>
+    <a href="#flow" class="sec">2 · The flow</a>
+    <a href="#personas" class="sec">3 · The 4 users</a>
+    <a href="#uipath" class="sec">4 · UiPath build</a>
+    <a href="#components">— Component map</a>
+    <a href="#points">— Scoring strategy</a>
+    <a href="#mock" class="sec">5 · Mock data & tools</a>
+    <a href="#templates">— Templates</a>
+    <a href="#build" class="sec">6 · Build checklist</a>
+  </nav>
+
+  <main>
+    <div class="kicker">Track 1 · Maestro Case · Pharma B2B</div>
+    <h1>Customer complaint &rarr; GDP-compliant disposition</h1>
+    <p class="lede">Everything you need to build this without knowing anything about pharma. Read top to bottom once; keep it open while you build.</p>
+    <p class="note">The business problem is real and regulated; the systems (ERP, case tool data) are all mock. We orchestrate on UiPath Maestro Case.</p>
+
+    <!-- ============ WHY ============ -->
+    <section id="why">
+      <h2><span class="n">00</span>Why this wins points</h2>
+      <p>The judges score six things. Here's how this project hits each — keep these in your head, they decide what we build:</p>
+      <table>
+        <tr><th>Judging criterion</th><th>How we hit it</th></tr>
+        <tr><td>Business impact</td><td>Regulated, high-stakes, real industry pain. Patient-safety + money + audit risk.</td></tr>
+        <tr><td>Platform usage</td><td>Maestro Case + Agent Builder agents + RPA driving <em class="em">two desktop apps</em> + Claude Code for the bonus.</td></tr>
+        <tr><td>Technical execution<br>(exceptions/edge cases)</td><td>We deliberately model the ugly paths: missing data, unknown storage history, overridden decisions, reversal/compensation.</td></tr>
+        <tr><td>Completeness</td><td>End-to-end working demo, GitHub README, ≤5-min video.</td></tr>
+        <tr><td>Creativity</td><td><em class="em">Provisional parallelism + Saga compensation</em> and <em class="em">cross-case correlation</em> — orchestration patterns most teams won't attempt.</td></tr>
+        <tr><td>Presentation</td><td>Four clear personas, a story that runs problem &rarr; solution &rarr; impact.</td></tr>
+      </table>
+      <div class="card teal">
+        <h4>The one-sentence pitch</h4>
+        <p>"A customer emails a complaint about a pharma shipment; AI agents triage and investigate it, robots pull and update two desktop business systems, and humans make every regulated decision — with the case surviving interruptions and able to reverse itself if a decision changes."</p>
+      </div>
+    </section>
+
+    <!-- ============ DOMAIN ============ -->
+    <section id="domain">
+      <h2><span class="n">01</span>Pharma distribution in 5 minutes</h2>
+      <p>We are <strong>not</strong> the company that makes the drug. We are a <strong>wholesale distributor</strong> (a warehouse + logistics operation) that buys medicines from manufacturers and sells/ships them to <strong>B2B customers</strong> — pharmacies, hospitals, clinics. Think of it like an Amazon warehouse, but for medicine, under heavy regulation.</p>
+      <p>Because it's medicine, there's an EU rulebook called <span class="abbr" title="Good Distribution Practice">GDP</span> that governs how products are stored, moved, and — crucially for us — what happens when something goes wrong and a customer complains. The whole point of our project is the <strong>complaint handling process</strong>: from the moment a customer emails us, through investigation, to the regulated decision about what to do with the affected goods, plus fixing the customer's invoice.</p>
+
+      <div class="card blue">
+        <h4>The two things that can happen to returned goods</h4>
+        <p>This binary is the heart of everything. When goods come back, a qualified person must decide:</p>
+        <ul>
+          <li><strong>Back to saleable stock</strong> — the goods are fine, put them back in the warehouse to sell again. (Only allowed if strict conditions are met.)</li>
+          <li><strong>Destruction</strong> — the goods can't be trusted, so they must be destroyed and documented. The default when in doubt, because patient safety.</li>
+        </ul>
+      </div>
+
+      <!-- GLOSSARY -->
+      <h3 id="gloss">Every abbreviation, decoded</h3>
+      <div class="glossary">
+        <div class="term"><div class="t">GDP</div><div class="d">Good Distribution Practice. The EU rulebook (guideline 2013/C 343/01) for how medicines are stored & distributed. Our flow must comply with it.</div></div>
+        <div class="term"><div class="t">GMP</div><div class="d">Good Manufacturing Practice. Same idea but for <em>making</em> drugs, not distributing. Out of our scope — just don't confuse it with GDP.</div></div>
+        <div class="term"><div class="t">QA</div><div class="d">Quality Assurance. The department/person responsible for product quality decisions. One of our four users.</div></div>
+        <div class="term"><div class="t">RP</div><div class="d">Responsible Person. A legally named individual at a distributor who must personally authorize whether returned goods go back to stock. By law this <strong>cannot</strong> be automated away.</div></div>
+        <div class="term"><div class="t">B2B</div><div class="d">Business-to-business. Our customers are pharmacies/hospitals, not individual patients.</div></div>
+        <div class="term"><div class="t">Batch / Lot</div><div class="d">A production run of a product, identified by a batch number. Recalls, quality issues, and stock are tracked per batch. Each batch has a quantity and a status.</div></div>
+        <div class="term"><div class="t">Cold chain</div><div class="d">Products (e.g. vaccines, insulin) that must stay within a temperature range the whole journey. A "temperature excursion" = it got too warm/cold.</div></div>
+        <div class="term"><div class="t">Excursion</div><div class="d">A temperature deviation outside the allowed range during storage/transport. May or may not ruin the product, depending on the product's tolerance.</div></div>
+        <div class="term"><div class="t">Stability budget / MKT</div><div class="d">How much temperature deviation a product can tolerate before it's unsafe. MKT = Mean Kinetic Temperature, the formula used to judge it.</div></div>
+        <div class="term"><div class="t">Quarantine</div><div class="d">A "frozen / segregated" stock status. Returned goods sit here, unsaleable, until QA/RP decides their fate. A real GDP requirement.</div></div>
+        <div class="term"><div class="t">FEFO</div><div class="d">First-Expiry-First-Out. Stock rotation rule: ship the soonest-to-expire units first. Where returned-to-stock goods get placed.</div></div>
+        <div class="term"><div class="t">OOS</div><div class="d">Out Of Specification. A product failed a quality test / doesn't meet its spec.</div></div>
+        <div class="term"><div class="t">CAPA</div><div class="d">Corrective And Preventive Action. The formal "fix it and stop it happening again" process triggered by serious issues.</div></div>
+        <div class="term"><div class="t">Deviation</div><div class="d">A logged record that something went outside normal/approved process. Often the trigger for a CAPA.</div></div>
+        <div class="term"><div class="t">Root cause</div><div class="d">The underlying reason a complaint happened (e.g. human error on the order, damage in transit). Must be recorded before QA decides.</div></div>
+        <div class="term"><div class="t">Credit note</div><div class="d">A document that reduces what the customer owes us — i.e. we refund/credit them (e.g. they returned goods or were overcharged).</div></div>
+        <div class="term"><div class="t">Debit note</div><div class="d">The opposite — the customer owes us more (e.g. we accidentally shipped extra and they're keeping it).</div></div>
+        <div class="term"><div class="t">ERP</div><div class="d">Enterprise Resource Planning system (e.g. SAP). The big business database holding sales orders, inventory, invoices. We'll mock this as a desktop app.</div></div>
+        <div class="term"><div class="t">Sales order</div><div class="d">The record of what the customer ordered (product, quantity, price). We pull it to compare against what they say they received.</div></div>
+        <div class="term"><div class="t">Saga pattern</div><div class="d">A software pattern for long transactions: every forward action has a defined "undo" (compensating) action, so you can reverse cleanly if something changes. Our override branch uses this.</div></div>
+        <div class="term"><div class="t">HITL</div><div class="d">Human-In-The-Loop. A point where a person must approve/decide before the process continues. We have several.</div></div>
+        <div class="term"><div class="t">SLA</div><div class="d">Service Level Agreement. A time deadline (e.g. "acknowledge the customer within 24h"). Drives our timers/escalations.</div></div>
+      </div>
+
+      <!-- FAMILIES -->
+      <h3 id="families">The three complaint types we handle</h3>
+      <p>We deliberately scoped to three (and excluded counterfeit/recall, which trigger mandatory authority reporting and would balloon the build):</p>
+      <table>
+        <tr><th>Family</th><th>What the customer complains about</th><th>Core question</th></tr>
+        <tr><td><strong>A · Quality defect</strong></td><td>Goods are damaged, contaminated, mislabeled, or suspected substandard.</td><td>Is the product still safe? (usually &rarr; destruction)</td></tr>
+        <tr><td><strong>B · Cold chain</strong></td><td>Shipment arrived too warm / a temperature alarm fired.</td><td>Did the excursion exceed the product's tolerance?</td></tr>
+        <tr><td><strong>C · Logistics error</strong></td><td>Wrong product, wrong quantity (short or surplus), wrong customer, missing docs.</td><td>Is the claim valid, and is it a human error? (often just a paperwork/$ fix)</td></tr>
+      </table>
+      <div class="card amber">
+        <h4>Key insight your build depends on</h4>
+        <p>Families A & B are about <strong>product integrity</strong> &rarr; they always go to QA/RP for a disposition decision. Family C is often just a <strong>commercial/quantity fix</strong> &rarr; supply chain resolves it with a credit/debit and only <em>notifies</em> QA for metrics. <span class="em">Not every complaint reaches QA.</span> That routing is a core part of our cleverness.</p>
+      </div>
+
+      <!-- GDP RULE -->
+      <h3 id="gdp">The one regulation that drives the logic (GDP Ch. 6.3)</h3>
+      <p>Returned goods may go <strong>back to saleable stock only if ALL</strong> of these are true. If any is false — or <span class="em">unknown</span> — the default is destruction. This is the decision engine:</p>
+      <ol>
+        <li>Goods in their <strong>unopened, undamaged</strong> secondary packaging, in good condition.</li>
+        <li><strong>Evidence of proper storage/transport conditions</strong> the entire time away (the hard one — "we don't know" counts as a FAIL).</li>
+        <li><strong>Acceptable remaining shelf life.</strong></li>
+        <li><strong>Not</strong> previously returned, recalled, or suspected falsified.</li>
+        <li>Examined & <strong>authorized by the RP.</strong></li>
+      </ol>
+      <p>Plus timing: only considered for return if back in our care within <strong>10 days</strong> of dispatch (5 days for non-wholesaler customers like a pharmacy).</p>
+      <div class="card red">
+        <h4>The detail that scores us points</h4>
+        <p>Most teams build "if damaged &rarr; destroy." We build <strong>TRUE / FALSE / UNKNOWN</strong> for each condition, and treat <strong>UNKNOWN as failure</strong> (you can't prove safety &rarr; you destroy). That's the inspector-grade nuance that reads as real domain understanding.</p>
+      </div>
+    </section>
+
+    <!-- ============ FLOW ============ -->
+    <section id="flow">
+      <h2><span class="n">02</span>The end-to-end flow</h2>
+      <p>One <strong>case</strong> per complaint moves through these stages. The same backbone serves all three families — that's what makes it a clean Maestro <em>Case</em> (context-driven) rather than a fixed BPMN flow.</p>
+
+      <div class="step"><div class="num">1</div><div class="body"><div class="h">Intake &amp; triage <span class="pill p-agent">Agent</span> <span class="pill p-robot">Robot</span> <span class="pill p-gate">Gate 1</span></div>Email arrives. An agent extracts customer/product/batch/qty/refs. A robot pulls the matching <strong>sales order</strong> from the ERP to compare. Customer Service confirms it's a real, well-classified complaint.</div></div>
+
+      <div class="step"><div class="num">2</div><div class="body"><div class="h">Acknowledge &amp; completeness check</div>Auto-reply to the customer (SLA timer). If info is missing, send an RFI (request for information) and <strong>park the case</strong> — this demonstrates surviving interruptions.</div></div>
+
+      <div class="step"><div class="num">3</div><div class="body"><div class="h">Cross-case correlation <span class="pill p-agent">Agent</span></div>Check if another open case is the mirror image (Customer X short ↔ Customer Y surplus, same dispatch). If so, <strong>link them</strong> and resolve together. (Creativity points.)</div></div>
+
+      <div class="step"><div class="num">4</div><div class="body"><div class="h">Investigation (family-specific) <span class="pill p-agent">Agent</span> <span class="pill p-robot">Robot</span> <span class="pill p-human">CS/SC</span></div>A: pull batch records. B: pull temperature logger + stability budget. C: warehouse inventory check + ERP order-vs-shipped comparison to decide if the claim is valid and whether goods need to return.</div></div>
+
+      <div class="step"><div class="num">5</div><div class="body"><div class="h">Lane split</div><strong>Commercial lane</strong> (valid C, no goods return) → supply chain issues credit/debit, QA notified only. <strong>QA lane</strong> (A, B, or C with returns) → build the dossier.</div></div>
+
+      <div class="step"><div class="num">6</div><div class="body"><div class="h">Dossier + root cause <span class="pill p-agent">Agent</span> <span class="pill p-human">Required input</span> <span class="pill p-gate">Gate 2</span></div>Agent assembles a structured dossier scoring the 6.3 criteria TRUE/FALSE/UNKNOWN. The investigator must enter a <strong>root cause</strong> before it can proceed. QA analyst signs off that evidence is complete.</div></div>
+
+      <div class="step"><div class="num">7</div><div class="body"><div class="h">Policy router → two paths</div><strong>Path A</strong> (standing policy says e.g. "always destroy"): the case <em>forks</em> — RP ratifies in one track while logistics & finance <em>prepare</em> (reversible only) in parallel. <strong>Path B</strong> (genuine case-by-case): RP decides first, then logistics & finance follow.</div></div>
+
+      <div class="step"><div class="num">8</div><div class="body"><div class="h">Disposition decision <span class="pill p-gate">Gate 3</span> <span class="pill p-human">RP/QA</span></div>The regulated, legally-required human call: back-to-stock vs destroy, against the 6.3 checklist.</div></div>
+
+      <div class="step"><div class="num">9</div><div class="body"><div class="h">Physical return → batch state machine <span class="pill p-robot">Robot</span></div>Goods return → robot adjusts batch quantity & sets status <strong>QUARANTINE</strong> in ERP. After QA: → <strong>AVAILABLE</strong> (FEFO) or → <strong>BLOCKED / awaiting destruction</strong>. Destruction is the one irreversible act and <strong>always</strong> waits for RP.</div></div>
+
+      <div class="step"><div class="num">10</div><div class="body"><div class="h">Follow-up + finance <span class="pill p-gate">Gate 4</span> <span class="pill p-gate">Gate 5</span> <span class="pill p-robot">Robot</span></div>Logistics approves the return/redelivery plan; finance approves the credit/debit amount; a robot posts it to the ERP.</div></div>
+
+      <div class="step"><div class="num">11</div><div class="body"><div class="h">Closure</div>Notify customer, close case, update QA metrics, full audit trail retained for inspection.</div></div>
+
+      <div class="card red">
+        <h4>The signature edge case — demo this live</h4>
+        <p>On Path A, logistics/finance start work in parallel before RP ratifies. If the RP then <strong>overrides</strong> the policy: if nothing irreversible happened yet → cheap cancel & reroute. If a credit was already posted → <strong>Saga reversal</strong> (issue a reversing note, reconcile ERP) + raise a deviation. Because destruction never runs before RP sign-off, goods are never wrongly destroyed. <em>Triggering this on camera is where the technical-execution points live.</em></p>
+      </div>
+      <p class="note">A full interactive flow diagram is in the companion file <span class="mono">gdp_complaint_flow.html</span>.</p>
+    </section>
+
+    <!-- ============ PERSONAS ============ -->
+    <section id="personas">
+      <h2><span class="n">03</span>The four users &amp; what they see</h2>
+      <p>Design the UI around these four. In UiPath terms, each interacts through <strong>Maestro Process Apps</strong> (dashboards) and <strong>Action Center</strong> (approval tasks). Click each persona:</p>
+      <div class="tabs">
+        <div class="tab active" data-t="cs">Customer Service</div>
+        <div class="tab" data-t="sc">Supply Chain Coord.</div>
+        <div class="tab" data-t="qa">QA Analyst</div>
+        <div class="tab" data-t="rp">Responsible Person</div>
+      </div>
+
+      <div class="tabpane active" id="cs">
+        <h3>Customer Service Agent — "the front door"</h3>
+        <p><strong>Goal:</strong> turn a messy email into a clean, valid case fast. <strong>Owns Gate 1 (triage).</strong></p>
+        <p><strong>Sees:</strong> an inbox-style queue of incoming complaints, each pre-filled by the intake agent (customer, product, batch, the AI's draft classification A/B/C). They confirm or correct the classification, flag spam/misroutes, and fire RFIs when data is missing.</p>
+        <div class="screen"><div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        [ CASE INBOX ]  ▸ CMP-1041  Acme Pharmacy · "box arrived crushed" · <b>AI: Family A</b> · ⚠ batch# missing<br>
+        &nbsp;&nbsp;[ Confirm classification ▾ ]  [ Request info ]  [ Mark not-a-complaint ]
+        </div>
+        <p><strong>UX priority:</strong> one-screen confirm; the AI did the typing, they just validate. Show the AI's confidence and what it extracted.</p>
+      </div>
+
+      <div class="tabpane" id="sc">
+        <h3>Supply Chain Coordinator — "the investigator & fixer"</h3>
+        <p><strong>Goal:</strong> for logistics/quantity claims, find the truth and resolve commercially. <strong>Owns the Family-C validation, the commercial lane, and Gate 4 (follow-up plan).</strong></p>
+        <p><strong>Sees:</strong> a case with a side-by-side <strong>Ordered vs Shipped vs Customer-claims</strong> table (pulled from ERP), a warehouse inventory-check action, and the correlation panel if a mirror case exists. Decides credit/debit/redeliver/return.</p>
+        <div class="screen"><div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        CMP-1043 · Wrong qty<br>
+        Ordered: 100 &nbsp; Shipped: 120 &nbsp; Customer reports: 120 received<br>
+        🔗 Linked to CMP-1044 (Beta Hospital, 80 received, ordered 100)<br>
+        &nbsp;&nbsp;Root cause: [ pick error ▾ ]&nbsp; → [ Debit Acme +20 ] [ Credit Beta +20 ] [ Arrange transfer ]
+        </div>
+        <p><strong>UX priority:</strong> make the discrepancy obvious at a glance; surface the linked case prominently.</p>
+      </div>
+
+      <div class="tabpane" id="qa">
+        <h3>QA Analyst — "the gatekeeper of evidence"</h3>
+        <p><strong>Goal:</strong> ensure the case is complete & sound before the RP decides. <strong>Owns Gate 2.</strong> Also receives non-blocking notifications from the commercial lane for metrics.</p>
+        <p><strong>Sees:</strong> the assembled <strong>dossier</strong> — complaint facts, evidence links, batch history, and the 6.3 criteria each marked ✓/✗/?. They confirm completeness or send it back for more evidence. Plus a metrics dashboard (complaints by family, root cause trends).</p>
+        <div class="screen"><div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        DOSSIER · CMP-1041 (Family A)<br>
+        ✓ packaging damaged (FAIL→destroy)&nbsp; ? storage history unknown&nbsp; ✓ shelf life ok<br>
+        Root cause: transit damage&nbsp; | Recommendation: <b>DESTROY</b><br>
+        &nbsp;&nbsp;[ Evidence complete → send to RP ]&nbsp; [ Send back for more info ]
+        </div>
+        <p><strong>UX priority:</strong> the criteria checklist with evidence links is the centerpiece; "?" states visually flagged.</p>
+      </div>
+
+      <div class="tabpane" id="rp">
+        <h3>Responsible Person — "the legal authority"</h3>
+        <p><strong>Goal:</strong> make & e-sign the regulated disposition decision. <strong>Owns Gate 3</strong> (and Path-A ratification). This is the one decision the law says must be a human.</p>
+        <p><strong>Sees:</strong> a focused decision screen — the recommendation, the 6.3 checklist, root cause, and two big buttons: <strong>Authorize return to stock</strong> / <strong>Order destruction</strong>. On Path A they instead <strong>Ratify / Override</strong> a policy decision. Every action is e-signed and timestamped to the audit trail.</p>
+        <div class="screen"><div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        RP DECISION · CMP-1041&nbsp; (batch in QUARANTINE)<br>
+        6.3: ✗ packaging&nbsp; ? storage&nbsp; → recommendation DESTROY<br>
+        &nbsp;&nbsp;[ ✅ Authorize back-to-stock ]&nbsp; [ 🔥 Order destruction ]&nbsp; e-sign required
+        </div>
+        <p><strong>UX priority:</strong> minimal, unambiguous, irreversible-action confirmation, full traceability.</p>
+      </div>
+    </section>
+
+    <!-- ============ UIPATH ============ -->
+    <section id="uipath">
+      <h2><span class="n">04</span>The recommended UiPath build</h2>
+      <p>This is the architecture I'd build for maximum points. It deliberately uses many platform surfaces, because "platform usage depth" is explicitly scored.</p>
+
+      <h3 id="components">Component map — what runs each part</h3>
+      <table>
+        <tr><th>Flow part</th><th>UiPath component</th><th>Why</th></tr>
+        <tr><td>The case itself (lifecycle, data, timeline)</td><td><strong>Maestro Case</strong> + Data Fabric</td><td>The case is a living entity; Data Fabric holds its structured data.</td></tr>
+        <tr><td>Stage progression & governance</td><td><strong>Case manager agent</strong> + <strong>stage manager agents</strong></td><td>Native Maestro Case primitives drive each phase.</td></tr>
+        <tr><td>Email intake & extraction</td><td><strong>Agent Builder</strong> agent + IXP/doc understanding</td><td>Parse the email + attachments into structured fields.</td></tr>
+        <tr><td>Classification, correlation, dossier writing</td><td><strong>Agent Builder</strong> agents (or external framework agent)</td><td>The "reasoning" steps.</td></tr>
+        <tr><td>Reading/writing the two desktop apps</td><td><strong>RPA robots</strong> (UI Automation)</td><td>Drive the mock ERP & cockpit by their UI → <em class="em">desktop-app points</em>.</td></tr>
+        <tr><td>The 6.3 criteria & policy routing logic</td><td><strong>DMN decision tables</strong></td><td>Deterministic, auditable, visually verifiable rules.</td></tr>
+        <tr><td>The 5 HITL gates</td><td><strong>Action Center</strong> tasks surfaced in <strong>Process Apps</strong></td><td>Human approvals with the persona UIs.</td></tr>
+        <tr><td>Timers, SLA, escalation, parked cases</td><td>Maestro long-running timers / events</td><td>Survives interruptions — explicitly rewarded.</td></tr>
+        <tr><td>The override / Saga compensation</td><td>Maestro compensation handlers</td><td>The signature edge case.</td></tr>
+        <tr><td>Building any of the above with natural language</td><td><strong>Claude Code via UiPath for Coding Agents</strong></td><td><em class="em">Bonus points</em> — show this in the video.</td></tr>
+      </table>
+
+      <div class="card teal">
+        <h4>Why Case, not BPMN</h4>
+        <p>The hackathon tip: predictable sequence → BPMN; unpredictable paths that emerge as work unfolds → Case. Our flow branches on family, validity, policy, and human overrides — the path isn't knowable up front. That's textbook <strong>Maestro Case</strong>. (You can still embed small BPMN/DMN pieces inside it for the deterministic sub-bits, which shows range.)</p>
+      </div>
+
+      <h3 id="points">Scoring strategy — deliberate choices</h3>
+      <ul>
+        <li><strong>Use a coding agent visibly.</strong> Build at least one agent or workflow with Claude Code through UiPath for Coding Agents and show it in the video. Pure bonus points, low effort.</li>
+        <li><strong>Drive two desktop apps with a robot.</strong> The robot shuttling data ERP ↔ cockpit is the most "UiPath-native" thing we can show and grabs the desktop-app points.</li>
+        <li><strong>Trigger one exception live.</strong> Don't just describe the override/compensation — stage a demo case that fires it.</li>
+        <li><strong>Show a parked case resuming.</strong> Pause on an SLA timer, then resume — proves "survives interruptions."</li>
+        <li><strong>Keep humans visibly in charge.</strong> Four distinct personas approving four distinct decisions = the Track-1 thesis made literal.</li>
+        <li><strong>One external-framework agent (optional).</strong> e.g. a LangChain/CrewAI agent for correlation, orchestrated by Maestro — hits "blend native + external" interest and cross-platform award.</li>
+      </ul>
+    </section>
+
+    <!-- ============ MOCK DATA ============ -->
+    <section id="mock">
+      <h2><span class="n">05</span>Mock data, tools &amp; templates to create</h2>
+      <p>Everything is fabricated. Here's the full shopping list, grouped. Build these first — the demo is only as good as the seed data.</p>
+
+      <details open><summary>A · Mock systems to build</summary>
+        <ul>
+          <li><strong>Mock ERP (desktop app, Electron recommended)</strong> — screens for: Sales Order lookup; Inventory/Batch view (product, batch#, quantity, status, expiry); Postings (create credit/debit note). The robot drives this by its UI.</li>
+          <li><strong>Case Management cockpit (desktop app)</strong> — the persona-facing UI: case list, dossier view, the 5 gate approvals, 6.3 checklist, metrics dashboard. <span class="note">Note: the case <em>orchestration</em> lives in Maestro; this cockpit is the human-facing front-end the robot/agents update. You can also surface gates via Maestro Process Apps directly — decide per time budget.</span></li>
+        </ul>
+      </details>
+
+      <details><summary>B · Mock master data (the "database")</summary>
+        <ul>
+          <li><strong>Products</strong> (~8–10): code, name, form, whether cold-chain (Y/N), stability/excursion budget, shelf life.</li>
+          <li><strong>Batches</strong> (~20): batch#, product, quantity, status (Available/Quarantine/Blocked), expiry date, manufacture date.</li>
+          <li><strong>Customers</strong> (~6): name, type (pharmacy/hospital/wholesaler — drives the 5- vs 10-day rule), address, account terms.</li>
+          <li><strong>Sales orders / dispatches</strong> (~15): order#, customer, lines (product, qty ordered, qty shipped), dispatch date, carrier, dispatch reference.</li>
+          <li><strong>Disposition policies</strong> (the Path-A table): product/complaint-type → "always destroy" / "case-by-case". A few rows.</li>
+          <li><strong>Temperature logger files</strong> (for Family B): a couple of CSVs — one within budget, one breaching.</li>
+        </ul>
+      </details>
+
+      <details><summary>C · Mock cases to seed (your demo script)</summary>
+        <p>Pre-build these so each demoes a distinct path:</p>
+        <ul class="checklist">
+          <li><strong>CMP-A1</strong> — Quality defect, damaged packaging → clean DESTROY (Path A policy match).</li>
+          <li><strong>CMP-B1</strong> — Cold-chain, excursion <em>within</em> budget → back-to-stock (Path B, all 6.3 pass).</li>
+          <li><strong>CMP-B2</strong> — Cold-chain, logger missing → UNKNOWN → destroy (shows the UNKNOWN-as-fail logic).</li>
+          <li><strong>CMP-C1</strong> — Short delivery, human pick error → commercial lane, credit, QA notified only (no QA gate).</li>
+          <li><strong>CMP-C2 + CMP-C3</strong> — Wrong-customer pair → cross-case correlation & linked resolution.</li>
+          <li><strong>CMP-A2</strong> — Path A where RP <em>overrides</em> after a credit posted → Saga compensation (the showpiece).</li>
+          <li><strong>CMP-X</strong> — Missing batch# email → RFI → parked → resumes (interruption survival).</li>
+        </ul>
+      </details>
+
+      <details><summary>D · Email templates (mock inbound + outbound)</summary>
+        <ul>
+          <li>Inbound complaint emails (one per case above) — varied phrasing, some with attachments, one ambiguous/spam.</li>
+          <li>Outbound: acknowledgement, RFI (request for info), resolution notice, destruction confirmation.</li>
+        </ul>
+      </details>
+
+      <details id="templates"><summary>E · Document templates the flow generates</summary>
+        <ul>
+          <li><strong>Complaint dossier</strong> (the QA/RP review pack) — facts, evidence, 6.3 checklist, root cause, recommendation.</li>
+          <li><strong>Credit note / Debit note</strong> — posted to mock ERP.</li>
+          <li><strong>Certificate of destruction.</strong></li>
+          <li><strong>Audit trail / case timeline</strong> export (for the "inspection-ready" story).</li>
+          <li><strong>Deviation/CAPA record</strong> (stub) — raised on the override case.</li>
+        </ul>
+      </details>
+
+      <details><summary>F · The decision rules (DMN tables)</summary>
+        <ul>
+          <li><strong>6.3 disposition table</strong>: inputs = packaging ok?, storage proven?, shelf life ok?, prior return/recall?, within time window? → output = eligible-for-stock / destroy / unknown→destroy.</li>
+          <li><strong>Family classifier table</strong> (or agent): keywords/fields → A/B/C + severity.</li>
+          <li><strong>Policy router table</strong>: product + complaint type → Path A / Path B.</li>
+          <li><strong>Finance direction table</strong>: scenario → credit / debit / none / net-zero.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- ============ BUILD CHECKLIST ============ -->
+    <section id="build">
+      <h2><span class="n">06</span>Suggested build order</h2>
+      <ol>
+        <li>Seed the mock master data (B) — nothing works without it.</li>
+        <li>Build the two desktop apps (A) with the screens listed; hard-code reads from the seed data.</li>
+        <li>Stand up the Maestro Case skeleton: stages 1–11 as a happy-path Case with the case/stage manager agents.</li>
+        <li>Wire the 4 DMN tables (F) for classification, 6.3, policy, finance.</li>
+        <li>Build the Agent Builder agents: intake/extraction, correlation, dossier writer.</li>
+        <li>Build the RPA robots that drive the two desktop apps (pull SO, set batch status, post notes).</li>
+        <li>Add the 5 Action Center gates + the persona Process Apps.</li>
+        <li>Add timers/SLA + the RFI parked-case path.</li>
+        <li>Add Path A fork + JOIN + Saga compensation handlers.</li>
+        <li>Seed the demo cases (C) and rehearse the 5-minute script.</li>
+        <li>Build one piece with Claude Code on camera for the bonus.</li>
+      </ol>
+      <div class="card amber">
+        <h4>Time-budget honesty</h4>
+        <p>If you run short: the <strong>must-haves</strong> for a coherent demo are stages 1, 4, 6, 8, 9, 10 (one happy path A or B end-to-end) + one desktop app + 6.3 DMN + at least two HITL gates. The override/Saga case and correlation are <strong>high-value extras</strong> — build them only once the spine works. Don't let the showpiece sink the basics.</p>
+      </div>
+    </section>
+
+    <footer>
+      Team briefing · GDP Complaint Management on UiPath Maestro Case · companion files: gdp_complaint_flow.html (diagram), gdp_complaint_flow_v2.mermaid (source).<br>
+      Domain rules per EU GDP 2013/C 343/01 Ch.6; simplified for a hackathon prototype — production disposition always defers to the qualified RP under company SOPs.
+    </footer>
+  </main>
+</div>
+
+<script>
+  // persona tabs
+  document.querySelectorAll('.tab').forEach(tab=>{
+    tab.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      document.querySelectorAll('.tabpane').forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.t).classList.add('active');
+    });
+  });
+  // active-section highlight in nav
+  const links=[...document.querySelectorAll('nav a')];
+  const secs=links.map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  const obs=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        const id='#'+e.target.id;
+        links.forEach(l=>l.style.background = l.getAttribute('href')===id ? 'rgba(15,118,110,.12)':'');
+      }
+    });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  secs.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

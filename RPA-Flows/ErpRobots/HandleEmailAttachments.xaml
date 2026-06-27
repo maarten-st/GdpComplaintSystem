@@ -1,0 +1,314 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="HandleEmailAttachments" this:HandleEmailAttachments.in_RecordId="7a7faf70-ea65-4ffd-9e71-019edaacfd1b" this:HandleEmailAttachments.in_EmailId="AAMkADJiNWQ4NzQ0LTIxZGUtNDQxZS1hOGVjLTIzNDhmZWY4MWI4NABGAAAAAABBpyuA1OH9QIVAJuHHCLirBwA3cg6ovHFFTace2Kuhvgf5AAHs90J5AAA3cg6ovHFFTace2Kuhvgf5AAH41BnKAAA=" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:e="clr-namespace:ErpRobots;assembly=DataService.ErpRobots" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/intelligentocr" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:uda="clr-namespace:UiPath.DataService.Activities;assembly=UiPath.DataService.Activities.Core" xmlns:udam="clr-namespace:UiPath.DataService.Activities.Models;assembly=UiPath.DataService.Activities.Core" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uisad="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction;assembly=UiPath.IntelligentOCR.StudioWeb.Activities" xmlns:uisasegb="clr-namespace:UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.GptIxp10.Bundle;assembly=ExtendedExtractionRe.aWKzy3CKarK14MPSX2UcuZi3" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umamm="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Models;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umm="clr-namespace:UiPath.MicrosoftOffice365.Models;assembly=UiPath.MicrosoftOffice365" xmlns:ummm="clr-namespace:UiPath.MicrosoftOffice365.Mail.Models;assembly=UiPath.MicrosoftOffice365" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_RecordId" Type="InArgument(s:Guid)" />
+    <x:Property Name="in_EmailId" Type="InArgument(x:String)" />
+    <x:Property Name="in_SalesOrder" Type="InArgument(x:String)" />
+    <x:Property Name="out_ExecutionStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Models</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Models</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Enums</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Mail.Models</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Files.Enums</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Filters</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Mail.Enums</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Filters</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>ErpRobots</x:String>
+      <x:String>UiPath.DataService.Definition</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>UiPath.DataService.Activities</x:String>
+      <x:String>UiPath.DataService.Activities.Models</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.SWEntities.ExtendedExtractionResultsForDocumentData.GptIxp10.Bundle</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DataExtraction</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Enums</x:String>
+      <x:String>UiPath.Shared.Activities.Utils</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Models</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities.DocumentClassification</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
+      <x:String>UiPath.IntelligentOCR.StudioWeb.Activities</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath.Platform</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Activities.Core</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>DataService.ErpRobots</AssemblyReference>
+      <AssemblyReference>UiPath.DataService.Definition</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.MetadataLoadContext</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>ExtendedExtractionRe.aWKzy3CKarK14MPSX2UcuZi3</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.StudioWeb.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentProcessing.Contracts</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.CodedWorkflows</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="HandleEmailAttachments" sap:VirtualizedContainerService.HintSize="1402,4921" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="tempPath" />
+      <Variable x:TypeArguments="x:String" Name="dnJson" />
+      <Variable x:TypeArguments="x:String" Name="dnMatch" />
+      <Variable x:TypeArguments="x:String" Name="dnStatus" />
+      <Variable x:TypeArguments="x:String" Name="dnError" />
+      <Variable x:TypeArguments="uisad:IDocumentData(uisasegb:GptIxp10)" Name="outDocumentData" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try/Catch" sap:VirtualizedContainerService.HintSize="587,4898" sap2010:WorkflowViewState.IdRef="TryCatch_Main">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="585,3964" sap2010:WorkflowViewState.IdRef="Sequence_Try">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="umm:Office365Message" Name="OutputEmail" />
+            <Variable x:TypeArguments="ummm:O365AttachmentLocalItem[]" Name="Attachments" />
+            <Variable x:TypeArguments="umm:Office365Message" Name="EmailMessage" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log: Start" sap:VirtualizedContainerService.HintSize="551,175" sap2010:WorkflowViewState.IdRef="LogMessage_Start" Message="[&quot;HandleEmailAttachments started. RecordId=&quot; &amp; in_RecordId.ToString() &amp; &quot; EmailId=&quot; &amp; If(in_EmailId,&quot;&quot;) &amp; &quot; SalesOrder=&quot; &amp; If(in_SalesOrder,&quot;&quot;)]" />
+          <ui:DeleteFolderX DisplayName="Delete Folder" sap:VirtualizedContainerService.HintSize="551,113" sap2010:WorkflowViewState.IdRef="DeleteFolderX_1" Path="Attachments" Recursive="True" />
+          <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="551,123" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="Attachments" />
+          <umam:GetEmailByIdConnections ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" MailboxBackup="{x:Reference __ReferenceID1}" AuthScopesInvalid="False" BodyAsHtml="False" ConnectionId="2e23680f-5d95-449d-b768-5a0565bd9436" DisplayName="Get Email by ID" EmailId="[in_EmailId]" sap:VirtualizedContainerService.HintSize="551,232" sap2010:WorkflowViewState.IdRef="GetEmailByIdConnections_1" Result="[EmailMessage]" UseConnectionService="True" UseSharedMailbox="False">
+            <umam:GetEmailByIdConnections.MailboxArg>
+              <umamm:MailboxArgument SharedMailbox="{x:Reference __ReferenceID0}" UseSharedMailbox="False">
+                <umamm:MailboxArgument.Backup>
+                  <usau:BackupSlot x:TypeArguments="umame:MailboxSelectionMode" x:Name="__ReferenceID1" StoredValue="NoMailbox">
+                    <usau:BackupSlot.BackupValues>
+                      <scg:List x:TypeArguments="x:Object" x:Key="NoMailbox" Capacity="1">
+                        <x:Null />
+                      </scg:List>
+                      <scg:List x:TypeArguments="x:Object" x:Key="UseISMailbox" Capacity="1">
+                        <x:Null />
+                      </scg:List>
+                    </usau:BackupSlot.BackupValues>
+                  </usau:BackupSlot>
+                </umamm:MailboxArgument.Backup>
+              </umamm:MailboxArgument>
+            </umam:GetEmailByIdConnections.MailboxArg>
+            <umam:GetEmailByIdConnections.SharedMailbox>
+              <InArgument x:TypeArguments="x:String" x:Name="__ReferenceID0" />
+            </umam:GetEmailByIdConnections.SharedMailbox>
+          </umam:GetEmailByIdConnections>
+          <ui:LogMessage DisplayName="Log: Email fetched" sap:VirtualizedContainerService.HintSize="551,175" sap2010:WorkflowViewState.IdRef="LogMessage_EmailFetched" Message="[If(EmailMessage Is Nothing, &quot;No email found for EmailId &quot; &amp; If(in_EmailId,&quot;&quot;), &quot;Fetched email: &quot; &amp; EmailMessage.Subject)]" />
+          <umam:DownloadEmailAttachments ConnectionAccountName="{x:Null}" ContinueOnError="{x:Null}" Filter="{x:Null}" FilterByFileNames="{x:Null}" Result="{x:Null}" AuthScopesInvalid="False" ConflictResolution="Fail" ConnectionId="2e23680f-5d95-449d-b768-5a0565bd9436" DestinationPath="Attachments" DisplayName="Download Email Attachments" Email="[EmailMessage]" ExcludeInlineAttachments="False" sap:VirtualizedContainerService.HintSize="551,237" sap2010:WorkflowViewState.IdRef="DownloadEmailAttachments_2" NewResult="[Attachments]" SearchMode="UseSimple" UseConnectionService="True" />
+          <ui:LogMessage DisplayName="Log: Attachment count" sap:VirtualizedContainerService.HintSize="551,175" sap2010:WorkflowViewState.IdRef="LogMessage_AttCount" Message="[&quot;Downloaded &quot; &amp; If(Attachments Is Nothing, 0, Attachments.Length).ToString() &amp; &quot; attachment(s).&quot;]" />
+          <ui:ForEach x:TypeArguments="ummm:O365AttachmentLocalItem" CurrentIndex="{x:Null}" DisplayName="For Each currentO365AttachmentLocalItem" sap:VirtualizedContainerService.HintSize="551,2508" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Attachments]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="ummm:O365AttachmentLocalItem">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="ummm:O365AttachmentLocalItem" Name="currentO365AttachmentLocalItem" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="549,2377" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log: Processing attachment" sap:VirtualizedContainerService.HintSize="515,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Processing attachment: &quot; &amp; currentO365AttachmentLocalItem.FullName]" />
+                  <If Condition="[currentO365AttachmentLocalItem.FullName.EndsWith(&quot;.pdf&quot;)]" DisplayName="Per attachment: image vs PDF (wire condition to attachment.contentType)" sap:VirtualizedContainerService.HintSize="515,2142" sap2010:WorkflowViewState.IdRef="If_Type">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Sequence DisplayName="PDF -&gt; ExtractDeliveryNote + write delivery-note fields" sap:VirtualizedContainerService.HintSize="513,1508" sap2010:WorkflowViewState.IdRef="Sequence_Pdf">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log: PDF branch" sap:VirtualizedContainerService.HintSize="479,175" sap2010:WorkflowViewState.IdRef="LogMessage_PdfStart" Message="[&quot;PDF detected - extracting delivery-note data via Document Understanding.&quot;]" />
+                        <p:ExtractDocumentDataWithDocumentData x:TypeArguments="uisasegb:GptIxp10" DocumentBounds="{x:Null}" DocumentObjectModel="{x:Null}" DocumentPath="{x:Null}" DocumentText="{x:Null}" ExtractorDocumentType="{x:Null}" ExtractorResult="{x:Null}" PersistenceId="{x:Null}" PredictionId="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" ActivityMajorVersion="2" ApplyAutoValidation="False" DisplayName="Extract Document Data" DocType="gpt_ixp_10" ExtractionResults="[outDocumentData]" ExtractorName="gpt_ixp_10" FileInput="[LocalResource.FromPath(&quot;Attachments\&quot;&amp;currentO365AttachmentLocalItem.FullName)]" GenerateData="True" sap:VirtualizedContainerService.HintSize="479,415" sap2010:WorkflowViewState.IdRef="ExtractDocumentDataWithDocumentData`1_1" ModernDocumentTypeId="00000000-0000-0000-0000-000000000000" ModernDocumentTypeName="Default" ProjectId="3dcfb297-7ae5-80d7-9aec-8c20cedb8c29" ProjectName="Delivery Note" ProjectVersionName="10" ProjectVersionNumber="10" TimeoutInSeconds="3600">
+                          <p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                            <InArgument x:TypeArguments="s:Nullable(x:Int32)">
+                              <Literal x:TypeArguments="s:Nullable(x:Int32)" Value="0" />
+                            </InArgument>
+                          </p:ExtractDocumentDataWithDocumentData.AutoValidationConfidenceThreshold>
+                          <p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                            <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+                          </p:ExtractDocumentDataWithDocumentData.GptPromptWithVariables>
+                          <p:ExtractDocumentDataWithDocumentData.ProjectTag>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" Value="" />
+                            </InArgument>
+                          </p:ExtractDocumentDataWithDocumentData.ProjectTag>
+                        </p:ExtractDocumentDataWithDocumentData>
+                        <uda:UploadFileToRecordField x:TypeArguments="e:ComplaintsData" FilePath="{x:Null}" InputEntity="{x:Null}" OutputEntity="{x:Null}" SolutionEntityKey="{x:Null}" SolutionEntityName="{x:Null}" ContinueOnError="False" DisplayName="Upload File to Record Field" EntityId="be631aea-0e6b-f111-8fcb-000d3ab36606" ExpansionDepth="2" Field="DeliveryNote" FileResource="[LocalResource.FromPath(&quot;Attachments\&quot;&amp;currentO365AttachmentLocalItem.FullName)]" sap:VirtualizedContainerService.HintSize="479,278" sap2010:WorkflowViewState.IdRef="UploadFileToRecordField`1_2" RecordId="[in_RecordId]" ScopeValue="Tenant" TimeoutInMs="30000" />
+                        <uda:UpdateEntityRecord x:TypeArguments="e:ComplaintsData" InputEntity="{x:Null}" IsInRecordView="{x:Null}" OutputEntity="{x:Null}" SolutionEntityKey="{x:Null}" SolutionEntityName="{x:Null}" VisibleDynamicPropertiesInfo="{x:Null}" ContinueOnError="False" DisplayName="Update Entity Record" EntityId="be631aea-0e6b-f111-8fcb-000d3ab36606" ExpansionDepth="2" sap:VirtualizedContainerService.HintSize="479,414" sap2010:WorkflowViewState.IdRef="UpdateEntityRecord`1_1" InputEntityInFieldView="[new ErpRobots.ComplaintsData() With {  .DeliveryNoteData = outDocumentData.tostring, .Id = in_RecordId }]" RecordId="[in_RecordId]" ScopeValue="Tenant" TimeoutInMs="30000">
+                          <uda:UpdateEntityRecord.State>
+                            <udam:RecordState RequiredFieldCount="2">
+                              <udam:RecordState.SelectedFields>
+                                <scg:List x:TypeArguments="udam:DynamicEntityField" Capacity="4">
+                                  <udam:DynamicEntityField Id="6fe3c793-0f6b-f111-8fcb-000d3ab36606" Name="ApproveAdjustInventory" />
+                                  <udam:DynamicEntityField Id="5de3c793-0f6b-f111-8fcb-000d3ab36606" Name="ComplaintId">
+                                    <udam:DynamicEntityField.ArgumentValue>
+                                      <InArgument x:TypeArguments="x:String" />
+                                    </udam:DynamicEntityField.ArgumentValue>
+                                  </udam:DynamicEntityField>
+                                  <udam:DynamicEntityField Id="72e3c793-0f6b-f111-8fcb-000d3ab36606" Name="DeliveryNoteData">
+                                    <udam:DynamicEntityField.ArgumentValue>
+                                      <InArgument x:TypeArguments="x:String">[outDocumentData.tostring]</InArgument>
+                                    </udam:DynamicEntityField.ArgumentValue>
+                                  </udam:DynamicEntityField>
+                                  <udam:DynamicEntityField Id="64e3c793-0f6b-f111-8fcb-000d3ab36606" Name="Gate" />
+                                </scg:List>
+                              </udam:RecordState.SelectedFields>
+                            </udam:RecordState>
+                          </uda:UpdateEntityRecord.State>
+                        </uda:UpdateEntityRecord>
+                        <ui:LogMessage DisplayName="Log: Delivery note written" sap:VirtualizedContainerService.HintSize="479,166" sap2010:WorkflowViewState.IdRef="LogMessage_PdfDone" Message="[&quot;Delivery-note data written to ComplaintsData record &quot; &amp; in_RecordId.ToString()]" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Image -&gt; upload to ProofImage" sap:VirtualizedContainerService.HintSize="513,504" sap2010:WorkflowViewState.IdRef="Sequence_Img">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log: Image branch" sap:VirtualizedContainerService.HintSize="479,175" sap2010:WorkflowViewState.IdRef="LogMessage_ImgStart" Message="[&quot;Image detected - uploading to ProofImage field.&quot;]" />
+                        <uda:UploadFileToRecordField x:TypeArguments="e:ComplaintsData" FilePath="{x:Null}" InputEntity="{x:Null}" OutputEntity="{x:Null}" SolutionEntityKey="{x:Null}" SolutionEntityName="{x:Null}" ContinueOnError="False" DisplayName="Upload File to Record Field" EntityId="be631aea-0e6b-f111-8fcb-000d3ab36606" ExpansionDepth="2" Field="ProofImage" FileResource="[LocalResource.FromPath(&quot;Attachments\&quot;&amp;currentO365AttachmentLocalItem.FullName)]" sap:VirtualizedContainerService.HintSize="479,269" sap2010:WorkflowViewState.IdRef="UploadFileToRecordField`1_1" RecordId="[in_RecordId]" ScopeValue="Tenant" TimeoutInMs="30000" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+          <Assign DisplayName="Set ExecutionStatus = Success" sap:VirtualizedContainerService.HintSize="551,166" sap2010:WorkflowViewState.IdRef="Assign_StatusOk">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Success"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_Main">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle error" sap:VirtualizedContainerService.HintSize="585,576" sap2010:WorkflowViewState.IdRef="Sequence_Catch">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Error" sap:VirtualizedContainerService.HintSize="551,175" sap2010:WorkflowViewState.IdRef="LogMessage_Err" Level="Error" Message="[&quot;HandleEmailAttachments failed: &quot; &amp; exception.Message]" />
+              <Assign DisplayName="Set ExecutionStatus = Failed" sap:VirtualizedContainerService.HintSize="551,175" sap2010:WorkflowViewState.IdRef="Assign_StatusFail">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["Failed"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Set ErrorMessage" sap:VirtualizedContainerService.HintSize="551,166" sap2010:WorkflowViewState.IdRef="Assign_ErrMsg">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="585,226" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log: Finished" sap:VirtualizedContainerService.HintSize="551,166" sap2010:WorkflowViewState.IdRef="LogMessage_Finally" Message="[&quot;HandleEmailAttachments finished. Status=&quot; &amp; If(out_ExecutionStatus,&quot;(unknown)&quot;)]" />
+        </Sequence>
+      </TryCatch.Finally>
+    </TryCatch>
+  </Sequence>
+</Activity>

@@ -1,0 +1,51 @@
+* { box-sizing: border-box; }
+body { font-family: "Segoe UI", system-ui, sans-serif; margin: 0; color: #16201c; background: #f5f2e9; }
+header { background: #0a544e; color: #fff; padding: 14px 22px; }
+header h1 { margin: 0 0 10px; font-size: 1.25rem; letter-spacing: .02em; }
+nav { display: flex; gap: 8px; }
+.tab { background: rgba(255,255,255,.12); color: #fff; border: none; padding: 8px 16px; border-radius: 6px 6px 0 0; cursor: pointer; font-size: .9rem; }
+.tab.active { background: #fffdf7; color: #0a544e; font-weight: 700; }
+.panel { display: none; padding: 22px; max-width: 1000px; }
+.panel.active { display: block; }
+h2 { font-size: 1.2rem; margin-top: 0; }
+.row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+input, select, button, textarea { font-size: .92rem; padding: 8px 10px; border: 1px solid #c9c2b0; border-radius: 6px; }
+input { min-width: 320px; }
+button { background: #0f766e; color: #fff; border: none; cursor: pointer; }
+button:hover { background: #0a544e; }
+table { width: 100%; border-collapse: collapse; background: #fffdf7; border-radius: 8px; overflow: hidden; margin-top: 8px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #e4ded0; font-size: .9rem; }
+th { background: #efeadd; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: #5b554a; }
+.form { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 760px; }
+.form label { display: flex; flex-direction: column; gap: 4px; font-size: .8rem; color: #5b554a; }
+.form input, .form select { min-width: 0; }
+.form label.full { grid-column: 1 / -1; }
+.form textarea { min-width: 0; width: 100%; min-height: 96px; resize: vertical; font-family: inherit; }
+.form button { grid-column: 1 / -1; }
+.badge { padding: 2px 9px; border-radius: 20px; font-size: .74rem; font-weight: 700; }
+.badge.Available { background: #dcfce7; color: #047857; }
+.badge.Sold { background: #dbeafe; color: #1d4ed8; }
+.badge.Quarantine { background: #fef3c7; color: #92400e; }
+.badge.Destroyed { background: #1f2937; color: #fff; }
+.qty-input { min-width: 64px; width: 80px; margin: 0 4px; }
+.neg { color: #b91c1c; font-weight: 700; } .pos { color: #047857; font-weight: 700; }
+.card { background: #fffdf7; border: 1px solid #e4ded0; border-radius: 8px; padding: 14px 16px; margin-top: 8px; }
+.muted { color: #888; font-size: .85rem; }
+#toast { position: fixed; bottom: 18px; right: 18px; background: #16201c; color: #fff; padding: 10px 16px; border-radius: 8px; opacity: 0; transition: opacity .2s; font-size: .88rem; }
+#toast.show { opacity: .95; }
+
+/* Order-details labeled field table: one stable id per value cell */
+.cc-table { width: auto; min-width: 360px; }
+.cc-table td { border-bottom: 1px solid #efeadd; }
+.cc-table .cc-label { color: #5b554a; font-size: .8rem; width: 150px; }
+.cc-table .cc-value span { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-weight: 700; }
+
+/* field-table icons */
+.cc-icon { display: inline-block; width: 1.4em; }
+.cc-status { font-size: .85rem; }
+
+/* read-only value inputs — look like plain bold text, but expose a stable selector + value */
+.cc-input { border: none; background: transparent; color: inherit; padding: 0; margin: 0;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-weight: 700;
+  font-size: .9rem; width: 34ch; max-width: 100%; }
+.cc-input:focus { outline: 1px solid #c9c0a8; }

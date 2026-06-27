@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Post Batch",
+  "Description": "The Batch number text input in the Post Credit/Debit Note form.",
+  "Type": "Element",
+  "TaxonomyType": "Input",
+  "Id": "I0MlY4dI_EmniT3eoh3c_A",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/I0MlY4dI_EmniT3eoh3c_A",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:08:28.8481695Z",
+  "Updated": "2026-06-05T08:08:28.8481695Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}

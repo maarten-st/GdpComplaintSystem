@@ -1,0 +1,227 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="PostToErp" this:PostToErp.in_NoteType="CREDIT" this:PostToErp.in_Reason="Test" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_NoteType" Type="InArgument(x:String)" />
+    <x:Property Name="in_CaseId" Type="InArgument(x:String)" />
+    <x:Property Name="in_CustomerCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_ProductCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_BatchNo" Type="InArgument(x:String)" />
+    <x:Property Name="in_Qty" Type="InArgument(x:String)" />
+    <x:Property Name="in_Amount" Type="InArgument(x:String)" />
+    <x:Property Name="in_Reason" Type="InArgument(x:String)" />
+    <x:Property Name="out_CreditNoteStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_CreditPosted" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_ExecutionStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="PostToErp" sap:VirtualizedContainerService.HintSize="949,4256" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="mockErpHome" />
+      <Variable x:TypeArguments="x:String" Name="mockErpExe" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try/Catch" sap:VirtualizedContainerService.HintSize="488,4233" sap2010:WorkflowViewState.IdRef="TryCatch_Main">
+      <TryCatch.Try>
+        <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="486,3891" sap2010:WorkflowViewState.IdRef="Sequence_Try">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" DisplayName="Ensure GDP Mock ERP is open" sap:VirtualizedContainerService.HintSize="452,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="EnsureMockErpOpen.xaml">
+            <ui:InvokeWorkflowFile.Arguments>
+              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+            </ui:InvokeWorkflowFile.Arguments>
+          </ui:InvokeWorkflowFile>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GDP_MOCKERP_HOME" CacheStrategy="None" DisplayName="Get GDP_MOCKERP_HOME asset" sap:VirtualizedContainerService.HintSize="452,176" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[mockErpHome]</OutArgument>
+            </ui:GetRobotAsset.Value>
+          </ui:GetRobotAsset>
+          <Assign DisplayName="Build GDP Mock ERP.exe path" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_99">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[mockErpExe]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(mockErpHome, "GDP Mock ERP.exe")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: GDP Mock ERP" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="452,2612" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" IsDisplayNameAuto="True" ScopeGuid="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Version="V2">
+            <uix:NApplicationCard.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="450,2356" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Postings Tab" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,194" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable ContentHash="nmETIqZvjEmYo64eU8PO0A" DesignTimeRectangle="326, 108, 89, 32" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Postings' role='push button' /&gt;" Guid="6e998b70-f62d-48a3-84d5-238b5879b01d" InformativeScreenshot="5660e537b2c1907c1b65725bbc0ce2a7.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/5WaFnU5pJkOj8r4tJyzyng" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                  <uix:NSelectItem DisplayName="Select Note Type" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,195" sap2010:WorkflowViewState.IdRef="NSelectItem_1" Item="[in_NoteType]" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Version="V5">
+                    <uix:NSelectItem.Target>
+                      <uix:TargetAnchorable ContentHash="dt3p1Vgpc0GmE0onp8QPGg" DesignTimeRectangle="30, 238, 304, 37" DesignTimeScaleFactor="1" ElementType="DropDown" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Type' role='combo box' /&gt;" Guid="a6d8f728-75f8-46c1-84e9-995ce9c756ed" InformativeScreenshot="fa1d838274026303bdce7f4e1d7beb64.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/JMqZgVlpb0iMDahKoOSP6A" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NSelectItem.Target>
+                  </uix:NSelectItem>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Case" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Text="[in_CaseId]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="d66qPUhgg0-ihRBsfz-mIw" DesignTimeRectangle="344, 238, 304, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Case' role='editable text' /&gt;" Guid="f9923a22-a492-4382-b99f-5387929fabc0" InformativeScreenshot="6d3a3c8ac46df2a24bd36aa2628e4b46.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/wtNCU1ZZYUCOm9OTlZkibg" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Customer" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Text="[in_CustomerCode]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="n0D0OK58R06NL1w0wJotLA" DesignTimeRectangle="30, 305, 304, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Customer' role='editable text' /&gt;" Guid="51e16541-fae9-4e97-9858-b911b5c5c7a9" InformativeScreenshot="fe4aac97a0af1c31993f896ab3a5a8c4.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/KW3cEFDbyE2eQqwuBkhBNw" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Product" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Text="[in_ProductCode]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="gq0iS_jMNkOjYJGoNCWagA" DesignTimeRectangle="344, 305, 304, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Product' role='editable text' /&gt;" Guid="ea54bef8-1b98-48c3-ad4b-958b41ea3fcb" InformativeScreenshot="7b1ec63c51de1001c34aceca10543118.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/aqIZLr7b0U2B5qafUy5DWg" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Batch" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Text="[in_BatchNo]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="MwzNGm1Ki0Ovq5DzuMhEMw" DesignTimeRectangle="30, 370, 304, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Batch' role='editable text' /&gt;" Guid="8a1522c5-1f00-47d3-8322-c1286a776ee6" InformativeScreenshot="f19442bf61d18ef2fcbba8c8374c88bf.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/I0MlY4dI_EmniT3eoh3c_A" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Qty" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Text="[in_Qty]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="eOFye1QL80aeP2OcaZhgUA" DesignTimeRectangle="344, 370, 304, 35" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Qty' role='spin box' /&gt;" Guid="b97355d4-8cfa-42e6-8c4e-14f0e0a41a83" InformativeScreenshot="78c0e55e1978a11f36c53b328307877c.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/2ZSzj-O4FUW86jPZWEXmjA" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Amount" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_6" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Text="[in_Amount]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="lCx-3cuah0O8O6_gyRcVVA" DesignTimeRectangle="30, 435, 304, 35" DesignTimeScaleFactor="1" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Amount' role='spin box' /&gt;" Guid="f20e35d1-3d13-4377-a02e-1ef1d8191a04" InformativeScreenshot="0441620a57ece5992fe2b7c87d89ca50.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/7wXaONsfJUyAeg3riseuVQ" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" ClipboardMode="Never" DisplayName="Type Reason" EmptyFieldMode="SingleLine" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Text="[in_Reason]" Version="V5">
+                    <uix:NTypeInto.Target>
+                      <uix:TargetAnchorable ContentHash="YXfXftDWK0O1DRopYGyAFA" DesignTimeRectangle="344, 435, 304, 35" DesignTimeScaleFactor="1" ElementType="InputBox" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Reason' role='editable text' /&gt;" Guid="984fd3a4-7921-4687-ba8b-9c5cdc8bca37" InformativeScreenshot="b9b84027667f4fc9469777d61f0fc760.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/mXpE6zU3D0SQHwY3IXgP2g" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NTypeInto.Target>
+                  </uix:NTypeInto>
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click Post Note" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,185" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="6e3607f7-0a28-437e-83b2-1d4b8985dce9" Version="V5">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable ContentHash="g4BnPhbLYkql19rCvVWKow" DesignTimeRectangle="30, 479, 618, 33" DesignTimeScaleFactor="1" ElementType="Button" ElementVisibilityArgument="Interactive" FullSelectorArgument="&lt;ctrl name='GDP Mock ERP' role='document' /&gt;&lt;ctrl name='Post note' role='push button' /&gt;" Guid="e4cea86a-5a89-4c7e-963f-7ad19f1c6b0d" InformativeScreenshot="ebc80daa25388a031fe5bb5ebbfcfc95.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/goIsnVtsa02gFz0ingtL6w" ScopeSelectorArgument="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" SearchSteps="Selector" Version="V6" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </ActivityAction>
+            </uix:NApplicationCard.Body>
+            <uix:NApplicationCard.OCREngine>
+              <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                <ActivityFunc.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                </ActivityFunc.Argument>
+              </ActivityFunc>
+            </uix:NApplicationCard.OCREngine>
+            <uix:NApplicationCard.TargetApp>
+              <uix:TargetApp Area="1975, 227, 678, 736" ContentHash="sNt4FhRuv0mA3pDbKsA09g" FilePath="[mockErpExe]" InformativeScreenshot="a5797f9ea641144e7ed0a4124c16838c.jpg" Reference="q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA" Selector="&lt;wnd cls='Chrome_WidgetWin_1' title='GDP Mock ERP' /&gt;" Version="V3">
+                <uix:TargetApp.Arguments>
+                  <InArgument x:TypeArguments="x:String" />
+                </uix:TargetApp.Arguments>
+              </uix:TargetApp>
+            </uix:NApplicationCard.TargetApp>
+          </uix:NApplicationCard>
+          <ui:LogMessage DisplayName="Log Posted" sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;PostToErp: posted &quot; &amp; in_NoteType &amp; &quot; note for case &quot; &amp; in_CaseId]" />
+          <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_CreditNoteStatus]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["POSTED"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[out_CreditPosted]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">[True]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign DisplayName="Set ExecutionStatus = Success" sap:VirtualizedContainerService.HintSize="452,166" sap2010:WorkflowViewState.IdRef="Assign_StatusOk">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["Success"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_Main">
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Handle error" sap:VirtualizedContainerService.HintSize="486,120" sap2010:WorkflowViewState.IdRef="Sequence_Catch">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Error" sap2010:WorkflowViewState.IdRef="LogMessage_Err" Level="Error" Message="[&quot;PostToErp failed: &quot; &amp; exception.Message]" />
+              <Assign DisplayName="Set ExecutionStatus = Failed" sap2010:WorkflowViewState.IdRef="Assign_StatusFail">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ExecutionStatus]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">["Failed"]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign DisplayName="Set ErrorMessage" sap2010:WorkflowViewState.IdRef="Assign_ErrMsg">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[exception.Message]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

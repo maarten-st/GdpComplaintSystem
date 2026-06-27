@@ -1,0 +1,15 @@
+﻿{
+  "Name": "Filter Button",
+  "Description": "The 'Filter' button that narrows the batch table to matching rows.",
+  "Type": "Element",
+  "TaxonomyType": "Button",
+  "Id": "zJMUvd5H-Uy2dydNMM5vMQ",
+  "Reference": "q4ZN28ODeUi-PhUX0rJgmA/zJMUvd5H-Uy2dydNMM5vMQ",
+  "ParentRef": "q4ZN28ODeUi-PhUX0rJgmA/w862JcJMeEm4cMnveoyUFA",
+  "Created": "2026-06-05T08:56:06.8144315Z",
+  "Updated": "2026-06-05T08:56:06.8144315Z",
+  "CreatedBy": [
+    "UiPath.UIAutomationCore, Version=26.4.4.0, Culture=neutral, PublicKeyToken=null",
+    "UiPath.Platform, Version=25.12.1.0, Culture=neutral, PublicKeyToken=null"
+  ]
+}
