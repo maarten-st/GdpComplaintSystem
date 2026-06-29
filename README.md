@@ -194,7 +194,6 @@ See `RPA-REUSE-MAP.md` for the mapping of BPMN RPA calls to XAML workflows with 
 | App | Path | Purpose |
 |---|---|---|
 | `complaint-tracker` | `Coded-Apps/complaint-tracker/` | React 19 CodeApp — human UI for complaint management over Data Fabric |
-| `gdp-complaint-intake` | `Coded-Apps/gdp-complaint-intake/` | Gate 1 action app — triage validation form |
 
 Each app has its own `package.json`. Run `npm install && npm run dev` inside each folder.
 
@@ -209,23 +208,6 @@ Electron desktop app that the RPA robots drive via UI automation.
 | `mock-erp/` | Mock ERP — sales orders, batch status, credit/debit notes. Reads master CSVs; persists robot writes to `batch-overrides.json` and `postings.json`. |
 
 Run `npm install && npm start`. `node_modules/` is excluded — regenerate locally.
-
----
-
-## Mock-Data
-
-All fabricated test data. The canonical data root for every script is `gdp_mockdata/`.
-
-| File / Folder | Contents |
-|---|---|
-| `gdp_mockdata/cases/seed_cases.json` | **9 seed cases** — one per demo path; `expected_route/disposition/finance` are the test oracles |
-| `gdp_mockdata/customers/` | Customer master (B2B: pharmacies, hospitals, wholesalers) |
-| `gdp_mockdata/products/` | Product master (batches, expiry, cold-chain requirements) |
-| `gdp_mockdata/policies/` | GDP policy rules |
-| `gdp_mockdata/emails/` | Inbound complaint email templates |
-| `gdp_mockdata/document_templates/` | Dossier, credit/debit note, certificate templates |
-| `_complaints-entity.json` | Data Fabric `ComplaintsData` entity schema |
-| `_complaints-seed.json` | Seed records for the CodeApp |
 
 ---
 
