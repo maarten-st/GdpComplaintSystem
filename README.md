@@ -6,6 +6,25 @@ An agentic, GDP-compliant complaint-handling system for pharmaceutical wholesale
 
 **We are a wholesale distributor** (warehouse + logistics for medicines), not the manufacturer.
 
+## Project Description
+
+### The Problem
+In pharmaceutical wholesale distribution, a customer complaint about a medicine shipment is a **regulated event** under EU Good Distribution Practice (GDP, 2013/C 343/01, Chapter 6). Each complaint must be investigated, root-caused, and resolved with a documented, auditable disposition. Handled manually, this is slow, inconsistent, and hard to audit — and a wrong release-or-destroy decision is both a compliance breach and a patient-safety risk.
+
+### What It Does
+The solution drives a complaint from inbound email to closed case, end to end:
+
+1. **Intake (automated).** A robot fetches the complaint email (Outlook 365) and processes attachments (storing photos in Data Fabric and extracting delivery-note data). An AI agent extracts the structured fields (customer, product, batch, order number, quantity, summary) and classifies the complaint into one of four GDP categories: **quantity discrepancy, cold-chain (temperature) deviation, quality deficit, or other.** A case record is created at `Gate = Triage`.
+2. **Triage (human + automated).** A Customer Service reviewer validates the extracted data and chooses: proceed, request more information (a robot emails the customer), or mark as "not a claim" (the case closes).
+3. **Investigation (automated).** In parallel, robots gather sales-order evidence from the ERP and temperature logs from a cold-chain portal. An investigation agent reasons over the evidence and **suggests** a disposition and finance direction. The case pauses at "Awaiting approval."
+4. **CAPA — Corrective and Preventive Action (automated after approval).** A Quality Assurance reviewer approves which steps may run. Robots then adjust inventory, post a credit or debit note in the ERP, and close the record at `Gate = Closed`.
+
+### What Makes It Unique
+- **Humans decide, by design.** Agents extract and recommend; robots execute deterministically; **every regulated decision requires a named human at a Gate.** The agent is structurally prevented from recommending destruction — goods that cannot return to stock go to quarantine first.
+- **Data integrity built in.** The flow is designed so that the GDP ALCOA+ data-integrity principles (Attributable, Legible, Contemporaneous, Original, Accurate, Complete, Consistent, Enduring, Available) are satisfied by construction, not bolted on.
+- **One auditable orchestration** over a single Data Service record whose `Gate` field is the state machine.
+
+
 ---
 
 ## Links
@@ -24,26 +43,6 @@ An agentic, GDP-compliant complaint-handling system for pharmaceutical wholesale
 
 ### UiPath Orchestrator
 - **Orchestrator:** https://staging.uipath.com/hackathon26_371
-
----
-
-## Project Description
-
-### The Problem
-In pharmaceutical wholesale distribution, a customer complaint about a medicine shipment is a **regulated event** under EU Good Distribution Practice (GDP, 2013/C 343/01, Chapter 6). Each complaint must be investigated, root-caused, and resolved with a documented, auditable disposition. Handled manually, this is slow, inconsistent, and hard to audit — and a wrong release-or-destroy decision is both a compliance breach and a patient-safety risk.
-
-### What It Does
-The solution drives a complaint from inbound email to closed case, end to end:
-
-1. **Intake (automated).** A robot fetches the complaint email (Outlook 365) and processes attachments (storing photos in Data Fabric and extracting delivery-note data). An AI agent extracts the structured fields (customer, product, batch, order number, quantity, summary) and classifies the complaint into one of four GDP categories: **quantity discrepancy, cold-chain (temperature) deviation, quality deficit, or other.** A case record is created at `Gate = Triage`.
-2. **Triage (human + automated).** A Customer Service reviewer validates the extracted data and chooses: proceed, request more information (a robot emails the customer), or mark as "not a claim" (the case closes).
-3. **Investigation (automated).** In parallel, robots gather sales-order evidence from the ERP and temperature logs from a cold-chain portal. An investigation agent reasons over the evidence and **suggests** a disposition and finance direction. The case pauses at "Awaiting approval."
-4. **CAPA — Corrective and Preventive Action (automated after approval).** A Quality Assurance reviewer approves which steps may run. Robots then adjust inventory, post a credit or debit note in the ERP, and close the record at `Gate = Closed`.
-
-### What Makes It Unique
-- **Humans decide, by design.** Agents extract and recommend; robots execute deterministically; **every regulated decision requires a named human at a Gate.** The agent is structurally prevented from recommending destruction — goods that cannot return to stock go to quarantine first.
-- **Data integrity built in.** The flow is designed so that the GDP ALCOA+ data-integrity principles (Attributable, Legible, Contemporaneous, Original, Accurate, Complete, Consistent, Enduring, Available) are satisfied by construction, not bolted on.
-- **One auditable orchestration** over a single Data Service record whose `Gate` field is the state machine.
 
 ---
 
@@ -68,8 +67,8 @@ Email ──▶ INTAKE (robot + agent) ──▶ TRIAGE (human + automated) ─�
 |---|---|
 | **UiPath Maestro BPMN** | The orchestration spine: one long-running BPMN process with collapsed subprocesses, a parallel gateway (two robots concurrently), exclusive gateways, and event-wait nodes that pause for human gates and resume on `Gate` changes. |
 | **Data Fabric / Data Service** | Single source of truth (`ComplaintsData` entity). It is the case state, the inter-stage hand-off, the cockpit's data store, and the event source that triggers each stage. |
-| **Agent Builder** | Two purpose-built agents (see Agent Type below): complaint extraction/classification and investigation. |
-| **Integration Service** | Microsoft Outlook 365 connector for email intake; Data Fabric connector for record create/update and "Record Updated" event waits. |
+| **Agent Builder** | Three purpose-built agents (see Agent Type below): complaint extraction/classification, investigation, and customer updates. |
+| **Integration Service** | Microsoft Outlook 365 connector for email intake and creating draft email; Data Fabric connector for record create/update and "Record Updated" event waits. |
 | **Robotic Process Automation (RPA)** | Deterministic robots that gather sales-order evidence and temperature logs, and execute disposition and financial postings against the mock ERP desktop application. |
 | **Coded Web App (UiPath Apps + TypeScript SDK)** | The GDP Complaint Tracker — a React + TypeScript human-in-the-loop cockpit that reads/writes the case record. |
 | **IXP / Document Understanding** | Used in attachment handling to extract delivery-note data. |
@@ -83,12 +82,13 @@ Email ──▶ INTAKE (robot + agent) ──▶ TRIAGE (human + automated) ─�
 
 **This solution uses Low-code Agents (built with UiPath Agent Builder).**
 
-There are two low-code agents, both authored in Agent Builder and running on a UiPath-hosted Claude model:
+There are three low-code agents, all authored in Agent Builder and running on a UiPath-hosted Claude model:
 
 1. **Complaint Extraction & Classification agent** — interprets the unstructured complaint email into structured fields and classifies it into one of the four GDP categories, with a confidence score. It is instructed never to invent values.
 2. **Investigation agent** — reasons over the complaint type, ERP order data, and cold-chain readings, and **suggests** a disposition (return-to-stock or quarantine) and a finance direction (credit, debit, or none). It never makes the decision and never recommends destruction.
+3. **Customer Update agent** — handles customer-facing communications during the complaint lifecycle (acknowledgements, RFI emails, and resolution notifications).
 
-> **Agent Type summary: Low-code Agents only** (no Coded Agents). Reasoning lives in the two Agent Builder agents; deterministic execution lives in RPA robots; decisions live with human gates.
+> **Agent Type summary: Low-code Agents only** (no Coded Agents). Reasoning lives in the three Agent Builder agents; deterministic execution lives in RPA robots; decisions live with human gates.
 
 ---
 
