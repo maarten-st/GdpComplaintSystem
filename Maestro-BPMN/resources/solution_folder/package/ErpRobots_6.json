@@ -1,0 +1,33 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "ErpRobots_6",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [
+      {
+        "name": "package_ErpRobots_6.1.0.15.nupkg",
+        "kind": "Package",
+        "version": "1.0.15",
+        "url": "https://staging.uipath.com/0d825646-c50c-4960-8d93-42dcf0c5129b/0581ecb4-a55f-4a1e-9113-4c6ac9ca47e3/orchestrator_/odata/Processes/UiPath.Server.Configuration.OData.DownloadPackage(key=\u0027ErpRobots:1.0.15\u0027)?feedId=894388b1-dff7-4c57-8f9f-156cb71c2184",
+        "key": "package_ErpRobots_6_1.0.15"
+      }
+    ],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": "ErpRobots.1.0.15.nupkg",
+      "fileReference": "package_ErpRobots_6_1.0.15",
+      "name": "ErpRobots_6",
+      "description": null
+    },
+    "locks": [],
+    "key": "ErpRobots:1.0.15"
+  }
+}

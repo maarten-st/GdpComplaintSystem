@@ -17,7 +17,6 @@
     "spec": {
       "connectorName": "Microsoft Outlook 365",
       "name": "Connection technical@caudata.be",
-      "description": null,
       "authenticationType": "AuthenticateAfterDeployment",
       "connectorVersion": "1.38.8",
       "connectorKey": "uipath-microsoft-outlook365",

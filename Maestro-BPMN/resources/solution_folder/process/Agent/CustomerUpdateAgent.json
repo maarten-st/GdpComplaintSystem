@@ -1,0 +1,60 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "CustomerUpdateAgent",
+    "kind": "process",
+    "type": "agent",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "name": "CustomerUpdateAgentSolution.agent.CustomerUpdateAgent",
+        "kind": "Package"
+      }
+    ],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Agent",
+      "agentMemory": false,
+      "targetRuntime": "pythonAgent",
+      "environmentVariables": "",
+      "referencedAssets": null,
+      "name": "CustomerUpdateAgent",
+      "description": null,
+      "package": {
+        "name": "CustomerUpdateAgentSolution.agent.CustomerUpdateAgent",
+        "key": "CustomerUpdateAgentSolution.agent.CustomerUpdateAgent:1.0.0"
+      },
+      "packageName": "CustomerUpdateAgentSolution.agent.CustomerUpdateAgent",
+      "packageVersion": "1.0.0",
+      "entryPointUniqueId": "d675d628-43ec-4a4b-b2f3-955b8c968bd2",
+      "entryPointName": "content/agent.json",
+      "inputArguments": null,
+      "inputArgumentsSchema": null,
+      "outputArgumentsSchema": null,
+      "inputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022required\u0022: [\n    \u0022complaintId\u0022\n  ],\n  \u0022properties\u0022: {\n    \u0022complaintId\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The ComplaintId of the case to summarise (e.g. CMP-2026-...). Used to look up the record in the ComplaintsData Data Fabric context.\u0022\n    }\n  }\n}",
+      "outputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022properties\u0022: {\n    \u0022emailSubject\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Concise subject line for the customer email, including the ComplaintId.\u0022\n    },\n    \u0022emailHtml\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The full customer case-update email body as valid, self-contained HTML (no html/head/body wrapper, no external CSS or images).\u0022\n    },\n    \u0022recipientEmail\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The customer\u0027s email address taken from the record\u0027s Sender if it is an address, else empty string.\u0022\n    }\n  }\n}",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "retentionBucketRef": null,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "staleRetentionBucketRef": null,
+      "entryPoints": "[{\u0022UniqueId\u0022:\u0022d675d628-43ec-4a4b-b2f3-955b8c968bd2\u0022,\u0022Path\u0022:\u0022content/agent.json\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022required\\\u0022: [\\n    \\\u0022complaintId\\\u0022\\n  ],\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022complaintId\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The ComplaintId of the case to summarise (e.g. CMP-2026-...). Used to look up the record in the ComplaintsData Data Fabric context.\\\u0022\\n    }\\n  }\\n}\u0022,\u0022OutputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022emailSubject\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Concise subject line for the customer email, including the ComplaintId.\\\u0022\\n    },\\n    \\\u0022emailHtml\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The full customer case-update email body as valid, self-contained HTML (no html/head/body wrapper, no external CSS or images).\\\u0022\\n    },\\n    \\\u0022recipientEmail\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The customer\u0027s email address taken from the record\u0027s Sender if it is an address, else empty string.\\\u0022\\n    }\\n  }\\n}\u0022,\u0022Type\u0022:4,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13950712}]",
+      "connections": null,
+      "tags": []
+    },
+    "locks": [],
+    "key": "e3184e6c-a8e9-4f17-b93b-fca92532f7a6"
+  }
+}

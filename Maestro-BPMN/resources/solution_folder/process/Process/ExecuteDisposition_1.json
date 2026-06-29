@@ -1,0 +1,52 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "ExecuteDisposition_1",
+    "kind": "process",
+    "type": "process",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "name": "ErpRobots_5",
+        "kind": "Package"
+      }
+    ],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Process",
+      "jobPriority": "Medium",
+      "jobRecording": "Disabled",
+      "remoteControlAccess": "None",
+      "name": "ExecuteDisposition_1",
+      "package": {
+        "name": "ErpRobots_5",
+        "key": "ErpRobots:1.0.8"
+      },
+      "packageName": "ErpRobots",
+      "packageVersion": "1.0.8",
+      "entryPointUniqueId": "cb44640d-23fd-4c2f-9b9b-ec11de8b2a64",
+      "entryPointName": "ExecuteDisposition.xaml",
+      "inputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022properties\u0022: {\n    \u0022in_BatchNo\u0022: {\n      \u0022type\u0022: \u0022string\u0022\n    },\n    \u0022in_TargetStatus\u0022: {\n      \u0022type\u0022: \u0022string\u0022\n    },\n    \u0022in_Qty\u0022: {\n      \u0022type\u0022: \u0022string\u0022\n    }\n  },\n  \u0022required\u0022: []\n}",
+      "outputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022properties\u0022: {\n    \u0022out_BatchStatus\u0022: {\n      \u0022type\u0022: \u0022string\u0022\n    },\n    \u0022out_ExecutionStatus\u0022: {\n      \u0022type\u0022: \u0022string\u0022\n    },\n    \u0022out_ErrorMessage\u0022: {\n      \u0022type\u0022: \u0022string\u0022\n    }\n  }\n}",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Windows",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "[{\u0022UniqueId\u0022:\u0022cb44640d-23fd-4c2f-9b9b-ec11de8b2a64\u0022,\u0022Path\u0022:\u0022ExecuteDisposition.xaml\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022in_BatchNo\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_TargetStatus\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_Qty\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    }\\n  },\\n  \\\u0022required\\\u0022: []\\n}\u0022,\u0022OutputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022out_BatchStatus\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_ExecutionStatus\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_ErrorMessage\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    }\\n  }\\n}\u0022,\u0022Type\u0022:1,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13846185},{\u0022UniqueId\u0022:\u0022fc3f568e-2c73-47e0-96b0-b3b7997b062e\u0022,\u0022Path\u0022:\u0022GatherEvidence.xaml\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022in_OrderNo\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022x-default-expression\\\u0022: \\\u0022\\\\\\\u0022SO-4001\\\\\\\u0022\\\u0022,\\n      \\\u0022default\\\u0022: \\\u0022SO-4001\\\u0022\\n    }\\n  },\\n  \\\u0022required\\\u0022: []\\n}\u0022,\u0022OutputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022out_RawResult\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_TotalPaid\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_ExecutionStatus\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_ErrorMessage\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    }\\n  }\\n}\u0022,\u0022Type\u0022:1,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13846186},{\u0022UniqueId\u0022:\u002278bf0b84-2f96-4954-a3b3-ed3290c141a7\u0022,\u0022Path\u0022:\u0022GatherTempLogs.xaml\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022in_SalesOrder\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022x-default-expression\\\u0022: \\\u0022\\\\\\\u0022SO-557844\\\\\\\u0022\\\u0022,\\n      \\\u0022default\\\u0022: \\\u0022SO-557844\\\u0022\\n    },\\n    \\\u0022in_PortalUrl\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022x-default-expression\\\u0022: \\\u0022\\\\\\\u0022https://nord-cold-logistics.vercel.app/\\\\\\\u0022\\\u0022,\\n      \\\u0022default\\\u0022: \\\u0022https://nord-cold-logistics.vercel.app/\\\u0022\\n    },\\n    \\\u0022in_Username\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022x-default-expression\\\u0022: \\\u0022\\\\\\\u0022demo\\\\\\\u0022\\\u0022,\\n      \\\u0022default\\\u0022: \\\u0022demo\\\u0022\\n    },\\n    \\\u0022in_Password\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022x-default-expression\\\u0022: \\\u0022\\\\\\\u0022demo\\\\\\\u0022\\\u0022,\\n      \\\u0022default\\\u0022: \\\u0022demo\\\u0022\\n    }\\n  },\\n  \\\u0022required\\\u0022: []\\n}\u0022,\u0022OutputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022out_TransportRef\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_TempMinC\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022minimum\\\u0022: -1.7976931348623157E\u002B308,\\n      \\\u0022maximum\\\u0022: 1.7976931348623157E\u002B308\\n    },\\n    \\\u0022out_TempMaxC\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022minimum\\\u0022: -1.7976931348623157E\u002B308,\\n      \\\u0022maximum\\\u0022: 1.7976931348623157E\u002B308\\n    },\\n    \\\u0022out_ExcursionHours\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022minimum\\\u0022: -1.7976931348623157E\u002B308,\\n      \\\u0022maximum\\\u0022: 1.7976931348623157E\u002B308\\n    },\\n    \\\u0022out_LoggerPresent\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022boolean\\\u0022\\n    },\\n    \\\u0022out_TempLog\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022array\\\u0022,\\n      \\\u0022items\\\u0022: {\\n        \\\u0022type\\\u0022: \\\u0022object\\\u0022\\n      }\\n    },\\n    \\\u0022out_RawLogJson\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_ExecutionStatus\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_ErrorMessage\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    }\\n  }\\n}\u0022,\u0022Type\u0022:1,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13846188},{\u0022UniqueId\u0022:\u002217c579c7-a009-4bdf-9adf-79be88bc9f00\u0022,\u0022Path\u0022:\u0022Main.xaml\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:null,\u0022OutputArguments\u0022:null,\u0022Type\u0022:1,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13846192},{\u0022UniqueId\u0022:\u00220d6d2f69-fd0f-421a-b2b9-29eeb8901337\u0022,\u0022Path\u0022:\u0022PostToErp.xaml\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022in_NoteType\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_CaseId\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_CustomerCode\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_ProductCode\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_BatchNo\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_Qty\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_Amount\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022in_Reason\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    }\\n  },\\n  \\\u0022required\\\u0022: []\\n}\u0022,\u0022OutputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022out_CreditNoteStatus\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_CreditPosted\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022boolean\\\u0022\\n    },\\n    \\\u0022out_ExecutionStatus\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    },\\n    \\\u0022out_ErrorMessage\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022\\n    }\\n  }\\n}\u0022,\u0022Type\u0022:1,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13846194}]",
+      "tags": []
+    },
+    "locks": [],
+    "key": "e9c05bd4-c780-41ea-9fb1-1e6f5109dd79"
+  }
+}

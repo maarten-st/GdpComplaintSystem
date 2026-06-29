@@ -1,6 +1,6 @@
 # ComplaintOrchestration — Orchestrator / Studio Web source of truth
 
-**This folder is the canonical copy, exported from Studio Web on 2026-06-15** (SolutionId
+**This folder is the canonical copy, exported from Studio Web on 2026-06-30** (SolutionId
 `c60aa117-4e28-40be-d206-08dec8f2123b`, via `uip solution download`). The user does their wiring
 (connectors, agents, RPA jobs, triggers, I/O mappings) **in Studio Web**, so Studio Web is authoritative.
 

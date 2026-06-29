@@ -1,0 +1,32 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "ErpRobots_4",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "files": [
+      {
+        "name": "Package_ErpRobots_4.1.0.10.nupkg",
+        "kind": "Package",
+        "version": "1.0.10",
+        "url": "https://staging.uipath.com/hackathon26_371/DefaultTenant/orchestrator_/odata/Processes/UiPath.Server.Configuration.OData.DownloadPackage(key=\u0027ErpRobots:1.0.10\u0027)?feedId=894388b1-dff7-4c57-8f9f-156cb71c2184",
+        "key": "Package_ErpRobots_4_1.0.10"
+      }
+    ],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": "ErpRobots.1.0.10.nupkg",
+      "fileReference": "Package_ErpRobots_4_1.0.10",
+      "name": "ErpRobots_4"
+    },
+    "locks": [],
+    "key": "ErpRobots:1.0.10"
+  }
+}

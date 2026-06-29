@@ -1,0 +1,60 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "InvestigationAgent_1",
+    "kind": "process",
+    "type": "agent",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "name": "InvestigationAgentSolution.Agent.InvestigationAgent_2",
+        "kind": "Package"
+      }
+    ],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Agent",
+      "agentMemory": false,
+      "targetRuntime": "pythonAgent",
+      "environmentVariables": "",
+      "referencedAssets": null,
+      "name": "InvestigationAgent_1",
+      "description": null,
+      "package": {
+        "name": "InvestigationAgentSolution.Agent.InvestigationAgent_2",
+        "key": "InvestigationAgentSolution.Agent.InvestigationAgent:1.0.2"
+      },
+      "packageName": "InvestigationAgentSolution.Agent.InvestigationAgent",
+      "packageVersion": "1.0.2",
+      "entryPointUniqueId": "633422ad-5ba1-402b-83d3-b21108c9b1d7",
+      "entryPointName": "content/agent.json",
+      "inputArguments": null,
+      "inputArgumentsSchema": null,
+      "outputArgumentsSchema": null,
+      "inputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022required\u0022: [\n    \u0022extractedType\u0022\n  ],\n  \u0022properties\u0022: {\n    \u0022extractedType\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022AI-extracted complaint type (ProductQualityDefect/PackagingDefect/LabelingError/AdverseEvent/ShippingDamage/CounterfeitSuspicion/Other).\u0022\n    },\n    \u0022salesOrderData\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Sales-order / ERP evidence for the order (raw text or JSON from GatherEvidence).\u0022\n    },\n    \u0022transportRef\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Transport reference (TRX-####) from the carrier portal.\u0022\n    },\n    \u0022tempMinC\u0022: {\n      \u0022type\u0022: \u0022number\u0022,\n      \u0022description\u0022: \u0022Minimum recorded temperature (C). 0 if no logger.\u0022\n    },\n    \u0022tempMaxC\u0022: {\n      \u0022type\u0022: \u0022number\u0022,\n      \u0022description\u0022: \u0022Maximum recorded temperature (C). 0 if no logger.\u0022\n    },\n    \u0022excursionHours\u0022: {\n      \u0022type\u0022: \u0022number\u0022,\n      \u0022description\u0022: \u0022Hours outside the 2-8 C cold-chain band. 0 if none/no logger.\u0022\n    },\n    \u0022loggerPresent\u0022: {\n      \u0022type\u0022: \u0022boolean\u0022,\n      \u0022description\u0022: \u0022Whether a temperature logger reading was available.\u0022\n    },\n    \u0022tempLogJson\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Full temperature log (text/JSON) scraped from the transport portal.\u0022\n    },\n    \u0022complaintHistory\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Prior complaints on the same sales order / batch (text or JSON), for correlation.\u0022\n    },\n    \u0022orderLines\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The order lines with quantity and unit price from the ERP mock data app\u0022\n    },\n    \u0022deliveryNoteData\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Delivery-note / goods-received evidence: what was actually delivered (delivered quantity per product/line, raw text or JSON). Empty string if not available.\u0022\n    }\n  }\n}",
+      "outputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022properties\u0022: {\n    \u0022suggestedAction\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Single recommended action for the human to approve. Physical disposition is always BackToStock or Quarantine; Destroy is never recommended directly (it is a later decision after quarantine review).\u0022,\n      \u0022enum\u0022: [\n        \u0022BackToStock\u0022,\n        \u0022Quarantine\u0022,\n        \u0022Credit\u0022,\n        \u0022Debit\u0022,\n        \u0022None\u0022\n      ]\n    },\n    \u0022financeAmount\u0022: {\n      \u0022type\u0022: \u0022number\u0022,\n      \u0022description\u0022: \u0022Estimated credit/debit amount if derivable from the data, else 0.\u0022\n    },\n    \u0022linkedComplaints\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Comma-separated ids of correlated complaints on the same order/batch, or empty.\u0022\n    },\n    \u0022investigationFindings\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Compact JSON: rootCause, gdp63 criteria (TRUE/FALSE/UNKNOWN), disposition, financeDirection, rationale.\u0022\n    }\n  }\n}",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "retentionBucketRef": null,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "staleRetentionBucketRef": null,
+      "entryPoints": "[{\u0022UniqueId\u0022:\u0022633422ad-5ba1-402b-83d3-b21108c9b1d7\u0022,\u0022Path\u0022:\u0022content/agent.json\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022required\\\u0022: [\\n    \\\u0022extractedType\\\u0022\\n  ],\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022extractedType\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022AI-extracted complaint type (ProductQualityDefect/PackagingDefect/LabelingError/AdverseEvent/ShippingDamage/CounterfeitSuspicion/Other).\\\u0022\\n    },\\n    \\\u0022salesOrderData\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Sales-order / ERP evidence for the order (raw text or JSON from GatherEvidence).\\\u0022\\n    },\\n    \\\u0022transportRef\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Transport reference (TRX-####) from the carrier portal.\\\u0022\\n    },\\n    \\\u0022tempMinC\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Minimum recorded temperature (C). 0 if no logger.\\\u0022\\n    },\\n    \\\u0022tempMaxC\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Maximum recorded temperature (C). 0 if no logger.\\\u0022\\n    },\\n    \\\u0022excursionHours\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Hours outside the 2-8 C cold-chain band. 0 if none/no logger.\\\u0022\\n    },\\n    \\\u0022loggerPresent\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022boolean\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Whether a temperature logger reading was available.\\\u0022\\n    },\\n    \\\u0022tempLogJson\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Full temperature log (text/JSON) scraped from the transport portal.\\\u0022\\n    },\\n    \\\u0022complaintHistory\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Prior complaints on the same sales order / batch (text or JSON), for correlation.\\\u0022\\n    },\\n    \\\u0022orderLines\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The order lines with quantity and unit price from the ERP mock data app\\\u0022\\n    },\\n    \\\u0022deliveryNoteData\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Delivery-note / goods-received evidence: what was actually delivered (delivered quantity per product/line, raw text or JSON). Empty string if not available.\\\u0022\\n    }\\n  }\\n}\u0022,\u0022OutputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022suggestedAction\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Single recommended action for the human to approve. Physical disposition is always BackToStock or Quarantine; Destroy is never recommended directly (it is a later decision after quarantine review).\\\u0022,\\n      \\\u0022enum\\\u0022: [\\n        \\\u0022BackToStock\\\u0022,\\n        \\\u0022Quarantine\\\u0022,\\n        \\\u0022Credit\\\u0022,\\n        \\\u0022Debit\\\u0022,\\n        \\\u0022None\\\u0022\\n      ]\\n    },\\n    \\\u0022financeAmount\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Estimated credit/debit amount if derivable from the data, else 0.\\\u0022\\n    },\\n    \\\u0022linkedComplaints\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Comma-separated ids of correlated complaints on the same order/batch, or empty.\\\u0022\\n    },\\n    \\\u0022investigationFindings\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Compact JSON: rootCause, gdp63 criteria (TRUE/FALSE/UNKNOWN), disposition, financeDirection, rationale.\\\u0022\\n    }\\n  }\\n}\u0022,\u0022Type\u0022:4,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13950261}]",
+      "connections": null,
+      "tags": []
+    },
+    "locks": [],
+    "key": "e3ad05d8-a679-4cdd-bd7a-e624126429c8"
+  }
+}

@@ -1,9 +1,9 @@
 {
   "docVersion": "1.0.0",
   "resource": {
-    "name": "steurma@cronos.be",
+    "name": "steurma@cronos.be_1",
     "kind": "connection",
-    "type": "uipath-uipath-dataservice",
+    "type": "uipath-microsoft-outlook365",
     "apiVersion": "integrationservice.uipath.com/v1",
     "isOverridable": true,
     "dependencies": [],
@@ -15,14 +15,15 @@
       }
     ],
     "spec": {
-      "connectorName": "UiPath Data Fabric",
-      "name": "steurma@cronos.be",
+      "connectorName": "Microsoft Outlook 365",
+      "name": "steurma@cronos.be_1",
+      "description": null,
       "authenticationType": "AuthenticateAfterDeployment",
-      "connectorVersion": "1.69.3",
-      "connectorKey": "uipath-uipath-dataservice",
+      "connectorVersion": "1.38.8",
+      "connectorKey": "uipath-microsoft-outlook365",
       "pollingInterval": 5
     },
     "locks": [],
-    "key": "49a6877f-462a-4199-a798-7a989bc3a9da"
+    "key": "2e23680f-5d95-449d-b768-5a0565bd9436"
   }
 }

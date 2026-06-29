@@ -1,0 +1,52 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "ExtractComplaint_1_2",
+    "kind": "process",
+    "type": "agent",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "name": "ExtractComplaintSolution.Agent.ExtractComplaint_1",
+        "kind": "Package"
+      }
+    ],
+    "runtimeDependencies": [],
+    "files": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Agent",
+      "agentMemory": false,
+      "targetRuntime": "pythonAgent",
+      "environmentVariables": "",
+      "name": "ExtractComplaint_1_2",
+      "package": {
+        "name": "ExtractComplaintSolution.Agent.ExtractComplaint_1",
+        "key": "ExtractComplaintSolution.Agent.ExtractComplaint:1.0.1"
+      },
+      "packageName": "ExtractComplaintSolution.Agent.ExtractComplaint",
+      "packageVersion": "1.0.1",
+      "entryPointUniqueId": "c62159d4-0885-4a43-9827-7c59258fa695",
+      "entryPointName": "content/agent.json",
+      "inputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022required\u0022: [\n    \u0022emailFrom\u0022,\n    \u0022emailSubject\u0022,\n    \u0022emailBody\u0022\n  ],\n  \u0022properties\u0022: {\n    \u0022emailFrom\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Sender of the complaint email (display name and/or address). Used to help identify the complaining customer.\u0022\n    },\n    \u0022emailSubject\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Subject line of the complaint email.\u0022\n    },\n    \u0022emailBody\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022Full plain-text body of the complaint email.\u0022\n    }\n  }\n}",
+      "outputArgumentsSchemaV2": "{\n  \u0022type\u0022: \u0022object\u0022,\n  \u0022required\u0022: [\n    \u0022customerName\u0022,\n    \u0022productName\u0022,\n    \u0022batchNo\u0022,\n    \u0022orderNo\u0022,\n    \u0022complaintSummary\u0022,\n    \u0022confidence\u0022,\n    \u0022qtyAffected\u0022,\n    \u0022extractedType\u0022\n  ],\n  \u0022properties\u0022: {\n    \u0022customerName\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The complaining B2B organisation as written (company / pharmacy / hospital / wholesaler). Falls back to the sender\u0027s organisation or email domain. Empty string if undeterminable.\u0022\n    },\n    \u0022productName\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The affected medicinal product (brand or generic name), including strength and form if stated. Empty string if undeterminable.\u0022\n    },\n    \u0022batchNo\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The batch / lot number of the affected product, e.g. in the form P###-B## (P001-B01). Empty string if not present.\u0022\n    },\n    \u0022orderNo\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The sales-order reference, e.g. in the form SO-#### (SO-1001). Empty string if not present.\u0022\n    },\n    \u0022complaintSummary\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022One plain-language sentence capturing the complaint: product/batch, customer, and the core issue.\u0022\n    },\n    \u0022confidence\u0022: {\n      \u0022type\u0022: \u0022number\u0022,\n      \u0022description\u0022: \u0022Confidence in the extraction and classification, from 0 (low) to 1 (high).\u0022\n    },\n    \u0022qtyAffected\u0022: {\n      \u0022type\u0022: \u0022integer\u0022,\n      \u0022description\u0022: \u0022Number of affected units. For quantity discrepancies, the absolute difference |ordered - received|. 0 when no quantity can be determined.\u0022\n    },\n    \u0022extractedType\u0022: {\n      \u0022type\u0022: \u0022string\u0022,\n      \u0022description\u0022: \u0022The complaint category. Exactly one of: QuantityDiscrepancy (a mismatch between ordered and received quantities), ColdChain (a temperature-logger / cold-chain problem in transport), QualityDeficit (a transport-caused defect that makes the product unsellable), or Other (none of the three).\u0022,\n      \u0022enum\u0022: [\n        \u0022QuantityDiscrepancy\u0022,\n        \u0022ColdChain\u0022,\n        \u0022QualityDeficit\u0022,\n        \u0022Other\u0022\n      ]\n    }\n  }\n}",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "[{\u0022UniqueId\u0022:\u0022c62159d4-0885-4a43-9827-7c59258fa695\u0022,\u0022Path\u0022:\u0022content/agent.json\u0022,\u0022DisplayName\u0022:null,\u0022InputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022required\\\u0022: [\\n    \\\u0022emailFrom\\\u0022,\\n    \\\u0022emailSubject\\\u0022,\\n    \\\u0022emailBody\\\u0022\\n  ],\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022emailFrom\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Sender of the complaint email (display name and/or address). Used to help identify the complaining customer.\\\u0022\\n    },\\n    \\\u0022emailSubject\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Subject line of the complaint email.\\\u0022\\n    },\\n    \\\u0022emailBody\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Full plain-text body of the complaint email.\\\u0022\\n    }\\n  }\\n}\u0022,\u0022OutputArguments\u0022:\u0022{\\n  \\\u0022type\\\u0022: \\\u0022object\\\u0022,\\n  \\\u0022required\\\u0022: [\\n    \\\u0022customerName\\\u0022,\\n    \\\u0022productName\\\u0022,\\n    \\\u0022batchNo\\\u0022,\\n    \\\u0022orderNo\\\u0022,\\n    \\\u0022complaintSummary\\\u0022,\\n    \\\u0022confidence\\\u0022,\\n    \\\u0022qtyAffected\\\u0022,\\n    \\\u0022extractedType\\\u0022\\n  ],\\n  \\\u0022properties\\\u0022: {\\n    \\\u0022customerName\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The complaining B2B organisation as written (company / pharmacy / hospital / wholesaler). Falls back to the sender\u0027s organisation or email domain. Empty string if undeterminable.\\\u0022\\n    },\\n    \\\u0022productName\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The affected medicinal product (brand or generic name), including strength and form if stated. Empty string if undeterminable.\\\u0022\\n    },\\n    \\\u0022batchNo\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The batch / lot number of the affected product, e.g. in the form P###-B## (P001-B01). Empty string if not present.\\\u0022\\n    },\\n    \\\u0022orderNo\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The sales-order reference, e.g. in the form SO-#### (SO-1001). Empty string if not present.\\\u0022\\n    },\\n    \\\u0022complaintSummary\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022One plain-language sentence capturing the complaint: product/batch, customer, and the core issue.\\\u0022\\n    },\\n    \\\u0022confidence\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022number\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Confidence in the extraction and classification, from 0 (low) to 1 (high).\\\u0022\\n    },\\n    \\\u0022qtyAffected\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022integer\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022Number of affected units. For quantity discrepancies, the absolute difference |ordered - received|. 0 when no quantity can be determined.\\\u0022\\n    },\\n    \\\u0022extractedType\\\u0022: {\\n      \\\u0022type\\\u0022: \\\u0022string\\\u0022,\\n      \\\u0022description\\\u0022: \\\u0022The complaint category. Exactly one of: QuantityDiscrepancy (a mismatch between ordered and received quantities), ColdChain (a temperature-logger / cold-chain problem in transport), QualityDeficit (a transport-caused defect that makes the product unsellable), or Other (none of the three).\\\u0022,\\n      \\\u0022enum\\\u0022: [\\n        \\\u0022QuantityDiscrepancy\\\u0022,\\n        \\\u0022ColdChain\\\u0022,\\n        \\\u0022QualityDeficit\\\u0022,\\n        \\\u0022Other\\\u0022\\n      ]\\n    }\\n  }\\n}\u0022,\u0022Type\u0022:4,\u0022TargetRuntime\u0022:null,\u0022ContentRoot\u0022:null,\u0022DataVariation\u0022:null,\u0022Id\u0022:13882416}]",
+      "tags": []
+    },
+    "locks": [],
+    "key": "004f7540-1c6a-4677-87e5-12145cc037c7"
+  }
+}

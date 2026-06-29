@@ -13,9 +13,7 @@ regulated decision stays with a human.
   re-download before editing locally.
 
 > **State / honesty note.** This is a working hackathon prototype, published and running, with
-> known rough edges that are called out inline below. The latest local pull is 2026-06-18; some
-> Studio Web wiring added after that (a `Quarantine` disposition value, the CAPA approval
-> booleans) is verified from working notes, not a fresh pull.
+> known rough edges that are called out inline below. The latest local pull is 2026-06-30; in sync with Studio Web.
 
 ---
 

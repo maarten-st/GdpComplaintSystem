@@ -3,25 +3,6 @@
   "resources": [
     {
       "resource": "Connection",
-      "key": "a33b08e7-c4db-42e7-b6d8-126ca71d0513",
-      "id": "Connectiona33b08e7-c4db-42e7-b6d8-126ca71d0513",
-      "value": {
-        "ConnectionId": {
-          "defaultValue": "a33b08e7-c4db-42e7-b6d8-126ca71d0513",
-          "isExpression": false,
-          "displayName": "uipath-microsoft-outlook365 connection"
-        }
-      },
-      "metadata": {
-        "ActivityName": "Fetch Complaint Email (Outlook 365)",
-        "BindingsVersion": "2.2",
-        "DisplayLabel": "uipath-microsoft-outlook365 connection",
-        "UseConnectionService": "true",
-        "Connector": "uipath-microsoft-outlook365"
-      }
-    },
-    {
-      "resource": "Connection",
       "key": "49a6877f-462a-4199-a798-7a989bc3a9da",
       "id": "Connection49a6877f-462a-4199-a798-7a989bc3a9da",
       "value": {
@@ -32,7 +13,7 @@
         }
       },
       "metadata": {
-        "ActivityName": "Create Record (Data Fabric, Gate=Triage)",
+        "ActivityName": "Update  Record (Data Fabric, Gate=Triage)",
         "BindingsVersion": "2.2",
         "DisplayLabel": "uipath-uipath-dataservice connection",
         "UseConnectionService": "true",
@@ -70,24 +51,6 @@
       },
       "metadata": {
         "ActivityName": "Gather Temperature Logs - Portal (RPA)",
-        "BindingsVersion": "2.2",
-        "DisplayLabel": "name",
-        "SolutionsSupport": "true"
-      }
-    },
-    {
-      "resource": "process",
-      "key": "GatherEvidence_1",
-      "id": "processGatherEvidence_1",
-      "value": {
-        "name": {
-          "defaultValue": "GatherEvidence_1",
-          "isExpression": false,
-          "displayName": "Process name"
-        }
-      },
-      "metadata": {
-        "ActivityName": "Gather Evidence - Sales Order (RPA)",
         "BindingsVersion": "2.2",
         "DisplayLabel": "name",
         "SolutionsSupport": "true"
@@ -147,6 +110,80 @@
         "DisplayLabel": "name",
         "SolutionsSupport": "true",
         "subType": "Agent"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "HandleEmailAttachments",
+      "id": "processHandleEmailAttachments",
+      "value": {
+        "name": {
+          "defaultValue": "HandleEmailAttachments",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Process attachments",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "Connection",
+      "key": "2e23680f-5d95-449d-b768-5a0565bd9436",
+      "id": "Connection2e23680f-5d95-449d-b768-5a0565bd9436",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "2e23680f-5d95-449d-b768-5a0565bd9436",
+          "isExpression": false,
+          "displayName": "uipath-microsoft-outlook365 connection"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Fetch Complaint Email (Outlook 365)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "uipath-microsoft-outlook365 connection",
+        "UseConnectionService": "true",
+        "Connector": "uipath-microsoft-outlook365"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "CustomerUpdateAgent",
+      "id": "processCustomerUpdateAgent",
+      "value": {
+        "name": {
+          "defaultValue": "CustomerUpdateAgent",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "CustomerUpdateAgent",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true",
+        "subType": "Agent"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "GatherEvidence_6",
+      "id": "processGatherEvidence_6",
+      "value": {
+        "name": {
+          "defaultValue": "GatherEvidence_6",
+          "isExpression": false,
+          "displayName": "Process name"
+        }
+      },
+      "metadata": {
+        "ActivityName": "Gather Evidence - Sales Order (RPA)",
+        "BindingsVersion": "2.2",
+        "DisplayLabel": "name",
+        "SolutionsSupport": "true"
       }
     }
   ]
