@@ -148,7 +148,8 @@ GdpComplaintSystem/
 ├── Agents/                    ← UiPath Agent Builder agent projects (ExtractComplaint, InvestigationAgent, CustomerUpdateAgent)
 ├── Mock-Apps/                 ← Electron desktop mock ERP app
 ├── Mock-Data/                 ← All fabricated data, seed cases, master CSVs
-└── InputEmails/               ← Sample .msg complaint email files for testing
+├── InputEmails/               ← Sample .msg complaint email files for testing
+└── Deck/                      ← Submission slide deck (RoboRana_UiPath_Deck_final)
 ```
 
 > **Note:** The Maestro Case definition and solution (Track 1 `caseplan.json`, 13 stages, 33 tasks) lives in the separate source repo `uipath-maestro-test/MaestroCase/` and is published to Studio Web. It is not duplicated here.
