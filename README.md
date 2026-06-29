@@ -209,6 +209,13 @@ Electron desktop app that the RPA robots drive via UI automation.
 
 Run `npm install && npm start`. `node_modules/` is excluded — regenerate locally.
 
+### Cold-Chain Portal
+
+The temperature log portal is publicly accessible (no install needed):
+**https://nord-cold-logistics.vercel.app/login**
+
+The `GatherTempLogs` robot drives this site via browser automation to scrape min/max temperature readings and excursion hours for a given batch.
+
 ---
 
 ## Out of Scope
