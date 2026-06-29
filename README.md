@@ -1,8 +1,8 @@
-# GDP Complaint System
+# GDP-Compliant Automated Complaint Handling with Humans in the Loop
 
-Agentic solution for **UiPath AgentHack, Track 1 (Maestro Case)** and **Track 2 (BPMN Orchestration)**.
+**Team RoboRana — UiPath AgentHack 2026 (Track 2: Maestro BPMN)**
 
-Handles pharma B2B customer complaints end-to-end under **EU GDP 2013/C 343/01, Ch.6** (Good Distribution Practice): customer emails a complaint → AI agents triage & investigate → RPA robots read/write mock desktop business systems → humans make every regulated decision (5 HITL gates) → case resolves with the right physical action (return / redelivery / destruction) and financial correction (credit / debit note), with a full audit trail.
+An agentic, GDP-compliant complaint-handling system for pharmaceutical wholesale distribution, built as a BPMN flow on UiPath Maestro. AI agents extract and assess, RPA robots gather evidence and execute in business systems, and every regulated decision stays with a human.
 
 **We are a wholesale distributor** (warehouse + logistics for medicines), not the manufacturer.
 
@@ -27,6 +27,128 @@ Handles pharma B2B customer complaints end-to-end under **EU GDP 2013/C 343/01, 
 
 ---
 
+## Project Description
+
+### The Problem
+In pharmaceutical wholesale distribution, a customer complaint about a medicine shipment is a **regulated event** under EU Good Distribution Practice (GDP, 2013/C 343/01, Chapter 6). Each complaint must be investigated, root-caused, and resolved with a documented, auditable disposition. Handled manually, this is slow, inconsistent, and hard to audit — and a wrong release-or-destroy decision is both a compliance breach and a patient-safety risk.
+
+### What It Does
+The solution drives a complaint from inbound email to closed case, end to end:
+
+1. **Intake (automated).** A robot fetches the complaint email (Outlook 365) and processes attachments (storing photos in Data Fabric and extracting delivery-note data). An AI agent extracts the structured fields (customer, product, batch, order number, quantity, summary) and classifies the complaint into one of four GDP categories: **quantity discrepancy, cold-chain (temperature) deviation, quality deficit, or other.** A case record is created at `Gate = Triage`.
+2. **Triage (human + automated).** A Customer Service reviewer validates the extracted data and chooses: proceed, request more information (a robot emails the customer), or mark as "not a claim" (the case closes).
+3. **Investigation (automated).** In parallel, robots gather sales-order evidence from the ERP and temperature logs from a cold-chain portal. An investigation agent reasons over the evidence and **suggests** a disposition and finance direction. The case pauses at "Awaiting approval."
+4. **CAPA — Corrective and Preventive Action (automated after approval).** A Quality Assurance reviewer approves which steps may run. Robots then adjust inventory, post a credit or debit note in the ERP, and close the record at `Gate = Closed`.
+
+### What Makes It Unique
+- **Humans decide, by design.** Agents extract and recommend; robots execute deterministically; **every regulated decision requires a named human at a Gate.** The agent is structurally prevented from recommending destruction — goods that cannot return to stock go to quarantine first.
+- **Data integrity built in.** The flow is designed so that the GDP ALCOA+ data-integrity principles (Attributable, Legible, Contemporaneous, Original, Accurate, Complete, Consistent, Enduring, Available) are satisfied by construction, not bolted on.
+- **One auditable orchestration** over a single Data Service record whose `Gate` field is the state machine.
+
+---
+
+## Architecture at a Glance
+
+```
+Email ──▶ INTAKE (robot + agent) ──▶ TRIAGE (human + automated) ──▶ INVESTIGATION (robots ×2 + agent)
+                                                                              │
+                                                           (agent suggests, human approves)
+                                                                              ▼
+                                                CAPA (human approval + robots) ──▶ CLOSED
+                      Monitored end-to-end via the GDP Complaint Tracker (Coded Web App)
+```
+
+**Legend:** Agents reason & suggest · Humans decide at every Gate · Robots gather & execute.
+
+---
+
+## UiPath Components Used
+
+| Component | How it is used |
+|---|---|
+| **UiPath Maestro BPMN** | The orchestration spine: one long-running BPMN process with collapsed subprocesses, a parallel gateway (two robots concurrently), exclusive gateways, and event-wait nodes that pause for human gates and resume on `Gate` changes. |
+| **Data Fabric / Data Service** | Single source of truth (`ComplaintsData` entity). It is the case state, the inter-stage hand-off, the cockpit's data store, and the event source that triggers each stage. |
+| **Agent Builder** | Two purpose-built agents (see Agent Type below): complaint extraction/classification and investigation. |
+| **Integration Service** | Microsoft Outlook 365 connector for email intake; Data Fabric connector for record create/update and "Record Updated" event waits. |
+| **Robotic Process Automation (RPA)** | Deterministic robots that gather sales-order evidence and temperature logs, and execute disposition and financial postings against the mock ERP desktop application. |
+| **Coded Web App (UiPath Apps + TypeScript SDK)** | The GDP Complaint Tracker — a React + TypeScript human-in-the-loop cockpit that reads/writes the case record. |
+| **IXP / Document Understanding** | Used in attachment handling to extract delivery-note data. |
+| **Orchestrator** | Hosts and runs the agent and RPA jobs; the BPMN binds them by release key. |
+
+**Other technologies:** Claude Code (UiPath for Coding Agents), Claude Opus 4.8, Outlook 365, a mock ERP desktop application, and a cold-chain web portal.
+
+---
+
+## Agent Type
+
+**This solution uses Low-code Agents (built with UiPath Agent Builder).**
+
+There are two low-code agents, both authored in Agent Builder and running on a UiPath-hosted Claude model:
+
+1. **Complaint Extraction & Classification agent** — interprets the unstructured complaint email into structured fields and classifies it into one of the four GDP categories, with a confidence score. It is instructed never to invent values.
+2. **Investigation agent** — reasons over the complaint type, ERP order data, and cold-chain readings, and **suggests** a disposition (return-to-stock or quarantine) and a finance direction (credit, debit, or none). It never makes the decision and never recommends destruction.
+
+> **Agent Type summary: Low-code Agents only** (no Coded Agents). Reasoning lives in the two Agent Builder agents; deterministic execution lives in RPA robots; decisions live with human gates.
+
+---
+
+## Setup Instructions
+
+> **Note for judges:** the steps below describe how to configure and run the solution. Items marked **[verify]** should be confirmed against the deployed tenant before judging.
+
+### Prerequisites
+- A UiPath Automation Cloud tenant with **Maestro**, **Agent Builder**, **Data Fabric / Data Service**, **Integration Service**, **Orchestrator**, and **Apps** enabled.
+- A Microsoft Outlook 365 account/mailbox for complaint intake.
+- The mock ERP desktop application and the cold-chain portal running and reachable.
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/maarten-st/GdpComplaintSystem.git
+cd GdpComplaintSystem
+```
+
+### 2. Provision the Mock Environment
+- Start the mock ERP desktop application: `cd Mock-Apps/mock-erp && npm install && npm start`
+- Start the mock Case cockpit: `cd Mock-Apps/mock-cockpit && npm install && npm start`
+- Load the seed data (orders, batches, temperature logs) from `Mock-Data/gdp_mockdata/`.
+
+### 3. Set Up the Data Service Entity
+- Import / confirm the `ComplaintsData` entity (fields incl. customer, product, batch, order number, quantity, `Gate`, disposition, approval flags, and attachment fields). Schema reference: `Mock-Data/_complaints-entity.json`.
+
+### 4. Configure Integration Service Connections
+- Create a **Microsoft Outlook 365** connection (OAuth sign-in to the complaint mailbox).
+- Confirm the **Data Fabric** connection is active.
+
+### 5. Deploy the Agents and Robots
+- Publish the two **Agent Builder** agents and bind them in the BPMN via `StartAgentJob`. **[verify: release keys / folder]**
+- Publish the **RPA** workflows (`ErpRobots`) to Orchestrator. **[verify: folder / asset `GDP_MOCKERP_HOME`]**
+
+### 6. Deploy the Coded Web App (GDP Complaint Tracker)
+- Build and publish the React + TypeScript app: `cd Coded-Apps/complaint-tracker && npm install && npm run dev`
+
+### 7. Deploy and Run the Maestro BPMN Process
+- Deploy `ComplaintOrchestration` to the target folder. **[verify: solution/folder `ComplaintOrchestrationSolution`]**
+- Register the trigger and confirm all connections are bound (`bindings_v2.json`).
+
+### 8. Run an End-to-End Test
+- Send a complaint email to the monitored mailbox (structured body: order number, batch, quantity affected, complaint text). Sample emails are in `Mock-Data/gdp_mockdata/email_templates/`.
+- Follow the case in the GDP Complaint Tracker app: Intake → Triage → Investigation → CAPA → Closed.
+- Approve the human gates to advance the case; confirm the ERP and finance records update.
+
+### Quick Validation (no UiPath tenant needed)
+```bash
+# Run decision-logic tests (32 assertions, no install needed)
+node Decision-Logic/decision-logic/run-tests.js
+
+# Run email intake parser tests (40 assertions)
+node Decision-Logic/intake-parser/run-tests.js
+
+# Render case documents to HTML
+node Documents/generate.js
+```
+
+---
+
 ## Folder Structure
 
 ```
@@ -45,30 +167,6 @@ GdpComplaintSystem/
 ```
 
 > **Note:** The Maestro Case definition and solution (Track 1 `caseplan.json`, 13 stages, 33 tasks) lives in the separate source repo `uipath-maestro-test/MaestroCase/` and is published to Studio Web. It is not duplicated here.
-
----
-
-## Quick Start
-
-```bash
-# Run decision-logic tests (32 assertions, no install needed)
-node Decision-Logic/decision-logic/run-tests.js
-
-# Run email intake parser tests (40 assertions)
-node Decision-Logic/intake-parser/run-tests.js
-
-# Render case documents to HTML
-node Documents/generate.js
-
-# Start mock ERP desktop app (robot drives this)
-cd Mock-Apps/mock-erp && npm install && npm start
-
-# Start mock Case cockpit
-cd Mock-Apps/mock-cockpit && npm install && npm start
-
-# Start complaint tracker CodeApp (dev mode)
-cd Coded-Apps/complaint-tracker && npm install && npm run dev
-```
 
 ---
 
@@ -236,3 +334,13 @@ Run: `node Documents/generate.js`
 | `Documents/` | `new-project/uipath-maestro-test/documents/` |
 | `Project-Docs/` | `new-project/uipath-maestro-test/` (sdd.md, tasks/, etc.) |
 | Maestro Case (not here) | `new-project/uipath-maestro-test/MaestroCase/` — published to Studio Web |
+
+---
+
+## Team RoboRana
+
+- **Sabrina Ben Haddou** — Automation & AI Analyst
+- **Maarten Steurs** — Technical Lead
+- **Bert Provoost** — Solution Architect
+
+*Built with UiPath Maestro and Claude Code.*
